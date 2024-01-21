@@ -195,7 +195,11 @@ void setup() {
 
    if (connectWIFI) connectToWifi();
     if (WiFi.status() == WL_CONNECTED) {
-      Serial.printf("WiFi connected! IP address: %s\n", WiFi.localIP().c_str());
+      // IPAddress has special support for Serial.print and Serial.println, but
+      // it's hard to convert it to a string, so we use this unusual format to
+      // print.
+      Serial.print("WiFi connected! IP address: ");
+      Serial.println(WiFi.localIP());
     }
   updateOLED2("Warming Up", "Serial Number:", getNormalizedMac());
 }
