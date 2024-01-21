@@ -156,14 +156,16 @@ void setup() {
     inConf();
   }
 
-   if (connectWIFI) connectToWifi();
-    if (WiFi.status() == WL_CONNECTED) {
-      // IPAddress has special support for Serial.print and Serial.println, but
-      // it's hard to convert it to a string, so we use this unusual format to
-      // print.
-      Serial.print("WiFi connected! IP address: ");
-      Serial.println(WiFi.localIP());
-    }
+  if (connectWIFI) {
+    connectToWifi();
+  }
+  if (WiFi.status() == WL_CONNECTED) {
+    // IPAddress has special support for Serial.print and Serial.println, but
+    // it's hard to convert it to a string, so we use this unusual format to
+    // print.
+    Serial.print("WiFi connected! IP address: ");
+    Serial.println(WiFi.localIP());
+  }
   updateOLED2("Warming Up", "Serial Number:", getNormalizedMac());
 }
 
@@ -481,7 +483,6 @@ void resetWatchdog() {
 // Wifi Manager
 void connectToWifi() {
   WiFiManager wifiManager;
-  //WiFi.disconnect(); //to delete previous saved hotspot
   String HOTSPOT = "AG-" + getNormalizedMac();
   updateOLED2("180s to connect", "to Wifi Hotspot", HOTSPOT);
   wifiManager.setTimeout(180);
