@@ -62,8 +62,6 @@ CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 #define I2C_SDA 7
 #define I2C_SCL 6
 
-HTTPClient client;
-
 Adafruit_NeoPixel pixels(11, 10, NEO_GRB + NEO_KHZ800);
 SensirionI2CSgp41 sgp41;
 VOCGasIndexAlgorithm voc_algorithm;
