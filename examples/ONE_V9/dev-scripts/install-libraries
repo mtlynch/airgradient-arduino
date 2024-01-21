@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Exit on first failure.
+set -e
+
+# Exit on unset variable.
+set -u
+
+# Echo commands before executing them, by default to stderr.
+set -x
+
+if [[ "$(arduino-cli config dump --verbose | head -n 1 | grep -i 'file not found')" ]]; then
+  arduino-cli config init \
+    --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+fi
+
+arduino-cli lib install \
+  'Adafruit NeoPixel'@1.12.0 \
+  'arduino-sht'@1.2.3 \
+  'S8_UART'@1.0.1 \
+  'Sensirion Core'@0.6.0 \
+  'Sensirion Gas Index Algorithm'@3.2.2 \
+  'Sensirion I2C SGP41'@1.0.0 \
+  'U8g2'@2.34.22 \
+  'WiFiManager'@2.0.16-rc.2
+
+arduino-cli config set library.enable_unsafe_install true
+arduino-cli lib install \
+  --git-url 'https://github.com/Ibuprofen/PMS.git#d972759f47a700b1c091d19b61eefdbfacb8b828'
+arduino-cli config set library.enable_unsafe_install false
