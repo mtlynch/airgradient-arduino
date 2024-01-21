@@ -70,7 +70,7 @@ unsigned long loopCount = 0;
 
 unsigned long currentMillis = 0;
 
-const int INVALID_READING = -10001;
+const float INVALID_READING = -10001.0;
 
 IntervalCounter oledIntervalCounter(5 * 1000);
 IntervalCounter sendToServerIntervalCounter(10 * 1000);
@@ -88,7 +88,7 @@ int pm10 = -1;
 
 IntervalCounter tempHumIntervalCounter(5 * 1000);
 float temp;
-int hum;
+float humidity;
 
 int buttonConfig = 0;
 int lastState = LOW;
@@ -192,7 +192,7 @@ void updateTVOC() {
   delay(1000);
 
   compensationT = static_cast < uint16_t > ((temp + 45) * 65535 / 175);
-  compensationRh = static_cast < uint16_t > (hum * 65535 / 100);
+  compensationRh = static_cast < uint16_t > (humidity * 65535 / 100);
 
   if (conditioning_s > 0) {
     error = sgp41.executeConditioning(compensationRh, compensationT, srawVoc);
@@ -241,11 +241,11 @@ void updateTempHum() {
   if (tempHumIntervalCounter.IsTimeToFire(currentMillis)) {
     if (sht.readSample()) {
       temp = sht.getTemperature();
-      hum = sht.getHumidity();
+      humidity = sht.getHumidity();
     } else {
       Serial.print("Error in readSample()\n");
       temp = INVALID_READING;
-      hum = INVALID_READING;
+      humidity = INVALID_READING;
     }
   }
 }
@@ -313,6 +313,7 @@ void updateOLED3() {
   char buf[9];
   u8g2.firstPage();
   u8g2.firstPage();
+  const uint screenWidth = 128;
   do {
 
     u8g2.setFont(u8g2_font_t0_16_tf);
@@ -324,29 +325,28 @@ void updateOLED3() {
       } else {
         sprintf(buf, "-°F");
       }
-      u8g2.drawUTF8(1, 10, buf);
     } else {
       if (temp != INVALID_READING) {
         sprintf(buf, "%.1f°C", temp);
       } else {
         sprintf(buf, "-°C");
       }
-      u8g2.drawUTF8(1, 10, buf);
     }
+    u8g2.drawUTF8(1, 10, buf);
 
-    if (hum >= 0) {
-      sprintf(buf, "%d%%", hum);
+    if (humidity != INVALID_READING) {
+      sprintf(buf, "%.1f%%", humidity);
     } else {
       sprintf(buf, " -%%");
     }
-    if (hum > 99) {
-      u8g2.drawStr(97, 10, buf);
+    if (humidity > 99.0) {
+      u8g2.drawStr(screenWidth - 31, 10, buf);
     } else {
-      u8g2.drawStr(105, 10, buf);
+      u8g2.drawStr(screenWidth - 39, 10, buf);
       // there might also be single digits, not considered, sprintf might actually support a leading space
     }
 
-    u8g2.drawLine(1, 13, 128, 13);
+    u8g2.drawLine(1, 13, screenWidth, 13);
     u8g2.setFont(u8g2_font_t0_12_tf);
     u8g2.drawUTF8(1, 27, "CO2");
     u8g2.setFont(u8g2_font_t0_22b_tf);
@@ -413,7 +413,7 @@ String formatInfluxDbLineFloat(String label, float value, String serial) {
   return label + tags + " value=" + String(value);
 }
 
-String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, float temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
+String createInfluxDbPayload(String serial, int wifi_rssi, int co2, float humidity, float temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
   String payload = formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
 
   if (temp_c != INVALID_READING) {
@@ -424,7 +424,7 @@ String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity
     payload += "\n" + formatInfluxDbLineInt("co2", co2, serial);
   }
   if (humidity > 0) {
-    payload += "\n" + formatInfluxDbLineInt("humidity", humidity, serial);
+    payload += "\n" + formatInfluxDbLineFloat("humidity", humidity, serial);
   }
   if (pm01 > 0) {
     payload += "\n" + formatInfluxDbLineInt("pm01", pm01, serial);
@@ -450,7 +450,7 @@ void sendToServer() {
   const String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
 
   if (sendToServerIntervalCounter.IsTimeToFire(currentMillis)) {
-    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), co2, hum, temp, pm01, pm10, pm25, TVOC, NOX);
+    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), co2, humidity, temp, pm01, pm10, pm25, TVOC, NOX);
 
     if (WiFi.status() == WL_CONNECTED) {
       Serial.println("Sending payload...");
