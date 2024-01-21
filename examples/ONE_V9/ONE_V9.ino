@@ -240,7 +240,7 @@ void updateTVOC() {
   if (currentMillis - previousTVOC >= tvocInterval) {
     previousTVOC += tvocInterval;
     if (error) {
-      Serial.println("Failed to read TVOC")
+      Serial.println("Failed to read TVOC");
       TVOC = -1;
       NOX = -1;
     } else {
