@@ -116,7 +116,7 @@ int NOX = -1;
 
 const unsigned long co2Interval = 5000;
 unsigned long previousCo2 = 0;
-int Co2 = 0;
+int co2 = 0;
 
 const unsigned long pmInterval = 5000;
 unsigned long previousPm = 0;
@@ -255,8 +255,8 @@ void updateTVOC() {
 void updateCo2() {
   if (currentMillis - previousCo2 >= co2Interval) {
     previousCo2 += co2Interval;
-    Co2 = sensor_S8 -> get_co2();
-    Serial.printf("co2=%d\n", Co2);
+    co2 = sensor_S8 -> get_co2();
+    Serial.printf("co2=%d\n", co2);
   }
 }
 
@@ -294,7 +294,7 @@ void updateOLED() {
   if (currentMillis - previousOled >= oledInterval) {
     previousOled += oledInterval;
     updateOLED3();
-    setRGBledCO2color(Co2);
+    setRGBledCO2color(co2);
   }
 }
 
@@ -391,8 +391,8 @@ void updateOLED3() {
     u8g2.setFont(u8g2_font_t0_12_tf);
     u8g2.drawUTF8(1, 27, "CO2");
     u8g2.setFont(u8g2_font_t0_22b_tf);
-    if (Co2 > 0) {
-      sprintf(buf, "%d", Co2);
+    if (co2 > 0) {
+      sprintf(buf, "%d", co2);
     } else {
       sprintf(buf, "%s", "-");
     }
@@ -449,11 +449,16 @@ String formatInfluxDbLineInt(String label, int value, String serial) {
   return label + tags + " value=" + String(value);
 }
 
-String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, int temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
+String formatInfluxDbLineFloat(String label, float value, String serial) {
+  String tags = ",serial=" + serial;
+  return label + tags + " value=" + String(value);
+}
+
+String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, float temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
   String payload = formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
 
   if (temp_c != INVALID_READING) {
-    payload += "\n" + formatInfluxDbLineInt("temp", temp_c, serial);
+    payload += "\n" + formatInfluxDbLineFloat("temp", temp_c, serial);
   }
 
   if (co2 > 0) {
@@ -487,7 +492,7 @@ void sendToServer() {
 
   if (currentMillis - previousSendToServer >= sendToServerInterval) {
     previousSendToServer += sendToServerInterval;
-    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), Co2, hum, temp, pm01, pm10, pm25, TVOC, NOX);
+    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), co2, hum, temp, pm01, pm10, pm25, TVOC, NOX);
 
     if (WiFi.status() == WL_CONNECTED) {
       Serial.println("Sending payload...");
