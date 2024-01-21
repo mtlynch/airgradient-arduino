@@ -86,7 +86,7 @@ byte value;
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 
 // set to true to switch from Celcius to Fahrenheit
-boolean inF = false;
+boolean inF = true;
 
 // PM2.5 in US AQI (default ug/m3)
 boolean inUSAQI = false;
@@ -100,7 +100,7 @@ boolean useRGBledBar = true;
 // set to true if you want to connect to wifi. You have 60 seconds to connect. Then it will go into an offline mode.
 boolean connectWIFI = true;
 
-int loopCount = 0;
+unsigned long loopCount = 0;
 
 unsigned long currentMillis = 0;
 
@@ -174,9 +174,8 @@ void setup() {
 
   buttonConfig = String(EEPROM.read(addr)).toInt();
   if (buttonConfig > 7) buttonConfig = 0;
-  delay(400);
-  setConfig();
   Serial.println("buttonConfig: " + String(buttonConfig));
+  delay(400);
 
   updateOLED2("Press Button", "for LED test &", "offline mode");
   delay(2000);
@@ -193,7 +192,6 @@ void setup() {
     updateOLED2("Entering", "Config Menu", "");
     delay(3000);
     lastState = HIGH;
-    setConfig();
     inConf();
   }
 
@@ -208,12 +206,14 @@ void setup() {
 
 void loop() {
   currentMillis = millis();
+  Serial.printf("Starting loop %u, millis=%u\n", loopCount, currentMillis);
   updateTVOC();
   updateOLED();
   updateCo2();
   updatePm();
   updateTempHum();
   sendToServer();
+  loopCount++;
 }
 
 void updateTVOC() {
@@ -299,31 +299,12 @@ void updateTempHum() {
 void updateOLED() {
   if (currentMillis - previousOled >= oledInterval) {
     previousOled += oledInterval;
-
-    String ln3;
-    String ln1;
-
-    if (inUSAQI) {
-      ln1 = "AQI:" + String(PM_TO_AQI_US(pm25)) + " CO2:" + String(Co2);
-    } else {
-      ln1 = "PM:" + String(pm25) + " CO2:" + String(Co2);
-    }
-
-    String ln2 = "TVOC:" + String(TVOC) + " NOX:" + String(NOX);
-
-    if (inF) {
-      ln3 = "F:" + String((temp * 9 / 5) + 32) + " H:" + String(hum) + "%";
-    } else {
-      ln3 = "C:" + String(temp) + " H:" + String(hum) + "%";
-    }
-    //updateOLED2(ln1, ln2, ln3);
     updateOLED3();
     setRGBledCO2color(Co2);
   }
 }
 
 void inConf() {
-  setConfig();
   currentState = digitalRead(9);
 
   if (currentState) {
@@ -362,58 +343,6 @@ void inConf() {
   inConf();
 }
 
-void setConfig() {
-  Serial.println("in setConfig");
-  if (buttonConfig == 0) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:C, PM:ug/m3", "LED Bar: on", "Long Press Saves");
-    inF = false;
-    inUSAQI = false;
-    useRGBledBar = true;
-  } else if (buttonConfig == 1) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:C, PM:US AQI", "LED Bar: on", "Long Press Saves");
-    inF = false;
-    inUSAQI = true;
-    useRGBledBar = true;
-  } else if (buttonConfig == 2) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:F PM:ug/m3", "LED Bar: on", "Long Press Saves");
-    inF = true;
-    inUSAQI = false;
-    useRGBledBar = true;
-  } else if (buttonConfig == 3) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:F PM:US AQI", "LED Bar: on", "Long Press Saves");
-    inF = true;
-    inUSAQI = true;
-    useRGBledBar = true;
-  } else  if (buttonConfig == 4) {
-    updateOLED2("T:C, PM:ug/m3", "LED Bar: off", "Long Press Saves");
-    inF = false;
-    inUSAQI = false;
-    useRGBledBar = false;
-  } else if (buttonConfig == 5) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:C, PM:US AQI", "LED Bar: off", "Long Press Saves");
-    inF = false;
-    inUSAQI = true;
-    useRGBledBar = false;
-  } else if (buttonConfig == 6) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:F PM:ug/m3", "LED Bar: off", "Long Press Saves");
-    inF = true;
-    inUSAQI = false;
-    useRGBledBar = false;
-  } else if (buttonConfig == 7) {
-    u8g2.setDisplayRotation(U8G2_R0);
-    updateOLED2("T:F PM:US AQI", "LED Bar: off", "Long Press Saves");
-    inF = true;
-    inUSAQI = true;
-    useRGBledBar = false;
-  }
-}
-
 void updateOLED2(String ln1, String ln2, String ln3) {
   char buf[9];
   u8g2.firstPage();
@@ -427,6 +356,7 @@ void updateOLED2(String ln1, String ln2, String ln3) {
 }
 
 void updateOLED3() {
+  Serial.printf("in updateOLED3, inF=%d\n", inF);
   char buf[9];
   u8g2.firstPage();
   u8g2.firstPage();
@@ -526,9 +456,8 @@ String formatInfluxDbLineInt(String label, int value, String serial) {
 }
 
 String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, int temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
-  String payload;
-  payload += formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
-  payload += formatInfluxDbLineInt("temp", temp_c, serial);
+  String payload = formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
+  payload += "\n" + formatInfluxDbLineInt("temp", temp_c, serial);
 
   if (co2 > 0) {
     payload += "\n" + formatInfluxDbLineInt("co2", co2, serial);
@@ -571,10 +500,9 @@ void sendToServer() {
       HTTPClient http;
       http.begin(client, POSTURL);
       int httpCode = http.POST(payload);
-      Serial.println(httpCode);
+      Serial.printf("Response from server: %d\n", httpCode);
       http.end();
       resetWatchdog();
-      loopCount++;
     } else {
       Serial.println("WiFi Disconnected");
     }
