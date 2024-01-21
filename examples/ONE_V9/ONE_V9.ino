@@ -529,17 +529,38 @@ void updateOLED3() {
   } while (u8g2.nextPage());
 }
 
-String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, int temp_c) {
-
+String formatInfluxDbLineInt(String label, int value, String serial) {
   String tags = ",serial=" + serial;
-  String payload = "wifi_rssi" + tags + " value=" + String(wifi_rssi);
+  return label + tags + " value=" + String(value);
+}
+
+String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, int temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
+  String payload;
+  payload += formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
+  payload += formatInfluxDbLineInt("temp", temp_c, serial);
+
   if (co2 > 0) {
-    payload += "\nco2" + tags + " value=" + String(co2);
+    payload += "\n" + formatInfluxDbLineInt("co2", co2, serial);
   }
   if (humidity > 0) {
-    payload += "\nhumidity" + tags + " value=" + String(humidity);
+    payload += "\n" + formatInfluxDbLineInt("humidity", humidity, serial);
   }
-  payload += "\ntemp" + tags + " value=" + String(temp_c);
+  if (pm01 > 0) {
+    payload += "\n" + formatInfluxDbLineInt("pm01", pm01, serial);
+  }
+  if (pm10 > 0) {
+    payload += "\n" + formatInfluxDbLineInt("pm10", pm10, serial);
+  }
+  if (pm25 > 0) {
+    payload += "\n" + formatInfluxDbLineInt("pm25", pm25, serial);
+  }
+  if (tvoc > 0) {
+    payload += "\n" + formatInfluxDbLineInt("tvoc_index", tvoc, serial);
+  }
+  if (nox > 0) {
+    payload += "\n" + formatInfluxDbLineInt("nox_index", nox, serial);
+  }
+
   return payload;
 }
 
@@ -549,22 +570,10 @@ void sendToServer() {
 
   if (currentMillis - previoussendToServer >= sendToServerInterval) {
     previoussendToServer += sendToServerInterval;
-    /*String payload = "{\"wifi\":" + String(WiFi.RSSI()) +
-      (Co2 < 0 ? "" : ", \"rco2\":" + String(Co2)) +
-      (pm01 < 0 ? "" : ", \"pm01\":" + String(pm01)) +
-      (pm25 < 0 ? "" : ", \"pm02\":" + String(pm25)) +
-      (pm10 < 0 ? "" : ", \"pm10\":" + String(pm10)) +
-//      (pm03PCount < 0 ? "" : ", \"pm003_count\":" + String(pm03PCount)) +
-      (TVOC < 0 ? "" : ", \"tvoc_index\":" + String(TVOC)) +
-      (NOX < 0 ? "" : ", \"nox_index\":" + String(NOX)) +
-      ", \"atmp\":" + String(temp) +
-      (hum < 0 ? "" : ", \"rhum\":" + String(hum)) +
-      ", \"boot\":" + loopCount +
-      "}";*/
-    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), Co2, hum, temp);
+    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), Co2, hum, temp, pm01, pm10, pm25, TVOC, NOX);
 
     if (WiFi.status() == WL_CONNECTED) {
-      Serial.println("Refactored payload...");
+      Serial.println("Sending payload...");
       Serial.println(payload);
       Serial.printf("POSTing payload to %s\n", POSTURL.c_str());
       WiFiClient client;
