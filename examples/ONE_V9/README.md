@@ -6,6 +6,11 @@ mkdir -p ./venv && \
 ```
 
 ```bash
+sudo adduser "$(whoami)" dialout && \
+  sudo chmod a+rw /dev/ttyACM0
+```
+
+```bash
 arduino-cli compile \
   --verbose \
   --fqbn esp32:esp32:lolin_c3_mini \

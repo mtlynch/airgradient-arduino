@@ -24,6 +24,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     exe.addIncludePath(.{ .path = "." });
+    exe.addIncludePath(.{ .path = "/home/mike/.arduino15/packages/esp32/hardware/esp32/2.0.14/cores/esp32/" });
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default

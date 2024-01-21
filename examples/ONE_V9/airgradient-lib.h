@@ -1,3 +1,4 @@
+#include <WString.h>
 
 // Calculate PM2.5 US AQI
 int PM_TO_AQI_US(int pm02) {
@@ -10,3 +11,8 @@ int PM_TO_AQI_US(int pm02) {
   else if (pm02 <= 500.4) return ((500 - 400) / (500.4 - 350.4) * (pm02 - 350.4) + 400);
   else return 500;
 };
+
+String hi() {
+  String msg = "hi";
+  return msg;
+}

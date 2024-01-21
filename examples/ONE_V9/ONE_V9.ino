@@ -55,7 +55,7 @@ CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 
 #include <U8g2lib.h>
 
-#include "airgradient-lib.h"
+#include <WString.h>
 
 #define DEBUG true
 
@@ -529,7 +529,24 @@ void updateOLED3() {
   } while (u8g2.nextPage());
 }
 
+String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, int temp_c) {
+
+  String tags = ",serial=" + serial;
+  String payload = "wifi_rssi" + tags + " value=" + String(wifi_rssi);
+  if (co2 > 0) {
+    payload += "\nco2" + tags + " value=" + String(co2);
+  }
+  if (humidity > 0) {
+    payload += "\nhumidity" + tags + " value=" + String(humidity);
+  }
+  payload += "\ntemp" + tags + " value=" + String(temp_c);
+  return payload;
+}
+
 void sendToServer() {
+  // TODO: Replace with environment variable.
+  const String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
+
   if (currentMillis - previoussendToServer >= sendToServerInterval) {
     previoussendToServer += sendToServerInterval;
     /*String payload = "{\"wifi\":" + String(WiFi.RSSI()) +
@@ -544,16 +561,12 @@ void sendToServer() {
       (hum < 0 ? "" : ", \"rhum\":" + String(hum)) +
       ", \"boot\":" + loopCount +
       "}";*/
-    String payload = "wifi_rssi,serial=" + getNormalizedMac() + " value=" + String(WiFi.RSSI());
-    if (Co2 > 0) {
-      payload += "\nco2,serial=" + getNormalizedMac() + " value=" + String(Co2);
-    }
-    payload += "\ntemp,serial=" + getNormalizedMac() + " value=" + String(temp);
+    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), Co2, hum, temp);
 
     if (WiFi.status() == WL_CONNECTED) {
+      Serial.println("Refactored payload...");
       Serial.println(payload);
-      String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
-      Serial.println(POSTURL);
+      Serial.printf("POSTing payload to %s\n", POSTURL.c_str());
       WiFiClient client;
       HTTPClient http;
       http.begin(client, POSTURL);
@@ -743,3 +756,15 @@ void ledTest() {
       }
   delay(500);
 }
+
+// Calculate PM2.5 US AQI
+int PM_TO_AQI_US(int pm02) {
+  if (pm02 <= 12.0) return ((50 - 0) / (12.0 - .0) * (pm02 - .0) + 0);
+  else if (pm02 <= 35.4) return ((100 - 50) / (35.4 - 12.0) * (pm02 - 12.0) + 50);
+  else if (pm02 <= 55.4) return ((150 - 100) / (55.4 - 35.4) * (pm02 - 35.4) + 100);
+  else if (pm02 <= 150.4) return ((200 - 150) / (150.4 - 55.4) * (pm02 - 55.4) + 150);
+  else if (pm02 <= 250.4) return ((300 - 200) / (250.4 - 150.4) * (pm02 - 150.4) + 200);
+  else if (pm02 <= 350.4) return ((400 - 300) / (350.4 - 250.4) * (pm02 - 250.4) + 300);
+  else if (pm02 <= 500.4) return ((500 - 400) / (500.4 - 350.4) * (pm02 - 350.4) + 400);
+  else return 500;
+};
