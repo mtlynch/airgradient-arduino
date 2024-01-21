@@ -3,8 +3,6 @@
 # Exit on first failure.
 set -e
 
-# Exit on unset variable.
-set -u
 
 # Echo commands before executing them, by default to stderr.
 set -x
@@ -15,6 +13,9 @@ if [[ "$1" != "--dry-run" ]]; then
   extra_flags+=("--port /dev/ttyACM0")
   extra_flags+=("--verify")
 fi
+
+# Exit on unset variable.
+set -u
 
 arduino-cli compile \
   --verbose \
