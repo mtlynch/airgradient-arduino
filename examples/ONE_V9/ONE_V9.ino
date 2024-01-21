@@ -3,27 +3,7 @@ Important: This code is only for the DIY PRO / AirGradient ONE PCB Version 9 wit
 
 It is a high quality sensor showing PM2.5, CO2, TVOC, NOx, Temperature and Humidity on a small display and LEDbar and can send data over Wifi.
 
-Build Instructions: https://www.airgradient.com/open-airgradient/instructions/
-
-Kits (including a pre-soldered version) are available: https://www.airgradient.com/indoor/
-
-The codes needs the following libraries installed:
-“WifiManager by tzapu, tablatronix” tested with version 2.0.11-beta
-“U8g2” by oliver tested with version 2.32.15
-"Sensirion I2C SGP41" by Sensation Version 0.1.0
-"Sensirion Gas Index Algorithm" by Sensation Version 3.2.1
-“pms” by Markusz Kakl version 1.1.0
-"S8_UART" by Josep Comas Version 1.0.1
-"Arduino-SHT" by Johannes Winkelmann Version 1.2.2
-"Adafruit NeoPixel" by Adafruit Version 1.11.0
-
-Configuration:
-Please set in the code below the configuration parameters.
-
-If you have any questions please visit our forum at https://forum.airgradient.com/
-
-If you are a school or university contact us for a free trial on the AirGradient platform.
-https://www.airgradient.com/
+This version has been modified by Michael Lynch from the original AirGradient code.
 
 CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 
