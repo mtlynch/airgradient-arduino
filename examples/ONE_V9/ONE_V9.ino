@@ -105,7 +105,7 @@ const int oledInterval = 5000;
 unsigned long previousOled = 0;
 
 const int sendToServerInterval = 10000;
-unsigned long previoussendToServer = 0;
+unsigned long previousSendToServer = 0;
 
 const int tvocInterval = 1000;
 unsigned long previousTVOC = 0;
@@ -485,8 +485,8 @@ void sendToServer() {
   // TODO: Replace with environment variable.
   const String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
 
-  if (currentMillis - previoussendToServer >= sendToServerInterval) {
-    previoussendToServer += sendToServerInterval;
+  if (currentMillis - previousSendToServer >= sendToServerInterval) {
+    previousSendToServer += sendToServerInterval;
     String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), Co2, hum, temp, pm01, pm10, pm25, TVOC, NOX);
 
     if (WiFi.status() == WL_CONNECTED) {
