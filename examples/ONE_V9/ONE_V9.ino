@@ -199,7 +199,6 @@ void setup() {
 
    if (connectWIFI) connectToWifi();
     if (WiFi.status() == WL_CONNECTED) {
-      sendPing();
       Serial.println(F("WiFi connected!"));
       Serial.println("IP address: ");
       Serial.println(WiFi.localIP());
@@ -413,12 +412,6 @@ void setConfig() {
     inUSAQI = true;
     useRGBledBar = false;
   }
-}
-
-void sendPing() {
-  String payload = "{\"wifi\":" + String(WiFi.RSSI()) +
-    ", \"boot\":" + loopCount +
-    "}";
 }
 
 void updateOLED2(String ln1, String ln2, String ln3) {
