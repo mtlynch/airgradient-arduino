@@ -24,6 +24,8 @@ CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 #include <Wire.h>
 #include <WString.h>
 
+#include "interval-counter.h"
+
 #define DEBUG true
 
 #define I2C_SDA 7
@@ -70,29 +72,21 @@ unsigned long currentMillis = 0;
 
 const int INVALID_READING = -10001;
 
-const unsigned long oledInterval = 5000;
-unsigned long previousOled = 0;
-
-const unsigned long sendToServerInterval = 10000;
-unsigned long previousSendToServer = 0;
-
-const unsigned long tvocInterval = 1000;
-unsigned long previousTVOC = 0;
+IntervalCounter oledIntervalCounter(5 * 1000);
+IntervalCounter sendToServerIntervalCounter(10 * 1000);
+IntervalCounter tvocIntervalCounter(1 * 1000);
 int TVOC = -1;
 int NOX = -1;
 
-const unsigned long co2Interval = 5000;
-unsigned long previousCo2 = 0;
+IntervalCounter co2IntervalCounter(5* 1000);
 int co2 = 0;
 
-const unsigned long pmInterval = 5000;
-unsigned long previousPm = 0;
+IntervalCounter pmIntervalCounter(5* 1000);
 int pm25 = -1;
 int pm01 = -1;
 int pm10 = -1;
 
-const unsigned long tempHumInterval = 5000;
-unsigned long previousTempHum = 0;
+IntervalCounter tempHumIntervalCounter(5 * 1000);
 float temp;
 int hum;
 
@@ -208,8 +202,7 @@ void updateTVOC() {
       srawNox);
   }
 
-  if (currentMillis - previousTVOC >= tvocInterval) {
-    previousTVOC += tvocInterval;
+  if (tvocIntervalCounter.IsTimeToFire(currentMillis)) {
     if (error) {
       Serial.println("Failed to read TVOC");
       TVOC = -1;
@@ -224,16 +217,14 @@ void updateTVOC() {
 }
 
 void updateCo2() {
-  if (currentMillis - previousCo2 >= co2Interval) {
-    previousCo2 += co2Interval;
+  if (co2IntervalCounter.IsTimeToFire(currentMillis)) {
     co2 = sensor_S8 -> get_co2();
     Serial.printf("co2=%d\n", co2);
   }
 }
 
 void updatePm() {
-  if (currentMillis - previousPm >= pmInterval) {
-    previousPm += pmInterval;
+  if (pmIntervalCounter.IsTimeToFire(currentMillis)) {
     if (pms1.readUntil(data1, 2000)) {
       pm01 = data1.PM_AE_UG_1_0;
       pm25 = data1.PM_AE_UG_2_5;
@@ -247,9 +238,7 @@ void updatePm() {
 }
 
 void updateTempHum() {
-  if (currentMillis - previousTempHum >= tempHumInterval) {
-    previousTempHum += tempHumInterval;
-
+  if (tempHumIntervalCounter.IsTimeToFire(currentMillis)) {
     if (sht.readSample()) {
       temp = sht.getTemperature();
       hum = sht.getHumidity();
@@ -262,8 +251,7 @@ void updateTempHum() {
 }
 
 void updateOLED() {
-  if (currentMillis - previousOled >= oledInterval) {
-    previousOled += oledInterval;
+  if (oledIntervalCounter.IsTimeToFire(currentMillis)) {
     updateOLED3();
     setRGBledCO2color(co2);
   }
@@ -461,8 +449,7 @@ void sendToServer() {
   // TODO: Replace with environment variable.
   const String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
 
-  if (currentMillis - previousSendToServer >= sendToServerInterval) {
-    previousSendToServer += sendToServerInterval;
+  if (sendToServerIntervalCounter.IsTimeToFire(currentMillis)) {
     String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), co2, hum, temp, pm01, pm10, pm25, TVOC, NOX);
 
     if (WiFi.status() == WL_CONNECTED) {
