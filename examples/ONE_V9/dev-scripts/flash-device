@@ -9,10 +9,15 @@ set -u
 # Echo commands before executing them, by default to stderr.
 set -x
 
+extra_flags=("")
+if [[ "$1" != "--dry-run" ]]; then
+  extra_flags+=("--upload")
+  extra_flags+=("--port /dev/ttyACM0")
+  extra_flags+=("--verify")
+fi
+
 arduino-cli compile \
   --verbose \
   --fqbn esp32:esp32:lolin_c3_mini \
-  --upload \
-  --port /dev/ttyACM0 \
-  --verify \
+  ${extra_flags[@]} \
   ONE_V9.ino
