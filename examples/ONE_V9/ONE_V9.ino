@@ -487,17 +487,6 @@ void connectToWifi() {
     Serial.println("failed to connect and hit timeout");
     delay(6000);
   }
-
-}
-
-void debug(String msg) {
-  if (DEBUG)
-    Serial.print(msg);
-}
-
-void debug(int msg) {
-  if (DEBUG)
-    Serial.print(msg);
 }
 
 String getNormalizedMac() {
