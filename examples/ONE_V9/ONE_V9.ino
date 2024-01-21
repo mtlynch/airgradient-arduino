@@ -469,16 +469,6 @@ void sendToServer() {
   }
 }
 
-void countdown(int from) {
-  debug("\n");
-  while (from > 0) {
-    debug(String(from--));
-    debug(" ");
-    delay(1000);
-  }
-  debug("\n");
-}
-
 void resetWatchdog() {
   Serial.println("Watchdog reset");
   digitalWrite(2, HIGH);
