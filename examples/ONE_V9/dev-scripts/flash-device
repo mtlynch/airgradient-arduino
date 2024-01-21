@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Exit on first failure.
+set -e
+
+# Exit on unset variable.
+set -u
+
+# Echo commands before executing them, by default to stderr.
+set -x
+
+arduino-cli compile \
+  --verbose \
+  --fqbn esp32:esp32:lolin_c3_mini \
+  --upload \
+  --port /dev/ttyACM0 \
+  --verify \
+  ONE_V9.ino

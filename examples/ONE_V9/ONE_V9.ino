@@ -55,6 +55,8 @@ CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 
 #include <U8g2lib.h>
 
+#include "airgradient-lib.h"
+
 #define DEBUG true
 
 #define I2C_SDA 7
@@ -84,8 +86,6 @@ byte value;
 
 // Display bottom right
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
-
-String APIROOT = "http://hw.airgradient.com/";
 
 // set to true to switch from Celcius to Fahrenheit
 boolean inF = false;
@@ -154,7 +154,7 @@ void setup() {
   Serial0.begin(9600);
   u8g2.begin();
 
-  updateOLED2("Warming Up", "Serial Number:", String(getNormalizedMac()));
+  updateOLED2("Warming up", "Serial Number:", getNormalizedMac());
   sgp41.begin(Wire);
   delay(300);
 
@@ -206,7 +206,7 @@ void setup() {
       Serial.println("IP address: ");
       Serial.println(WiFi.localIP());
     }
-  updateOLED2("Warming Up", "Serial Number:", String(getNormalizedMac()));
+  updateOLED2("Warming Up", "Serial Number:", getNormalizedMac());
 }
 
 void loop() {
@@ -532,7 +532,7 @@ void updateOLED3() {
 void sendToServer() {
   if (currentMillis - previoussendToServer >= sendToServerInterval) {
     previoussendToServer += sendToServerInterval;
-    String payload = "{\"wifi\":" + String(WiFi.RSSI()) +
+    /*String payload = "{\"wifi\":" + String(WiFi.RSSI()) +
       (Co2 < 0 ? "" : ", \"rco2\":" + String(Co2)) +
       (pm01 < 0 ? "" : ", \"pm01\":" + String(pm01)) +
       (pm25 < 0 ? "" : ", \"pm02\":" + String(pm25)) +
@@ -543,20 +543,22 @@ void sendToServer() {
       ", \"atmp\":" + String(temp) +
       (hum < 0 ? "" : ", \"rhum\":" + String(hum)) +
       ", \"boot\":" + loopCount +
-      "}";
+      "}";*/
+    String payload = "wifi_rssi,serial=" + getNormalizedMac() + " value=" + String(WiFi.RSSI());
+    if (Co2 > 0) {
+      payload += "\nco2,serial=" + getNormalizedMac() + " value=" + String(Co2);
+    }
+    payload += "\ntemp,serial=" + getNormalizedMac() + " value=" + String(temp);
 
     if (WiFi.status() == WL_CONNECTED) {
       Serial.println(payload);
-      String POSTURL = APIROOT + "sensors/airgradient:" + String(getNormalizedMac()) + "/measures";
+      String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
       Serial.println(POSTURL);
       WiFiClient client;
       HTTPClient http;
       http.begin(client, POSTURL);
-      http.addHeader("content-type", "application/json");
       int httpCode = http.POST(payload);
-      String response = http.getString();
       Serial.println(httpCode);
-      Serial.println(response);
       http.end();
       resetWatchdog();
       loopCount++;
@@ -587,7 +589,7 @@ void resetWatchdog() {
 void connectToWifi() {
   WiFiManager wifiManager;
   //WiFi.disconnect(); //to delete previous saved hotspot
-  String HOTSPOT = "AG-" + String(getNormalizedMac());
+  String HOTSPOT = "AG-" + getNormalizedMac();
   updateOLED2("180s to connect", "to Wifi Hotspot", HOTSPOT);
   wifiManager.setTimeout(180);
   if (!wifiManager.autoConnect((const char * ) HOTSPOT.c_str())) {
@@ -741,15 +743,3 @@ void ledTest() {
       }
   delay(500);
 }
-
-// Calculate PM2.5 US AQI
-int PM_TO_AQI_US(int pm02) {
-  if (pm02 <= 12.0) return ((50 - 0) / (12.0 - .0) * (pm02 - .0) + 0);
-  else if (pm02 <= 35.4) return ((100 - 50) / (35.4 - 12.0) * (pm02 - 12.0) + 50);
-  else if (pm02 <= 55.4) return ((150 - 100) / (55.4 - 35.4) * (pm02 - 35.4) + 100);
-  else if (pm02 <= 150.4) return ((200 - 150) / (150.4 - 55.4) * (pm02 - 55.4) + 150);
-  else if (pm02 <= 250.4) return ((300 - 200) / (250.4 - 150.4) * (pm02 - 150.4) + 200);
-  else if (pm02 <= 350.4) return ((400 - 300) / (350.4 - 250.4) * (pm02 - 250.4) + 300);
-  else if (pm02 <= 500.4) return ((500 - 400) / (500.4 - 350.4) * (pm02 - 350.4) + 400);
-  else return 500;
-};
