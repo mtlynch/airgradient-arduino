@@ -500,16 +500,6 @@ void debug(int msg) {
     Serial.print(msg);
 }
 
-void debugln(String msg) {
-  if (DEBUG)
-    Serial.println(msg);
-}
-
-void debugln(int msg) {
-  if (DEBUG)
-    Serial.println(msg);
-}
-
 String getNormalizedMac() {
   String mac = WiFi.macAddress();
   mac.replace(":", "");
