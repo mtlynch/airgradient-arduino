@@ -101,6 +101,8 @@ unsigned long loopCount = 0;
 
 unsigned long currentMillis = 0;
 
+const int INVALID_READING = -10001;
+
 const int oledInterval = 5000;
 unsigned long previousOled = 0;
 
@@ -284,8 +286,8 @@ void updateTempHum() {
       hum = sht.getHumidity();
     } else {
       Serial.print("Error in readSample()\n");
-      temp = -10001;
-      hum = -10001;
+      temp = INVALID_READING;
+      hum = INVALID_READING;
     }
   }
 }
@@ -359,7 +361,7 @@ void updateOLED3() {
     u8g2.setFont(u8g2_font_t0_16_tf);
 
     if (inF) {
-      if (temp > -10001) {
+      if (temp != INVALID_READING) {
         float tempF = (temp * 9 / 5) + 32;
         sprintf(buf, "%.1f°F", tempF);
       } else {
@@ -367,7 +369,7 @@ void updateOLED3() {
       }
       u8g2.drawUTF8(1, 10, buf);
     } else {
-      if (temp > -10001) {
+      if (temp != INVALID_READING) {
         sprintf(buf, "%.1f°C", temp);
       } else {
         sprintf(buf, "-°C");
@@ -451,7 +453,10 @@ String formatInfluxDbLineInt(String label, int value, String serial) {
 
 String createInfluxDbPayload(String serial, int wifi_rssi, int co2, int humidity, int temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
   String payload = formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
-  payload += "\n" + formatInfluxDbLineInt("temp", temp_c, serial);
+
+  if (temp_c != INVALID_READING) {
+    payload += "\n" + formatInfluxDbLineInt("temp", temp_c, serial);
+  }
 
   if (co2 > 0) {
     payload += "\n" + formatInfluxDbLineInt("co2", co2, serial);
