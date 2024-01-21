@@ -103,28 +103,28 @@ unsigned long currentMillis = 0;
 
 const int INVALID_READING = -10001;
 
-const int oledInterval = 5000;
+const unsigned long oledInterval = 5000;
 unsigned long previousOled = 0;
 
-const int sendToServerInterval = 10000;
+const unsigned long sendToServerInterval = 10000;
 unsigned long previousSendToServer = 0;
 
-const int tvocInterval = 1000;
+const unsigned long tvocInterval = 1000;
 unsigned long previousTVOC = 0;
 int TVOC = -1;
 int NOX = -1;
 
-const int co2Interval = 5000;
+const unsigned long co2Interval = 5000;
 unsigned long previousCo2 = 0;
 int Co2 = 0;
 
-const int pmInterval = 5000;
+const unsigned long pmInterval = 5000;
 unsigned long previousPm = 0;
 int pm25 = -1;
 int pm01 = -1;
 int pm10 = -1;
 
-const int tempHumInterval = 5000;
+const unsigned long tempHumInterval = 5000;
 unsigned long previousTempHum = 0;
 float temp;
 int hum;
