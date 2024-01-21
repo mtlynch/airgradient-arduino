@@ -172,7 +172,7 @@ void setup() {
 
   buttonConfig = String(EEPROM.read(addr)).toInt();
   if (buttonConfig > 7) buttonConfig = 0;
-  Serial.println("buttonConfig: " + String(buttonConfig));
+  Serial.printf("buttonConfig: %d\n", buttonConfig);
   delay(400);
 
   updateOLED2("Press Button", "for LED test &", "offline mode");
@@ -195,9 +195,7 @@ void setup() {
 
    if (connectWIFI) connectToWifi();
     if (WiFi.status() == WL_CONNECTED) {
-      Serial.println(F("WiFi connected!"));
-      Serial.println("IP address: ");
-      Serial.println(WiFi.localIP());
+      Serial.printf("WiFi connected! IP address: %s\n", WiFi.localIP());
     }
   updateOLED2("Warming Up", "Serial Number:", getNormalizedMac());
 }
@@ -242,13 +240,13 @@ void updateTVOC() {
   if (currentMillis - previousTVOC >= tvocInterval) {
     previousTVOC += tvocInterval;
     if (error) {
+      Serial.println("Failed to read TVOC")
       TVOC = -1;
       NOX = -1;
-      Serial.println(String(TVOC));
     } else {
       TVOC = voc_algorithm.process(srawVoc);
       NOX = nox_algorithm.process(srawNox);
-      Serial.println(String(TVOC));
+      Serial.printf("tvoc=%d\n", TVOC);
     }
 
   }
@@ -258,7 +256,7 @@ void updateCo2() {
   if (currentMillis - previousCo2 >= co2Interval) {
     previousCo2 += co2Interval;
     Co2 = sensor_S8 -> get_co2();
-    Serial.println(String(Co2));
+    Serial.printf("co2=%d\n", Co2);
   }
 }
 
