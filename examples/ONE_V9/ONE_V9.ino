@@ -121,7 +121,6 @@ unsigned long previousPm = 0;
 int pm25 = -1;
 int pm01 = -1;
 int pm10 = -1;
-//int pm03PCount = -1;
 
 const int tempHumInterval = 5000;
 unsigned long previousTempHum = 0;
@@ -268,12 +267,10 @@ void updatePm() {
       pm01 = data1.PM_AE_UG_1_0;
       pm25 = data1.PM_AE_UG_2_5;
       pm10 = data1.PM_AE_UG_10_0;
-//      pm03PCount = data1.PM_RAW_0_3;
     } else {
       pm01 = -1;
       pm25 = -1;
       pm10 = -1;
-//      pm03PCount = -1;
     }
   }
 }
