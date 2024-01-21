@@ -9,11 +9,16 @@ set -u
 # Echo commands before executing them, by default to stderr.
 set -x
 
+# There doesn't seem to be  away to check if the config file exists, so we have
+# to use this workaround.
 if [[ "$(arduino-cli config dump --verbose | head -n 1 | grep -i 'file not found')" ]]; then
   arduino-cli config init \
     --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
 fi
 
+# Install the library dependencies.
+# Note: I don't think these are the strict versions that are required, but these
+# are what I happen to be using.
 arduino-cli lib install \
   'Adafruit NeoPixel'@1.12.0 \
   'arduino-sht'@1.2.3 \
@@ -24,6 +29,9 @@ arduino-cli lib install \
   'U8g2'@2.34.22 \
   'WiFiManager'@2.0.16-rc.2
 
+# The official PMS Arduino library is incompatible with the AirGradient ONE, so
+# we need to install a modified version from Github.
+# https://www.airgradient.com/blog/patching-pms-library-for-plantower-pms5003t/
 arduino-cli config set library.enable_unsafe_install true
 arduino-cli lib install \
   --git-url 'https://github.com/Ibuprofen/PMS.git#d972759f47a700b1c091d19b61eefdbfacb8b828'
