@@ -29,32 +29,19 @@ CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 
 */
 
-#include "PMS.h"
-
-#include <HardwareSerial.h>
-
-#include <Wire.h>
-
-#include "s8_uart.h"
-
-#include <HTTPClient.h>
-
-#include <WiFiManager.h>
-
 #include <Adafruit_NeoPixel.h>
-
 #include <EEPROM.h>
-
-#include "SHTSensor.h"
-
-#include <SensirionI2CSgp41.h>
-
+#include <HardwareSerial.h>
+#include <HTTPClient.h>
 #include <NOxGasIndexAlgorithm.h>
-
+#include <PMS.h>
+#include <s8_uart.h>
+#include <SHTSensor.h>
+#include <SensirionI2CSgp41.h>
 #include <VOCGasIndexAlgorithm.h>
-
 #include <U8g2lib.h>
-
+#include <WiFiManager.h>
+#include <Wire.h>
 #include <WString.h>
 
 #define DEBUG true
