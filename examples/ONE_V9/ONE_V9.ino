@@ -195,7 +195,7 @@ void setup() {
 
    if (connectWIFI) connectToWifi();
     if (WiFi.status() == WL_CONNECTED) {
-      Serial.printf("WiFi connected! IP address: %s\n", WiFi.localIP());
+      Serial.printf("WiFi connected! IP address: %s\n", WiFi.localIP().c_str());
     }
   updateOLED2("Warming Up", "Serial Number:", getNormalizedMac());
 }
