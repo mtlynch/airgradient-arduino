@@ -90,6 +90,8 @@ IntervalCounter tempHumIntervalCounter(5 * 1000);
 float temp;
 float humidity;
 
+const unsigned short WATCHDOG_PIN = 2;
+
 int buttonConfig = 0;
 int lastState = LOW;
 int currentState;
@@ -120,8 +122,8 @@ void setup() {
   delay(300);
 
   //init Watchdog
-  pinMode(2, OUTPUT);
-  digitalWrite(2, LOW);
+  pinMode(WATCHDOG_PIN, OUTPUT);
+  digitalWrite(WATCHDOG_PIN, LOW);
 
   sensor_S8 = new S8_UART(Serial1);
 
@@ -471,9 +473,9 @@ void sendToServer() {
 
 void resetWatchdog() {
   Serial.println("Watchdog reset");
-  digitalWrite(2, HIGH);
+  digitalWrite(WATCHDOG_PIN, HIGH);
   delay(20);
-  digitalWrite(2, LOW);
+  digitalWrite(WATCHDOG_PIN, LOW);
 }
 
 // Wifi Manager
