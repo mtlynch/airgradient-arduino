@@ -464,7 +464,11 @@ void sendToServer() {
       HTTPClient http;
       http.begin(client, POSTURL);
       int httpCode = http.POST(payload);
-      Serial.printf("Response from server: %d\n", httpCode);
+      if (httpCode >= 0) {
+        Serial.printf("Response from server: %d\n", httpCode);
+      } else {
+        Serial.printf("POST failed with error: %d (%s)\n", httpCode, http.errorToString(httpCode).c_str());
+      }
       http.end();
       resetWatchdog();
     } else {
