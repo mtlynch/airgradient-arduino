@@ -39,8 +39,6 @@ SHTSensor sht;
 
 PMS pms1(Serial0);
 
-PMS::DATA data1;
-
 S8_UART * sensor_S8;
 S8_sensor sensor;
 
@@ -82,9 +80,10 @@ IntervalCounter co2IntervalCounter(5* 1000);
 int co2 = 0;
 
 IntervalCounter pmIntervalCounter(5* 1000);
-int pm25 = -1;
-int pm01 = -1;
-int pm10 = -1;
+uint16_t pm25 = 0;
+uint16_t pm01 = 0;
+uint16_t pm10 = 0;
+boolean pmReadSucceeded = false;
 
 IntervalCounter tempHumIntervalCounter(5 * 1000);
 float temp;
@@ -229,15 +228,14 @@ void updateCo2() {
 
 void updatePm() {
   if (pmIntervalCounter.IsTimeToFire(currentMillis)) {
-    if (pms1.readUntil(data1, 2000)) {
-      pm01 = data1.PM_AE_UG_1_0;
-      pm25 = data1.PM_AE_UG_2_5;
-      pm10 = data1.PM_AE_UG_10_0;
-    } else {
-      pm01 = -1;
-      pm25 = -1;
-      pm10 = -1;
+    PMS::DATA data;
+    pmReadSucceeded = pms1.readUntil(data, 2000);
+    if (!pmReadSucceeded) {
+      return;
     }
+    pm01 = data.PM_AE_UG_1_0;
+    pm25 = data.PM_AE_UG_2_5;
+    pm10 = data.PM_AE_UG_10_0;
   }
 }
 
@@ -412,12 +410,17 @@ String formatInfluxDbLineInt(String label, int value, String serial) {
   return label + tags + " value=" + String(value);
 }
 
+String formatInfluxDbLineUInt16(String label, uint16_t value, String serial) {
+  String tags = ",serial=" + serial;
+  return label + tags + " value=" + String(value);
+}
+
 String formatInfluxDbLineFloat(String label, float value, String serial) {
   String tags = ",serial=" + serial;
   return label + tags + " value=" + String(value);
 }
 
-String createInfluxDbPayload(String serial, int wifi_rssi, int co2, float humidity, float temp_c, int pm01,  int pm10,int pm25, int tvoc, int nox) {
+String createInfluxDbPayload(String serial, int wifi_rssi, int co2, float humidity, float temp_c, uint16_t pm01,  uint16_t pm10, uint16_t pm25, int tvoc, int nox) {
   String payload = formatInfluxDbLineInt("wifi_rssi", wifi_rssi, serial);
 
   if (temp_c != INVALID_READING) {
@@ -430,14 +433,10 @@ String createInfluxDbPayload(String serial, int wifi_rssi, int co2, float humidi
   if (humidity > 0) {
     payload += "\n" + formatInfluxDbLineFloat("humidity", humidity, serial);
   }
-  if (pm01 > 0) {
-    payload += "\n" + formatInfluxDbLineInt("pm01", pm01, serial);
-  }
-  if (pm10 > 0) {
-    payload += "\n" + formatInfluxDbLineInt("pm10", pm10, serial);
-  }
-  if (pm25 > 0) {
-    payload += "\n" + formatInfluxDbLineInt("pm25", pm25, serial);
+  if (pmReadSucceeded) {
+    payload += "\n" + formatInfluxDbLineUInt16("pm01", pm01, serial);
+    payload += "\n" + formatInfluxDbLineUInt16("pm10", pm10, serial);
+    payload += "\n" + formatInfluxDbLineUInt16("pm25", pm25, serial);
   }
   if (tvoc > 0) {
     payload += "\n" + formatInfluxDbLineInt("tvoc_index", tvoc, serial);
