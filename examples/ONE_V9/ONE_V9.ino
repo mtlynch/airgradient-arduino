@@ -39,7 +39,7 @@ SHTSensor sht;
 
 PMS pms1(Serial0);
 
-S8_UART * sensor_S8;
+S8_UART* sensor_S8;
 S8_sensor sensor;
 
 // time in seconds needed for NOx conditioning
@@ -76,10 +76,10 @@ IntervalCounter tvocIntervalCounter(1 * 1000);
 int TVOC = -1;
 int NOX = -1;
 
-IntervalCounter co2IntervalCounter(5* 1000);
+IntervalCounter co2IntervalCounter(5 * 1000);
 int co2 = 0;
 
-IntervalCounter pmIntervalCounter(5* 1000);
+IntervalCounter pmIntervalCounter(5 * 1000);
 uint16_t pm25 = 0;
 uint16_t pm01 = 0;
 uint16_t pm10 = 0;
@@ -224,7 +224,7 @@ void updateCo2() {
   if (!co2IntervalCounter.IsTimeToFire(currentMillis)) {
     return;
   }
-  co2 = sensor_S8 -> get_co2();
+  co2 = sensor_S8->get_co2();
   Serial.printf("co2=%d\n", co2);
 }
 
@@ -499,7 +499,7 @@ void connectToWifi() {
   String HOTSPOT = "AG-" + getNormalizedMac();
   updateOLED2("180s to connect", "to Wifi Hotspot", HOTSPOT);
   wifiManager.setTimeout(180);
-  if (!wifiManager.autoConnect((const char * ) HOTSPOT.c_str())) {
+  if (!wifiManager.autoConnect((const char*)HOTSPOT.c_str())) {
     Serial.println("failed to connect and hit timeout");
     delay(6000);
   }
