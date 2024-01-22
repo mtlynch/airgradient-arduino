@@ -205,50 +205,56 @@ void updateTVOC() {
       srawNox);
   }
 
-  if (tvocIntervalCounter.IsTimeToFire(currentMillis)) {
-    if (error) {
-      Serial.println("Failed to read TVOC");
-      TVOC = -1;
-      NOX = -1;
-    } else {
-      TVOC = voc_algorithm.process(srawVoc);
-      NOX = nox_algorithm.process(srawNox);
-      Serial.printf("tvoc=%d\n", TVOC);
-    }
+  if (!tvocIntervalCounter.IsTimeToFire(currentMillis)) {
+    return;
+  }
 
+  if (error) {
+    Serial.println("Failed to read TVOC");
+    TVOC = -1;
+    NOX = -1;
+  } else {
+    TVOC = voc_algorithm.process(srawVoc);
+    NOX = nox_algorithm.process(srawNox);
+    Serial.printf("tvoc=%d\n", TVOC);
   }
 }
 
 void updateCo2() {
-  if (co2IntervalCounter.IsTimeToFire(currentMillis)) {
-    co2 = sensor_S8 -> get_co2();
-    Serial.printf("co2=%d\n", co2);
+  if (!co2IntervalCounter.IsTimeToFire(currentMillis)) {
+    return;
   }
+  co2 = sensor_S8 -> get_co2();
+  Serial.printf("co2=%d\n", co2);
 }
 
 void updatePm() {
-  if (pmIntervalCounter.IsTimeToFire(currentMillis)) {
-    PMS::DATA data;
-    pmReadSucceeded = pms1.readUntil(data, 2000);
-    if (!pmReadSucceeded) {
-      return;
-    }
-    pm01 = data.PM_AE_UG_1_0;
-    pm25 = data.PM_AE_UG_2_5;
-    pm10 = data.PM_AE_UG_10_0;
+  if (!pmIntervalCounter.IsTimeToFire(currentMillis)) {
+    return;
   }
+
+  PMS::DATA data;
+  pmReadSucceeded = pms1.readUntil(data, 2000);
+  if (!pmReadSucceeded) {
+    return;
+  }
+  pm01 = data.PM_AE_UG_1_0;
+  pm25 = data.PM_AE_UG_2_5;
+  pm10 = data.PM_AE_UG_10_0;
 }
 
 void updateTempHum() {
-  if (tempHumIntervalCounter.IsTimeToFire(currentMillis)) {
-    if (sht.readSample()) {
-      temp = sht.getTemperature();
-      humidity = sht.getHumidity();
-    } else {
-      Serial.print("Error in readSample()\n");
-      temp = INVALID_READING;
-      humidity = INVALID_READING;
-    }
+  if (!tempHumIntervalCounter.IsTimeToFire(currentMillis)) {
+    return;
+  }
+
+  if (sht.readSample()) {
+    temp = sht.getTemperature();
+    humidity = sht.getHumidity();
+  } else {
+    Serial.print("Error in readSample()\n");
+    temp = INVALID_READING;
+    humidity = INVALID_READING;
   }
 }
 
@@ -450,30 +456,34 @@ String createInfluxDbPayload(String serial, int wifi_rssi, int co2, float humidi
 
 void sendToServer() {
   // TODO: Replace with environment variable.
-  const String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
+  //const String POSTURL = "http://10.0.0.13:8086/write?db=airgradient";
 
-  if (sendToServerIntervalCounter.IsTimeToFire(currentMillis)) {
-    String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), co2, humidity, temp, pm01, pm10, pm25, TVOC, NOX);
-
-    if (WiFi.status() == WL_CONNECTED) {
-      Serial.println("Sending payload...");
-      Serial.println(payload);
-      Serial.printf("POSTing payload to %s\n", POSTURL.c_str());
-      WiFiClient client;
-      HTTPClient http;
-      http.begin(client, POSTURL);
-      int httpCode = http.POST(payload);
-      if (httpCode >= 0) {
-        Serial.printf("Response from server: %d\n", httpCode);
-      } else {
-        Serial.printf("POST failed with error: %d (%s)\n", httpCode, http.errorToString(httpCode).c_str());
-      }
-      http.end();
-      resetWatchdog();
-    } else {
-      Serial.println("WiFi Disconnected");
-    }
+  if (!sendToServerIntervalCounter.IsTimeToFire(currentMillis)) {
+    return;
   }
+  String payload = createInfluxDbPayload(getNormalizedMac(), WiFi.RSSI(), co2, humidity, temp, pm01, pm10, pm25, TVOC, NOX);
+
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("WiFi Disconnected");
+    return;
+  }
+
+  Serial.println("Sending payload...");
+  Serial.println(payload);
+  //Serial.printf("POSTing payload to %s\n", POSTURL.c_str());
+  WiFiClient client;
+  HTTPClient http;
+  //http.begin(client, POSTURL);
+  http.begin(client, "10.0.0.13", 8086, "/write?db=airgradient");
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+  int httpCode = http.POST(payload);
+  if (httpCode >= 0) {
+    Serial.printf("Response from server: %d\n", httpCode);
+  } else {
+    Serial.printf("POST failed with error: %d (%s)\n", httpCode, http.errorToString(httpCode).c_str());
+  }
+  http.end();
+  resetWatchdog();
 }
 
 void resetWatchdog() {
