@@ -9,7 +9,7 @@ set -u
 # Echo commands before executing them, by default to stderr.
 set -x
 
-# There doesn't seem to be  away to check if the config file exists, so we have
+# There doesn't seem to be a way to check if the config file exists, so we have
 # to use this workaround.
 if [[ "$(arduino-cli config dump --verbose | head -n 1 | grep -i 'file not found')" ]]; then
   arduino-cli config init \
