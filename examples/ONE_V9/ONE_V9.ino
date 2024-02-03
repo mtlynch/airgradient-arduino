@@ -217,7 +217,7 @@ void updateTVOC() {
   delay(1000);
 
   compensationT = static_cast < uint16_t > ((temp + 45) * 65535 / 175);
-  compensationRh = static_cast < uint16_t > (humidity * 65535 / 100);
+  compensationRh = static_cast < uint16_t > (humidity * 65535.0 / 100.0);
 
   if (conditioning_s > 0) {
     error = sgp41.executeConditioning(compensationRh, compensationT, srawVoc);
