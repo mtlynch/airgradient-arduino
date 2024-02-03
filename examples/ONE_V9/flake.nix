@@ -4,8 +4,8 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
 
-    # 0.34.2 release
-    arduino_cli_dep.url = "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538";
+    # 0.35.1 release
+    arduino_cli_dep.url = "github:NixOS/nixpkgs/5f5210aa20e343b7e35f40c033000db0ef80d7b9";
 
     # 3.12.0 release
     python_dep.url = "github:NixOS/nixpkgs/e2b8feae8470705c3f331901ae057da3095cea10";
