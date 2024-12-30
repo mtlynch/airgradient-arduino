@@ -32,5 +32,7 @@
           python --version
         '';
       };
+
+      formatter = arduino-cli-nixpkgs.legacyPackages.${system}.alejandra;
     });
 }
