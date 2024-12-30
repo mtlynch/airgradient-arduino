@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "arduino_cli_dep": {
+    "arduino-cli-nixpkgs": {
       "locked": {
         "lastModified": 1705883077,
         "narHash": "sha256-ByzHHX3KxpU1+V0erFy8jpujTufimh6KaS/Iv3AciHk=",
@@ -34,7 +34,7 @@
         "type": "github"
       }
     },
-    "python_dep": {
+    "python-nixpkgs": {
       "locked": {
         "lastModified": 1696325386,
         "narHash": "sha256-ogs73SJAIePd7bljq1i1vKEOPn23Xe8aumMJKZjV45c=",
@@ -52,9 +52,9 @@
     },
     "root": {
       "inputs": {
-        "arduino_cli_dep": "arduino_cli_dep",
+        "arduino-cli-nixpkgs": "arduino-cli-nixpkgs",
         "flake-utils": "flake-utils",
-        "python_dep": "python_dep"
+        "python-nixpkgs": "python-nixpkgs"
       }
     },
     "systems": {
