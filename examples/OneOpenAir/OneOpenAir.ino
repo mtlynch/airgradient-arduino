@@ -95,7 +95,6 @@ static bool ledBarButtonTest = false;
 static void boardInit(void);
 static void initializeNetwork();
 static void failedHandler(String msg);
-static void configurationUpdateSchedule(void);
 static void configUpdateHandle(void);
 static void updateDisplayAndLedBar(void);
 static void updateTvoc(void);
@@ -114,8 +113,6 @@ static void networkSignalCheck();
 static void networkingTask(void *args);
 
 AgSchedule dispLedSchedule(DISP_UPDATE_INTERVAL, updateDisplayAndLedBar);
-AgSchedule configSchedule(WIFI_SERVER_CONFIG_SYNC_INTERVAL,
-                          configurationUpdateSchedule);
 AgSchedule co2Schedule(SENSOR_CO2_UPDATE_INTERVAL, co2Update);
 AgSchedule pmsSchedule(SENSOR_PM_UPDATE_INTERVAL, updatePm);
 AgSchedule tempHumSchedule(SENSOR_TEMP_HUM_UPDATE_INTERVAL, tempHumUpdate);
@@ -422,50 +419,6 @@ static bool sgp41Init(void) {
   return false;
 }
 
-static void sendDataToAg() {
-  /** Change oledDisplay and led state */
-  if (ag->isOne()) {
-    stateMachine.displayHandle(AgStateMachineWiFiOkServerConnecting);
-  }
-  stateMachine.handleLeds(AgStateMachineWiFiOkServerConnecting);
-
-  /** Task handle led connecting animation */
-  xTaskCreate(
-      [](void *obj) {
-        for (;;) {
-          // ledSmHandler();
-          stateMachine.handleLeds();
-          if (stateMachine.getLedState() !=
-              AgStateMachineWiFiOkServerConnecting) {
-            break;
-          }
-          delay(LED_BAR_ANIMATION_PERIOD);
-        }
-        vTaskDelete(NULL);
-      },
-      "task_led", 2048, NULL, 5, NULL);
-
-  delay(1500);
-
-  // Build payload to check connection to airgradient server
-  JSONVar root;
-  root["wifi"] = wifiConnector.RSSI();
-  root["boot"] = measurements.bootCount();
-  std::string payload = JSON.stringify(root).c_str();
-  if (agClient->httpPostMeasures(payload)) {
-    if (ag->isOne()) {
-      stateMachine.displayHandle(AgStateMachineWiFiOkServerConnected);
-    }
-    stateMachine.handleLeds(AgStateMachineWiFiOkServerConnected);
-  } else {
-    if (ag->isOne()) {
-      stateMachine.displayHandle(AgStateMachineWiFiOkServerConnectFailed);
-    }
-    stateMachine.handleLeds(AgStateMachineWiFiOkServerConnectFailed);
-  }
-
-  stateMachine.handleLeds(AgStateMachineNormal);
-}
 
 void dispSensorNotFound(String ss) {
   ss = ss + " not found";
@@ -731,56 +684,10 @@ void initializeNetwork() {
   mdnsInit();
   localServer.begin();
 
-  // Ignore the rest if cloud connection to AirGradient is disabled
-  if (configuration.isCloudConnectionDisabled()) {
-    return;
-  }
-
-  // Send data for the first time to AG server at boot only if postDataToAirgradient is enabled
-  if (configuration.isPostDataToAirGradient()) {
-    sendDataToAg();
-  }
-
-  // Skip fetch configuration if configuration control is set to "local" only
-  if (configuration.getConfigurationControl() == ConfigurationControl::ConfigurationControlLocal) {
-    ledBarEnabledUpdate();
-    return;
-  }
-
-  std::string config = agClient->httpFetchConfig();
-  configSchedule.update();
-  // Check if fetch configuration failed or fetch succes but parsing failed
-  if (agClient->isLastFetchConfigSucceed() == false ||
-      configuration.parse(config.c_str(), false) == false) {
-    if (ag->isOne()) {
-      if (agClient->isRegisteredOnAgServer() == false) {
-        stateMachine.displaySetAddToDashBoard();
-        stateMachine.displayHandle(AgStateMachineWiFiOkServerOkSensorConfigFailed);
-      } else {
-        stateMachine.displayClearAddToDashBoard();
-      }
-    }
-    stateMachine.handleLeds(AgStateMachineWiFiOkServerOkSensorConfigFailed);
-    delay(DISPLAY_DELAY_SHOW_CONTENT_MS);
-  }
-  else {
-    ledBarEnabledUpdate();
-  }
+  // Cloud connection is always disabled, so return early
+  return;
 }
 
-static void configurationUpdateSchedule(void) {
-  if (configuration.getConfigurationControl() ==
-      ConfigurationControl::ConfigurationControlLocal) {
-    Serial.println("Ignore fetch server configuration, configurationControl set to local");
-    agClient->resetFetchConfigurationStatus();
-    return;
-  }
-
-  std::string config = agClient->httpFetchConfig();
-  if (agClient->isLastFetchConfigSucceed()) {
-    configuration.parse(config.c_str(), false);
-  }
-}
 
 static void configUpdateHandle() {
   if (configuration.isUpdated() == false) {
@@ -877,28 +784,9 @@ static void updateDisplayAndLedBar(void) {
     return;
   }
 
-  if (configuration.isCloudConnectionDisabled()) {
-    // Ignore API related check since cloud is disabled
-    stateMachine.displayHandle(AgStateMachineNormal);
-    stateMachine.handleLeds(AgStateMachineNormal);
-    return;
-  }
-
-  AgStateMachineState state = AgStateMachineNormal;
-  if (agClient->isLastFetchConfigSucceed() == false) {
-    state = AgStateMachineSensorConfigFailed;
-    if (agClient->isRegisteredOnAgServer() == false) {
-      stateMachine.displaySetAddToDashBoard();
-    } else {
-      stateMachine.displayClearAddToDashBoard();
-    }
-  } else if (agClient->isLastPostMeasureSucceed() == false &&
-             configuration.isPostDataToAirGradient()) {
-    state = AgStateMachineServerLost;
-  }
-
-  stateMachine.displayHandle(state);
-  stateMachine.handleLeds(state);
+  // Cloud connection is always disabled, so always use normal state
+  stateMachine.displayHandle(AgStateMachineNormal);
+  stateMachine.handleLeds(AgStateMachineNormal);
 }
 
 static void updateTvoc(void) {
@@ -1127,12 +1015,6 @@ void networkSignalCheck() {
 
 
 void networkingTask(void *args) {
-  // If cloud connection enabled, run first transmission to server at boot
-  if (configuration.isCloudConnectionDisabled() == false) {
-    // Reset scheduler
-    configSchedule.update();
-  }
-
   while (1) {
     // Handle WiFi reconnection
     wifiConnector.handle();
@@ -1141,16 +1023,7 @@ void networkingTask(void *args) {
       continue;
     }
 
-    // If connection to AirGradient server disable don't run config and transmission schedule
-    if (configuration.isCloudConnectionDisabled()) {
-      delay(1000);
-      continue;
-    }
-
-    // Run scheduler
-    networkSignalCheckSchedule.run();
-    configSchedule.run();
-
+    // Cloud connection is always disabled, so just delay
     delay(1000);
   }
 
