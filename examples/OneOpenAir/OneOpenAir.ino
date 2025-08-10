@@ -60,7 +60,6 @@ CC BY-SA 4.0 Attribution-ShareAlike 4.0 International License
 #define SENSOR_PM_UPDATE_INTERVAL 2000                 /** ms */
 #define SENSOR_TEMP_HUM_UPDATE_INTERVAL 6000           /** ms */
 #define DISPLAY_DELAY_SHOW_CONTENT_MS 2000             /** ms */
-#define FIRMWARE_CHECK_FOR_UPDATE_MS (60 * 60 * 1000)  /** ms */
 
 /** I2C define */
 #define I2C_SDA_PIN 7
@@ -88,12 +87,10 @@ static LocalServer localServer(Serial, openMetrics, measurements, configuration,
 static AirgradientClient *agClient;
 
 TaskHandle_t handleNetworkTask = NULL;
-static bool firmwareUpdateInProgress = false;
 
 static uint32_t factoryBtnPressTime = 0;
 static AgFirmwareMode fwMode = FW_MODE_I_9PSL;
 static bool ledBarButtonTest = false;
-static String fwNewVersion;
 
 static void boardInit(void);
 static void initializeNetwork();
@@ -111,9 +108,6 @@ static void factoryConfigReset(void);
 static void wdgFeedUpdate(void);
 static void ledBarEnabledUpdate(void);
 static bool sgp41Init(void);
-static void checkForFirmwareUpdate(void);
-static void otaHandlerCallback(AirgradientOTA::OtaResult result, const char *msg);
-static void displayExecuteOta(AirgradientOTA::OtaResult result, String msg, int processing);
 static int calculateMaxPeriod(int updateInterval);
 static void setMeasurementMaxPeriod();
 static void networkSignalCheck();
@@ -127,7 +121,6 @@ AgSchedule pmsSchedule(SENSOR_PM_UPDATE_INTERVAL, updatePm);
 AgSchedule tempHumSchedule(SENSOR_TEMP_HUM_UPDATE_INTERVAL, tempHumUpdate);
 AgSchedule tvocSchedule(SENSOR_TVOC_UPDATE_INTERVAL, updateTvoc);
 AgSchedule watchdogFeedSchedule(60000, wdgFeedUpdate);
-AgSchedule checkForUpdateSchedule(FIRMWARE_CHECK_FOR_UPDATE_MS, checkForFirmwareUpdate);
 AgSchedule networkSignalCheckSchedule(10000, networkSignalCheck);
 AgSchedule printMeasurementsSchedule(6000, printMeasurements);
 
@@ -253,12 +246,6 @@ void setup() {
 void loop() {
   // Schedule to feed external watchdog
   watchdogFeedSchedule.run();
-
-  if (firmwareUpdateInProgress) {
-    // Firmare update currently in progress, temporarily disable running sensor schedules
-    delay(10000);
-    return;
-  }
 
   // Schedule to update display and led
   dispLedSchedule.run();
@@ -433,130 +420,6 @@ static bool sgp41Init(void) {
     configuration.hasSensorSGP = false;
   }
   return false;
-}
-
-void checkForFirmwareUpdate(void) {
-  if (configuration.isCloudConnectionDisabled()) {
-    Serial.println("Cloud connection is disabled, skip firmware update");
-    return;
-  }
-
-  AirgradientOTA *agOta = new AirgradientOTAWifi;
-
-  // Indicate main task that firmware update is in progress
-  firmwareUpdateInProgress = true;
-
-  agOta->setHandlerCallback(otaHandlerCallback);
-
-  String httpDomain = configuration.getHttpDomain();
-  if (httpDomain != "") {
-    Serial.printf("httpDomain configuration available, start OTA with custom domain\n",
-                  httpDomain.c_str());
-    agOta->updateIfAvailable(ag->deviceId().c_str(), GIT_VERSION, httpDomain.c_str());
-  } else {
-    agOta->updateIfAvailable(ag->deviceId().c_str(), GIT_VERSION);
-  }
-
-  // Only goes to this line if firmware update is not success
-  // Handled by otaHandlerCallback
-
-  // Indicate main task that firmware update finish
-  firmwareUpdateInProgress = false;
-
-  delete agOta;
-  Serial.println();
-}
-
-void otaHandlerCallback(AirgradientOTA::OtaResult result, const char *msg) {
-  switch (result) {
-  case AirgradientOTA::Starting: {
-    Serial.println("Firmware update starting...");
-    displayExecuteOta(result, fwNewVersion, 0);
-    break;
-  }
-  case AirgradientOTA::InProgress:
-    Serial.printf("OTA progress: %s\n", msg);
-    displayExecuteOta(result, "", std::stoi(msg));
-    break;
-  case AirgradientOTA::Failed:
-      displayExecuteOta(result, "", 0);
-      break;
-  case AirgradientOTA::Skipped:
-  case AirgradientOTA::AlreadyUpToDate:
-    displayExecuteOta(result, "", 0);
-    break;
-  case AirgradientOTA::Success:
-    displayExecuteOta(result, "", 0);
-    esp_restart();
-    break;
-  default:
-    break;
-  }
-}
-
-static void displayExecuteOta(AirgradientOTA::OtaResult result, String msg, int processing) {
-  switch (result) {
-    case AirgradientOTA::Starting:
-    if (ag->isOne()) {
-      oledDisplay.showFirmwareUpdateVersion(msg);
-    } else {
-      Serial.println("New firmware: " + msg);
-    }
-    delay(2500);
-    break;
-  case AirgradientOTA::Failed:
-    if (ag->isOne()) {
-      oledDisplay.showFirmwareUpdateFailed();
-    } else {
-      Serial.println("Error: Firmware update: failed");
-    }
-    delay(2500);
-    break;
-  case AirgradientOTA::Skipped:
-    if (ag->isOne()) {
-      oledDisplay.showFirmwareUpdateSkipped();
-    } else {
-      Serial.println("Firmware update: Skipped");
-    }
-    delay(2500);
-    break;
-  case AirgradientOTA::AlreadyUpToDate:
-    if (ag->isOne()) {
-      oledDisplay.showFirmwareUpdateUpToDate();
-    } else {
-      Serial.println("Firmware update: up to date");
-    }
-    delay(2500);
-    break;
-  case AirgradientOTA::InProgress:
-    if (ag->isOne()) {
-      oledDisplay.showFirmwareUpdateProgress(processing);
-    } else {
-      Serial.println("Firmware update: " + String(processing) + String("%"));
-    }
-    break;
-  case AirgradientOTA::Success: {
-    Serial.println("OTA update performed, restarting ...");
-    int i = 3;
-    while (i != 0) {
-      i = i - 1;
-      if (ag->isOne()) {
-        oledDisplay.showFirmwareUpdateSuccess(i);
-      } else {
-        Serial.println("Rebooting... " + String(i));
-      }
-      delay(1000);
-    }
-
-    if (ag->isOne()) {
-      oledDisplay.setAirGradient(0);
-      oledDisplay.setBrightness(0);
-    }
-    break;
-  }
-  default:
-    break;
-  }
 }
 
 static void sendDataToAg() {
@@ -1266,12 +1129,6 @@ void networkSignalCheck() {
 void networkingTask(void *args) {
   // If cloud connection enabled, run first transmission to server at boot
   if (configuration.isCloudConnectionDisabled() == false) {
-    // OTA check on boot
-#ifndef ESP8266
-    checkForFirmwareUpdate();
-    checkForUpdateSchedule.update();
-#endif
-
     // Reset scheduler
     configSchedule.update();
   }
@@ -1293,7 +1150,6 @@ void networkingTask(void *args) {
     // Run scheduler
     networkSignalCheckSchedule.run();
     configSchedule.run();
-    checkForUpdateSchedule.run();
 
     delay(1000);
   }
