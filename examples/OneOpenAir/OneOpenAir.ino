@@ -125,17 +125,29 @@ void setup() {
   Serial.begin(115200);
   delay(100); /** For bester show log */
 
+  Serial.println("DEBUG 1: Serial initialized");
+  Serial.flush();
+
   // Set reason why esp is reset
   esp_reset_reason_t reason = esp_reset_reason();
   measurements.setResetReason(reason);
+
+  Serial.println("DEBUG 2: Reset reason set");
+  Serial.flush();
 
   /** Initialize local configure */
   configuration.begin();
   configuration.setConfigurationUpdatedCallback(configUpdateHandle);
 
+  Serial.println("DEBUG 3: Configuration initialized");
+  Serial.flush();
+
   /** Init I2C */
   Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
   delay(1000);
+
+  Serial.println("DEBUG 4: I2C initialized");
+  Serial.flush();
 
   /** Detect board type: ONE_INDOOR has OLED display, Scan the I2C address to
    * identify board type */
@@ -145,7 +157,8 @@ void setup() {
   } else {
     ag = new AirGradient(BoardType::OPEN_AIR_OUTDOOR);
   }
-  Serial.println("Detected " + ag->getBoardName());
+  Serial.println("DEBUG 5: Board detected - " + ag->getBoardName());
+  Serial.flush();
 
   configuration.setAirGradient(ag);
   oledDisplay.setAirGradient(ag);
@@ -155,12 +168,25 @@ void setup() {
   localServer.setAirGraident(ag);
   measurements.setAirGradient(ag);
 
+  Serial.println("DEBUG 6: AirGradient objects configured");
+  Serial.flush();
+
   /** Init sensor */
   boardInit();
+  Serial.println("DEBUG 7: Board initialization complete");
+  Serial.flush();
+
   setMeasurementMaxPeriod();
+  Serial.println("DEBUG 8: Measurement periods set");
+  Serial.flush();
+
+  Serial.println("DEBUG 9: Starting offline mode check");
+  Serial.flush();
 
   bool connectToNetwork = true;
   if (ag->isOne()) { // Offline mode only available for indoor monitor
+    Serial.println("DEBUG 10: Indoor monitor detected, checking offline mode");
+    Serial.flush();
     /** Show message confirm offline mode, should me perform if LED bar button
      * test pressed */
     if (ledBarButtonTest == false) {
@@ -190,10 +216,17 @@ void setup() {
     }
   }
 
+  Serial.println("DEBUG 11: Offline mode check complete, connectToNetwork=" + String(connectToNetwork));
+  Serial.flush();
+
   // Initialize networking configuration
   if (connectToNetwork) {
     oledDisplay.setText("Initialize", "network...", "");
+    Serial.println("DEBUG 12: Starting network initialization");
+    Serial.flush();
     initializeNetwork();
+    Serial.println("DEBUG 13: Network initialization complete");
+    Serial.flush();
   }
 
   /** Set offline mode without saving, cause wifi is not configured */
@@ -201,6 +234,9 @@ void setup() {
     Serial.println("Set offline mode cause wifi is not configurated");
     configuration.setOfflineModeWithoutSave(true);
   }
+
+  Serial.println("DEBUG 14: Starting display setup");
+  Serial.flush();
 
   /** Show display Warning up */
   if (ag->isOne()) {
@@ -212,18 +248,23 @@ void setup() {
     delay(DISPLAY_DELAY_SHOW_CONTENT_MS);
   }
 
-
+  Serial.println("DEBUG 15: Starting task creation");
+  Serial.flush();
 
   // Only run network task if monitor is not in offline mode
   if (configuration.isOfflineMode() == false) {
     BaseType_t xReturned =
-      xTaskCreate(networkingTask, "NetworkingTask", 4096, null, 5, &handleNetworkTask);
+      xTaskCreate(networkingTask, "NetworkingTask", 4096, NULL, 5, &handleNetworkTask);
     if (xReturned == pdPASS) {
       Serial.println("Success create networking task");
     } else {
-      assert("Failed to create networking task");
+      Serial.println("DEBUG ERROR: Failed to create networking task");
+      Serial.flush();
     }
   }
+
+  Serial.println("DEBUG 16: Setup complete, entering main loop");
+  Serial.flush();
 
   // Log monitor mode for debugging purpose
   if (configuration.isOfflineMode()) {
