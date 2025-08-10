@@ -125,10 +125,6 @@ void setup() {
   Serial.begin(115200);
   delay(100); /** For bester show log */
 
-
-  /** Print device ID into log */
-  Serial.println("Serial nr: " + ag->deviceId());
-
   // Set reason why esp is reset
   esp_reset_reason_t reason = esp_reset_reason();
   measurements.setResetReason(reason);
