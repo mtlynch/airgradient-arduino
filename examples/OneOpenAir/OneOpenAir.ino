@@ -84,7 +84,6 @@ static WifiConnector wifiConnector(oledDisplay, Serial, stateMachine,
 static OpenMetrics openMetrics(measurements, configuration, wifiConnector);
 static LocalServer localServer(Serial, openMetrics, measurements, configuration,
                                wifiConnector);
-static AirgradientClient *agClient;
 
 TaskHandle_t handleNetworkTask = NULL;
 
@@ -639,28 +638,6 @@ static void failedHandler(String msg) {
 }
 
 void initializeNetwork() {
-  // Use wifi as agClient
-  agClient = new AirgradientWifiClient;
-
-  String httpDomain = configuration.getHttpDomain();
-  if (httpDomain != "") {
-    agClient->setHttpDomain(httpDomain.c_str());
-    Serial.printf("HTTP domain name is set to: %s\n", httpDomain.c_str());
-    oledDisplay.setText("HTTP domain name", "using local", "configuration");
-    delay(2500);
-  }
-
-  if (!agClient->begin(ag->deviceId().c_str())) {
-    oledDisplay.setText("Client", "initialization", "failed");
-    delay(5000);
-    oledDisplay.showRebooting();
-    delay(2500);
-    oledDisplay.setText("", "", "");
-    ESP.restart();
-  }
-
-  // Provide openmetrics to have access to last transmission result
-  openMetrics.setAirgradientClient(agClient);
 
   if (!wifiConnector.connect()) {
     Serial.println("Cannot initiate wifi connection");
@@ -692,16 +669,6 @@ void initializeNetwork() {
 static void configUpdateHandle() {
   if (configuration.isUpdated() == false) {
     return;
-  }
-
-  String httpDomain = configuration.getHttpDomain();
-  if (httpDomain != "") {
-    Serial.printf("HTTP domain name set to: %s\n", httpDomain.c_str());
-    agClient->setHttpDomain(httpDomain.c_str());
-  } else {
-    // Its empty, set to default
-    Serial.println("HTTP domain name from configuration empty, set to default");
-    agClient->setHttpDomainDefault();
   }
 
   if (configuration.hasSensorSGP) {
