@@ -37,7 +37,6 @@
       pythonWithSerial = python.withPackages (ps: [ pyserial ]);
     in {
       packages.flash = arduino-cli-nixpkgs.legacyPackages.${system}.writeShellScriptBin "flash" ''
-        # ,EraseFlash=all
         AIRGRADIENT_PATH='${airgradientPath}'
         ${arduino-cli}/bin/arduino-cli compile \
             --verbose \
