@@ -241,7 +241,7 @@ int16_t S8::getCo2(void) {
   // Check response and get data
   if (validResponseLenght(MODBUS_FUNC_READ_INPUT_REGISTERS, nb, 7)) {
     co2 = ((buf_msg[3] << 8) & 0xFF00) | (buf_msg[4] & 0x00FF);
-    AgLog("CO2 value = %d ppm", co2);
+    //AgLog("CO2 value = %d ppm", co2);
   } else {
     AgLog("Error getting CO2 value!");
   }
@@ -754,7 +754,7 @@ bool S8::validResponse(uint8_t func, uint8_t nb) {
           (buf_msg[1] == MODBUS_FUNC_READ_HOLDING_REGISTERS ||
            buf_msg[1] == MODBUS_FUNC_READ_INPUT_REGISTERS) &&
           buf_msg[2] == nb - 5) {
-        AgLog("Valid response");
+        //AgLog("Valid response");
         result = true;
       } else {
         AgLog("Err: Unexpected response!");
