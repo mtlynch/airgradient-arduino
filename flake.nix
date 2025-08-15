@@ -36,49 +36,17 @@
       # Python with pyserial
       pythonWithSerial = python.withPackages (ps: [ pyserial ]);
     in {
-      packages.build = arduino-cli-nixpkgs.legacyPackages.${system}.writeShellScriptBin "build" ''
-        # Create build directory
-        BUILD_DIR="$(pwd)/build"
-        mkdir -p "$BUILD_DIR"
-
-        # Compile the Arduino sketch
+      packages.flash = arduino-cli-nixpkgs.legacyPackages.${system}.writeShellScriptBin "flash" ''
+        # ,EraseFlash=all
+        AIRGRADIENT_PATH='${airgradientPath}'
         ${arduino-cli}/bin/arduino-cli compile \
             --verbose \
             --fqbn esp32:esp32:esp32c3:CDCOnBoot=cdc,PartitionScheme=min_spiffs,DebugLevel=info \
             --library . \
-            --output-dir "$BUILD_DIR" \
-            --verify \
-            examples/OneOpenAir/OneOpenAir.ino
-
-        echo "Build completed. Binary files are in: $BUILD_DIR"
-        ls -la "$BUILD_DIR"
-      '';
-
-      packages.flash = arduino-cli-nixpkgs.legacyPackages.${system}.writeShellScriptBin "flash" ''
-        # Flash pre-compiled binary to ESP32
-        AIRGRADIENT_PATH='${airgradientPath}'
-        BUILD_DIR="$(pwd)/build"
-
-        # Check if build directory exists
-        if [ ! -d "$BUILD_DIR" ]; then
-          echo "Error: Build directory not found at $BUILD_DIR"
-          echo "Please run 'nix run .#build' first to compile the firmware."
-          exit 1
-        fi
-
-        # Check if binary files exist
-        if [ ! -f "$BUILD_DIR/OneOpenAir.ino.bin" ]; then
-          echo "Error: Compiled binary not found in $BUILD_DIR"
-          echo "Please run 'nix run .#build' first to compile the firmware."
-          exit 1
-        fi
-
-        echo "Flashing firmware from: $BUILD_DIR"
-        ${arduino-cli}/bin/arduino-cli upload \
-            --verbose \
-            --fqbn esp32:esp32:esp32c3:CDCOnBoot=cdc,PartitionScheme=min_spiffs,DebugLevel=info \
             --port "$AIRGRADIENT_PATH" \
-            --input-dir "$BUILD_DIR"
+            --verify \
+            --upload \
+            airgradient-arduino/examples/OneOpenAir/OneOpenAir.ino
       '';
 
       packages.monitor = arduino-cli-nixpkgs.legacyPackages.${system}.writeShellScriptBin "monitor" ''
