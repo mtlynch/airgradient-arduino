@@ -8,3 +8,5 @@ build
 logs
 gen_compile_commands.py
 compile_commands.json
+.direnv
+result

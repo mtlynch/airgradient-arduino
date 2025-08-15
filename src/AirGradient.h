@@ -15,7 +15,7 @@
 #include "Main/utils.h"
 
 #ifndef GIT_VERSION
-#define GIT_VERSION "3.3.8-snap"
+#define GIT_VERSION "3.3.8-mtlynch"
 #endif
 
 
@@ -177,9 +177,9 @@ public:
 
   /**
    * @brief Check that Airgradient object is OPEN_AIR
-   * 
-   * @return true 
-   * @return false 
+   *
+   * @return true
+   * @return false
    */
   bool isOpenAir(void);
 
