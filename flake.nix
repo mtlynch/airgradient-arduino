@@ -46,7 +46,7 @@
             --port "$AIRGRADIENT_PATH" \
             --verify \
             --upload \
-            airgradient-arduino/examples/OneOpenAir/OneOpenAir.ino
+            examples/OneOpenAir/OneOpenAir.ino
       '';
 
       packages.monitor = arduino-cli-nixpkgs.legacyPackages.${system}.writeShellScriptBin "monitor" ''
