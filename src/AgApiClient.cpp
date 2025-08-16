@@ -53,6 +53,7 @@ bool AgApiClient::fetchServerConfiguration(void) {
     // If apiRoot is changed, assume not using https
     if (client.begin(uri) == false) {
       logError("Begin HTTPClient failed (GET)");
+      client.end();
       getConfigFailed = true;
       return false;
     }
@@ -60,6 +61,7 @@ bool AgApiClient::fetchServerConfiguration(void) {
     // By default, airgradient using https
     if (client.begin(uri, AG_SERVER_ROOT_CA) == false) {
       logError("Begin HTTPClient using tls failed (GET)");
+      client.end();
       getConfigFailed = true;
       return false;
     }
@@ -120,6 +122,7 @@ bool AgApiClient::postToServer(String data) {
     // If apiRoot is changed, assume not using https
     if (client.begin(uri) == false) {
       logError("Begin HTTPClient failed (POST)");
+      client.end();
       getConfigFailed = true;
       return false;
     }
@@ -127,6 +130,7 @@ bool AgApiClient::postToServer(String data) {
     // By default, airgradient using https
     if (client.begin(uri, AG_SERVER_ROOT_CA) == false) {
       logError("Begin HTTPClient using tls failed (POST)");
+      client.end();
       getConfigFailed = true;
       return false;
     }
