@@ -1,0 +1,2 @@
+SymbolicName=ERROR_BITLOCKER_PASSPHRASE_MINIMUM_TOO_LONG
+The BitLocker minimum passphrase length can't exceed MAX_PASSPHRASE_MINIMUM.
