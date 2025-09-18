@@ -8,7 +8,7 @@ Adafruit_NeoPixel	KEYWORD1
 
 #######################################
 # Methods and Functions
-#######################################	
+#######################################
 
 begin			KEYWORD2
 show			KEYWORD2

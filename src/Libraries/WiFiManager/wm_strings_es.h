@@ -1,6 +1,6 @@
 /**
  * SAMPLE SAMPLE SAMPLE
- * 
+ *
  * wm_strings_es.h
  * spanish strings for
  * WiFiManager, a library for the ESPX/Arduino platform

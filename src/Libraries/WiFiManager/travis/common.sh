@@ -27,7 +27,7 @@ function build_examples()
             continue 2
         fi
     done
-    
+
     echo "$example_file: "
     local sketch="$example_dir/$example_file"
     echo "$sketch"

@@ -7,29 +7,29 @@
   Copyright (c) 2016, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
@@ -71,7 +71,7 @@
 //U8G2_SH1106_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_SH1106_128X64_VCOMH0_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);		// same as the NONAME variant, but maximizes setContrast() range
 //U8G2_SH1106_128X64_WINSTAR_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);		// same as the NONAME variant, but uses updated SH1106 init sequence
-//U8G2_SH1106_128X32_VISIONOX_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE); 
+//U8G2_SH1106_128X32_VISIONOX_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_SH1106_128X32_VISIONOX_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_SH1106_72X40_WISE_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_SH1107_64X128_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
@@ -94,11 +94,11 @@
 //U8G2_SSD1306_128X32_UNIVISION_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, /* clock=*/ SCL, /* data=*/ SDA);   // pin remapping with ESP8266 HW I2C
 //U8G2_SSD1306_128X32_WINSTAR_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, /* clock=*/ SCL, /* data=*/ SDA);   // pin remapping with ESP8266 HW I2C
 //U8G2_SSD1306_64X48_ER_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);   // EastRising 0.66" OLED breakout board, Uno: A4=SDA, A5=SCL, 5V powered
-//U8G2_SSD1306_48X64_WINSTAR_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);   
+//U8G2_SSD1306_48X64_WINSTAR_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_SSD1306_64X32_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_SSD1306_64X32_1F_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
-//U8G2_SSD1306_96X16_ER_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);   // EastRising 0.69" OLED 
-//U8G2_SSD1306_72X40_ER_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);   // EastRising 0.42" OLED 
+//U8G2_SSD1306_96X16_ER_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);   // EastRising 0.69" OLED
+//U8G2_SSD1306_72X40_ER_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);   // EastRising 0.42" OLED
 //U8G2_SSD1306_96X40_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_SSD1306_96X39_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_SSD1322_240X128_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
@@ -144,22 +144,22 @@
 //U8G2_SSD1305_128X64_ADAFRUIT_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_SSD1305_128X64_RAYSTAR_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_SSD1305_128X64_RAYSTAR_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
-//U8G2_SSD1309_128X64_NONAME0_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1309_128X64_NONAME0_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1309_128X64_NONAME2_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1309_128X64_NONAME2_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1316_128X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1316_128X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 	
-//U8G2_SSD1316_96X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1316_96X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 	
+//U8G2_SSD1309_128X64_NONAME0_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1309_128X64_NONAME0_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1309_128X64_NONAME2_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1309_128X64_NONAME2_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1316_128X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1316_128X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1316_96X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1316_96X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_SSD1317_96X96_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  // not tested, not confirmed
 //U8G2_SSD1317_96X96_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 	// not tested, not confirmed
-//U8G2_SSD1318_128X96_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1318_128X96_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 	
-//U8G2_SSD1320_160X132_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1320_160X132_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 	
-//U8G2_SSD1320_160X80_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_SSD1320_160X80_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 	
+//U8G2_SSD1318_128X96_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1318_128X96_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1320_160X132_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1320_160X132_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1320_160X80_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_SSD1320_160X80_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_LD7032_60X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 11, /* data=*/ 12, /* cs=*/ 9, /* dc=*/ 10, /* reset=*/ 8);	// SW SPI Nano Board
 //U8G2_LD7032_60X32_1_SW_I2C u8g2(U8G2_R0, /* clock=*/ 11, /* data=*/ 12, /* reset=*/ U8X8_PIN_NONE);	// NOT TESTED!
 //U8G2_LD7032_60X32_ALT_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 11, /* data=*/ 12, /* cs=*/ 9, /* dc=*/ 10, /* reset=*/ 8);	// SW SPI Nano Board
@@ -186,7 +186,7 @@
 //U8G2_ST7920_144X32_1_SW_SPI u8g2(U8G2_R0, /* clock=*/ 18 /* A4 */ , /* data=*/ 16 /* A2 */, /* CS=*/ 17 /* A3 */, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_ST7920_160X32_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 18, /*cs=*/ U8X8_PIN_NONE, /*dc=*/ 17, /*reset=*/ U8X8_PIN_NONE);
 //U8G2_ST7920_160X32_1_SW_SPI u8g2(U8G2_R0, /* clock=*/ 18 /* A4 */ , /* data=*/ 16 /* A2 */, /* CS=*/ 17 /* A3 */, /* reset=*/ U8X8_PIN_NONE);
-//U8G2_ST7920_128X64_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 18 /* A4 */, /*cs=*/ U8X8_PIN_NONE, /*dc/rs=*/ 17 /* A3 */, /*reset=*/ 15 /* A1 */);	// Remember to set R/W to 0 
+//U8G2_ST7920_128X64_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 18 /* A4 */, /*cs=*/ U8X8_PIN_NONE, /*dc/rs=*/ 17 /* A3 */, /*reset=*/ 15 /* A1 */);	// Remember to set R/W to 0
 //U8G2_ST7920_128X64_1_SW_SPI u8g2(U8G2_R0, /* clock=*/ 18 /* A4 */ , /* data=*/ 16 /* A2 */, /* CS=*/ 17 /* A3 */, /* reset=*/ U8X8_PIN_NONE);
 //U8G2_ST7920_128X64_1_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* CS=*/ 10, /* reset=*/ 8);
 //U8G2_ST7920_128X64_1_SW_SPI u8g2(U8G2_R0, /* clock=*/ 14, /* data=*/ 13, /* CS=*/ 15, /* reset=*/ 16); // Feather HUZZAH ESP8266, E=clock=14, RW=data=13, RS=CS
@@ -222,20 +222,20 @@
 //U8G2_ST7565_JLX12864_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_ST7567_PI_132X64_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  // Pax Instruments Shield, LCD_BL=6
 //U8G2_ST7567_PI_132X64_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  // Pax Instruments Shield, LCD_BL=6
-//U8G2_ST7567_JLX12864_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7567_JLX12864_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7567_122X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7567_122X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7567_OS12864_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7567_OS12864_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7567_ENH_DG128064_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_ST7567_ENH_DG128064_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_ST7567_ENH_DG128064I_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_ST7567_ENH_DG128064I_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_ST7567_64X32_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE); 
-//U8G2_ST7567_HEM6432_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE); 
-//U8G2_ST7567_ERC13232_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_ST7567_ERC13232_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
+//U8G2_ST7567_JLX12864_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_JLX12864_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_122X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_122X32_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_OS12864_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_OS12864_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 7, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_ENH_DG128064_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_ENH_DG128064_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_ENH_DG128064I_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_ENH_DG128064I_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_64X32_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+//U8G2_ST7567_HEM6432_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+//U8G2_ST7567_ERC13232_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7567_ERC13232_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_ST7571_128X128_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_ST7571_128X128_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_ST7571_128X96_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
@@ -264,18 +264,18 @@
 //U8G2_ST75256_JLX256160_ALT_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);	// Uno, Enable U8g2 16 bit mode for this display
 //U8G2_ST75256_JLX256160_ALT_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);				// Uno, Enable U8g2 16 bit mode for this display
 //U8G2_ST75256_JLX240160_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
-//U8G2_ST75256_JLX240160_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);	
+//U8G2_ST75256_JLX240160_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_ST75256_JLX25664_1_2ND_HW_I2C u8g2(U8G2_R0, /* reset=*/ 8);	// Due, 2nd I2C, enable U8g2 16 bit mode for this display
 //U8G2_ST75320_JLX320240_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);	// Uno, Enable U8g2 16 bit mode for this display
 //U8G2_ST75320_JLX320240_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);				// Uno, Enable U8g2 16 bit mode for this display
-//U8G2_NT7534_TG12864R_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_NT7534_TG12864R_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_ST7588_JLX12864_1_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ 5);  
+//U8G2_NT7534_TG12864R_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_NT7534_TG12864R_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_ST7588_JLX12864_1_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ 5);
 //U8G2_ST7588_JLX12864_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ 5);
 //U8G2_IST3020_ERC19264_1_6800 u8g2(U8G2_R0, 44, 43, 42, 41, 40, 39, 38, 37,  /*enable=*/ 28, /*cs=*/ 32, /*dc=*/ 30, /*reset=*/ 31); // Connect WR pin with GND
 //U8G2_IST3020_ERC19264_1_8080 u8g2(U8G2_R0, 44, 43, 42, 41, 40, 39, 38, 37,  /*enable=*/ 29, /*cs=*/ 32, /*dc=*/ 30, /*reset=*/ 31); // Connect RD pin with 3.3V
 //U8G2_IST3020_ERC19264_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
-//U8G2_IST3088_320X240_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
+//U8G2_IST3088_320X240_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_IST3088_320X240_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_IST7920_128X128_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  // Round display
 //U8G2_IST7920_128X128_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  // Round display
@@ -292,22 +292,22 @@
 //U8G2_T6963_128X64_ALT_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable/wr=*/ 17, /*cs/ce=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect RD with +5V, FS0 and FS1 with GND
 //U8G2_SED1330_240X128_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect /RD = E with +5V, enable is /WR = RW, FG with GND, 14=Uno Pin A0
 //U8G2_SED1330_240X128_1_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // A0 is dc pin, /WR = RW = GND, enable is /RD = E
-//U8G2_SED1330_256X128_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect /RD = E with +5V, enable is /WR = RW, FG with GND, 14=Uno Pin A0, enable U8g2 16Bit Mode 
-//U8G2_SED1330_256X128_1_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // A0 is dc pin, /WR = RW = GND, enable is /RD = E, enable U8g2 16Bit Mode 
-//U8G2_SED1330_320X200_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect /RD = E with +5V, enable is /WR = RW, FG with GND, 14=Uno Pin A0, enable U8g2 16Bit Mode 
-//U8G2_SED1330_320X200_1_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // A0 is dc pin, /WR = RW = GND, enable is /RD = E, enable U8g2 16Bit Mode 
+//U8G2_SED1330_256X128_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect /RD = E with +5V, enable is /WR = RW, FG with GND, 14=Uno Pin A0, enable U8g2 16Bit Mode
+//U8G2_SED1330_256X128_1_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // A0 is dc pin, /WR = RW = GND, enable is /RD = E, enable U8g2 16Bit Mode
+//U8G2_SED1330_320X200_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect /RD = E with +5V, enable is /WR = RW, FG with GND, 14=Uno Pin A0, enable U8g2 16Bit Mode
+//U8G2_SED1330_320X200_1_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // A0 is dc pin, /WR = RW = GND, enable is /RD = E, enable U8g2 16Bit Mode
 //U8G2_RA8835_NHD_240X128_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7, /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // Connect /RD = E with +5V, enable is /WR = RW, FG with GND, 14=Uno Pin A0
 //U8G2_RA8835_NHD_240X128_1_6800 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 17, /*cs=*/ 14, /*dc=*/ 15, /*reset=*/ 16); // A0 is dc pin, /WR = RW = GND, enable is /RD = E
-//U8G2_UC1601_128X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
+//U8G2_UC1601_128X32_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_UC1601_128X32_1_3W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* reset=*/ 8);
-//U8G2_UC1601_128X64_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_UC1604_JLX19264_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_UC1604_JLX19264_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
-//U8G2_UC1609_SLG19264_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
-//U8G2_UC1609_SLG19264_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  
+//U8G2_UC1601_128X64_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_UC1604_JLX19264_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_UC1604_JLX19264_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_UC1609_SLG19264_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
+//U8G2_UC1609_SLG19264_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_UC1608_ERC24064_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  // SW SPI, Due ERC24064-1 Test Setup
 //U8G2_UC1608_DEM240064_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  // SW SPI, Due ERC24064-1 Test Setup
-//U8G2_UC1608_ERC240120_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8); 
+//U8G2_UC1608_ERC240120_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_UC1608_240X128_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);  // SW SPI, Due ERC24064-1 Test Setup
 //U8G2_UC1610_EA_DOGXL160_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/  U8X8_PIN_NONE);
 //U8G2_UC1610_EA_DOGXL160_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/  U8X8_PIN_NONE);
@@ -317,8 +317,8 @@
 //U8G2_UC1611_EA_DOGXL240_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);   // SW SPI, Due DOGXL240 Test Board
 //U8G2_UC1611_EW50850_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 18, /*cs=*/ 3, /*dc=*/ 16, /*reset=*/ 17); // 240x160, Connect RD/WR1 pin with 3.3V, CS is aktive high
 //U8G2_UC1611_CG160160_1_8080 u8g2(U8G2_R0, 8, 9, 10, 11, 4, 5, 6, 7,  /*enable=*/ 18, /*cs=*/ 3, /*dc=*/ 16, /*reset=*/ 17); // Connect WR1 and CD1 pin with 3.3V, connect CS0 with cs, WR0 with enable, CD with dc
-//U8G2_UC1611_IDS4073_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);	// Enable U8g2 16Bit Mode 
-//U8G2_UC1611_IDS4073_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);		// Enable U8g2 16Bit Mode 
+//U8G2_UC1611_IDS4073_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);	// Enable U8g2 16Bit Mode
+//U8G2_UC1611_IDS4073_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);		// Enable U8g2 16Bit Mode
 //U8G2_UC1617_JLX128128_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_UC1617_JLX128128_1_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
 //U8G2_UC1638_192X96_1_4W_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* cs=*/ 10, /* dc=*/ 9, /* reset=*/ 8);
@@ -367,13 +367,13 @@ uint8_t pin_fire = 7;
 /* object types */
 struct _st_ot_struct
 {
-  /* 
-    missle and hit: 
+  /*
+    missle and hit:
       bit 0: player missle and trash
       bit 1: trash, which might hit the player
   */
-  
-  uint8_t missle_mask;		/* this object is a missle: it might destroy something if the target is_hit_fn says so */ 
+
+  uint8_t missle_mask;		/* this object is a missle: it might destroy something if the target is_hit_fn says so */
   uint8_t hit_mask;			/* if missle_mask & hit_mask is != 0  then the object can be destroyed */
   uint8_t points;
   uint8_t draw_fn;
@@ -385,7 +385,7 @@ struct _st_ot_struct
       /* ST_IS_HIT_FN_NONE, ST_IS_HIT_BBOX */
   uint8_t fire_fn;
     /* ST_FIRE_FN_NONE, ST_FIRE_FN_X_LEFT */
-  
+
 };
 typedef struct _st_ot_struct st_ot;
 
@@ -514,7 +514,7 @@ const st_ot st_object_types[] U8X8_PROGMEM =
     { 0, 0,  0, ST_DRAW_BACKSLASH, ST_MOVE_NXPY, ST_DESTROY_NONE, ST_IS_HIT_NONE, ST_FIRE_NONE },
     /* ST_OT_DUST_NXNY (15): Last part of trash  */
     { 0, 0,  0, ST_DRAW_SLASH, ST_MOVE_NXNY, ST_DESTROY_NONE, ST_IS_HIT_NONE, ST_FIRE_NONE },
-    
+
 };
 
 /*================================================================*/
@@ -523,12 +523,12 @@ const st_ot st_object_types[] U8X8_PROGMEM =
 
 /* use AVR RAMEND constant to derive the number of allowed objects */
 
-#if RAMEND < 0x300 
+#if RAMEND < 0x300
 #define ST_OBJ_CNT 25
 #else
 //#define ST_OBJ_CNT 45
 #define ST_OBJ_CNT 60
-#endif 
+#endif
 
 st_obj st_objects[ST_OBJ_CNT];
 
@@ -569,8 +569,8 @@ uint16_t st_to_diff_cnt = 0;
 /* bitmaps */
 /*================================================================*/
 
-const uint8_t st_bitmap_player1[]  = 
-{ 
+const uint8_t st_bitmap_player1[]  =
+{
   /* 01100000 */ 0x060,
   /* 11111000 */ 0x0f8,
   /* 01111110 */ 0x07e,
@@ -578,8 +578,8 @@ const uint8_t st_bitmap_player1[]  =
   /* 01100000 */ 0x060
 };
 
-const uint8_t st_bitmap_player2[] = 
-{   
+const uint8_t st_bitmap_player2[] =
+{
   /* 01100000 */ 0x060,
   /* 01111100 */ 0x078,
   /* 01100000 */ 0x060,
@@ -590,8 +590,8 @@ const uint8_t st_bitmap_player2[] =
   /* 01100000 */ 0x060
 };
 
-const uint8_t st_bitmap_player3[] = 
-{   
+const uint8_t st_bitmap_player3[] =
+{
   /* 01100000 */ 0x060,
   /* 01111100 */ 0x078,
   /* 01100000 */ 0x060,
@@ -605,8 +605,8 @@ const uint8_t st_bitmap_player3[] =
   /* 01100000 */ 0x060
  };
 
-const uint8_t st_bitmap_trash_5x5_1[] = 
-{ 
+const uint8_t st_bitmap_trash_5x5_1[] =
+{
   /* 01110000 */ 0x070,
   /* 11110000 */ 0x0f0,
   /* 11111000 */ 0x0f8,
@@ -614,8 +614,8 @@ const uint8_t st_bitmap_trash_5x5_1[] =
   /* 00110000 */ 0x030,
 };
 
-const uint8_t st_bitmap_trash_5x5_2[] = 
-{ 
+const uint8_t st_bitmap_trash_5x5_2[] =
+{
   /* 00110000 */ 0x030,
   /* 11111000 */ 0x0f8,
   /* 11111000 */ 0x0f8,
@@ -623,7 +623,7 @@ const uint8_t st_bitmap_trash_5x5_2[] =
   /* 01110000 */ 0x070,
 };
 
-const uint8_t st_bitmap_trash_7x7[] = 
+const uint8_t st_bitmap_trash_7x7[] =
 {
   /* 00111000 */ 0x038,
   /* 01111100 */ 0x07c,
@@ -634,8 +634,8 @@ const uint8_t st_bitmap_trash_7x7[] =
   /* 01111000 */ 0x078,
 };
 
-const uint8_t st_bitmap_gadget[] = 
-{ 
+const uint8_t st_bitmap_gadget[] =
+{
   /* 01110000 */ 0x070,
   /* 11011000 */ 0x0d8,
   /* 10001000 */ 0x088,
@@ -663,7 +663,7 @@ void st_InitTrash(uint8_t x, uint8_t y, int8_t dir);
 void st_NewGadget(uint8_t x, uint8_t y);
 void st_NewPlayerMissle(uint8_t x, uint8_t y) ;
 void st_NewTrashDust(uint8_t x, uint8_t y, int ot);
-void st_NewTrashDustAreaArgs(int16_t x, int16_t y, int ot); 
+void st_NewTrashDustAreaArgs(int16_t x, int16_t y, int ot);
 void st_SetupPlayer(uint8_t objnr, uint8_t ot);
 
 
@@ -693,7 +693,7 @@ uint8_t st_rnd(void)
   return rand();
 }
 
-/*	
+/*
   for the specified index number, return the object
 */
 static st_obj *st_GetObj(uint8_t objnr)
@@ -704,7 +704,7 @@ static st_obj *st_GetObj(uint8_t objnr)
 
 /*
   check, if this is a missle-like object (that is, can this object destroy something else)
-*/ 
+*/
 uint8_t st_GetMissleMask(uint8_t objnr)
 {
   st_obj *o = st_GetObj(objnr);
@@ -713,7 +713,7 @@ uint8_t st_GetMissleMask(uint8_t objnr)
 
 /*
   check, if this is a missle-like object (that is, can this object destroy something else)
-*/ 
+*/
 uint8_t st_GetHitMask(uint8_t objnr)
 {
   st_obj *o = st_GetObj(objnr);
@@ -798,12 +798,12 @@ void st_SetXY(st_obj *o, uint8_t x, uint8_t y)
 /*
   calculate the object bounding box and place it into some global variables
 */
-int16_t st_bbox_x0, st_bbox_y0, st_bbox_x1, st_bbox_y1;  
+int16_t st_bbox_x0, st_bbox_y0, st_bbox_x1, st_bbox_y1;
 
 void st_CalcBBOX(uint8_t objnr)
 {
   st_obj *o = st_GetObj(objnr);
-  
+
   st_bbox_x0 = (uint16_t)(o->x>>ST_FP);
   st_bbox_x1 = st_bbox_x0;
   st_bbox_x0 += o->x0;
@@ -849,7 +849,7 @@ uint8_t st_ClipBBOX(void)
     st_cbbox_y1  = (uint16_t)st_bbox_y1;
   else
     st_cbbox_y1 = ST_AREA_HEIGHT-1;
-  
+
   return 1;
 }
 
@@ -953,13 +953,13 @@ void st_DrawBBOX(uint8_t objnr)
     return;
   /* st_cbbox_x0, st_cbbox_y0, st_cbbox_x1, st_cbbox_y1; */
 
-  
+
   // w = st_cbbox_x1-st_cbbox_x0;
   // w++;
   // h = st_cbbox_y1-st_cbbox_y0;
   // h++;
-  
-  
+
+
   //dog_SetVLine(st_cbbox_x0, st_cbbox_y0, st_cbbox_y1);
   //dog_SetVLine(st_cbbox_x1, st_cbbox_y0, st_cbbox_y1);
   //dog_SetHLine(st_cbbox_x0, st_cbbox_x1, st_cbbox_y0);
@@ -968,9 +968,9 @@ void st_DrawBBOX(uint8_t objnr)
   u8g2_SetDrawColor(st_u8g2, 1);
   y0 = u8g_height_minus_one - st_cbbox_y0;
   y1 = u8g_height_minus_one - st_cbbox_y1;
-  
+
   u8g2_DrawFrame(st_u8g2, st_cbbox_x0, y1, st_cbbox_x1-st_cbbox_x0+1, y0-y1+1);
-  
+
   //dog_SetBox(st_cbbox_x0, st_cbbox_y0, st_cbbox_x1, st_cbbox_y1);
 
   /*
@@ -999,9 +999,9 @@ void st_DrawBitmap(uint8_t objnr, const uint8_t * bm, uint8_t w, uint8_t h)
   st_CalcBBOX(objnr);
   /* result is here: int16_t st_bbox_x0, st_bbox_y0, st_bbox_x1, st_bbox_y1 */
   //dog_SetBitmapP(st_bbox_x0,st_bbox_y1,bm,w,h);
-  
+
   u8g2_DrawBitmap(st_u8g2, st_bbox_x0, u8g_height_minus_one - st_bbox_y1, (w+7)/8, h, bm);
-  
+
  }
 
 void st_DrawObj(uint8_t objnr)
@@ -1045,20 +1045,20 @@ void st_DrawObj(uint8_t objnr)
 	x = st_CalcXY(o);
 	y = st_px_y;
 
-	
+
 	// dog_SetPixel(x,y);
 	// x++; y--;
 	// dog_SetPixel(x,y);
 	// x++; y--;
  	// dog_SetPixel(x,y);
-	
-	u8g2_SetDrawColor(st_u8g2, 1);  
-	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);  
+
+	u8g2_SetDrawColor(st_u8g2, 1);
+	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);
 	x++; y--;
-	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);  
+	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);
 	x++; y--;
-	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);  	
-     }      
+	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);
+     }
      break;
     case ST_DRAW_SLASH:
       {
@@ -1066,20 +1066,20 @@ void st_DrawObj(uint8_t objnr)
 	uint8_t y;
 	x = st_CalcXY(o);
 	y = st_px_y;
-	
+
 	// dog_SetPixel(x,y);
 	// x++; y++;
 	// dog_SetPixel(x,y);
 	// x++; y++;
  	// dog_SetPixel(x,y);
-	
-	u8g2_SetDrawColor(st_u8g2, 1);  
-	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);  
+
+	u8g2_SetDrawColor(st_u8g2, 1);
+	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);
 	x++; y++;
-	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);  
+	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);
 	x++; y++;
-	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);  	
-     }      
+	u8g2_DrawPixel(st_u8g2, x, u8g_height_minus_one - y);
+     }
      break;
   }
 }
@@ -1087,7 +1087,7 @@ void st_DrawObj(uint8_t objnr)
 uint8_t st_IsHitBBOX(uint8_t objnr, uint8_t x, uint8_t y)
 {
   st_CalcBBOX(objnr);
-  if ( st_ClipBBOX() == 0 ) 
+  if ( st_ClipBBOX() == 0 )
     return 0;	/* obj is outside (not visible) */
   if ( x < st_cbbox_x0 )
     return 0;
@@ -1162,12 +1162,12 @@ uint8_t st_IsHit(uint8_t objnr, uint8_t x, uint8_t y, uint8_t missle_mask)
 {
   uint8_t hit_mask = st_GetHitMask(objnr);
   st_obj *o;
-  
+
   if ( (hit_mask & missle_mask) == 0 )
     return 0;
-  
+
   o = st_GetObj(objnr);
-  
+
   switch(u8x8_pgm_read(&(st_object_types[o->ot].is_hit_fn)))
   {
     case ST_IS_HIT_NONE:
@@ -1246,12 +1246,12 @@ void st_Fire(uint8_t objnr)
   st_obj *o = st_GetObj(objnr);
   uint8_t x;
   uint8_t y;
-  
+
   switch(u8x8_pgm_read(&(st_object_types[o->ot].fire_fn)))
   {
-    case ST_FIRE_NONE: 
+    case ST_FIRE_NONE:
       break;
-    case ST_FIRE_PLAYER1: 
+    case ST_FIRE_PLAYER1:
       if ( st_fire_player == 0 )
       {
 	/* create missle at st_px_x and st_px_y */
@@ -1404,11 +1404,11 @@ void st_NewWall(void)
   o->x0 = 0;
   o->x1 = 5;
   o->x = (ST_AREA_WIDTH-1)<<ST_FP;
- 
+
   if ( (st_rnd() & 1) == 0 )
   {
     o->y = (ST_AREA_HEIGHT-1)<<ST_FP;
-    
+
     o->y0 = -h;
     o->y1 = 0;
   }
@@ -1484,20 +1484,20 @@ void st_InitDeltaWall(void)
   uint8_t cnt = 0;
   uint8_t max_x = 0;
   uint8_t max_l;
-  
+
   uint8_t min_dist_for_new = 40;
   uint8_t my_difficulty = st_difficulty;
-  
+
   if ( st_difficulty >= 2 )
   {
-    
+
     max_l = ST_AREA_WIDTH;
     max_l -= min_dist_for_new;
-    
+
     if ( my_difficulty > 30 )
       my_difficulty = 30;
     min_dist_for_new -= my_difficulty;
-    
+
     for( i = 0; i < ST_OBJ_CNT; i++ )
     {
       if ( st_objects[i].ot == ST_OT_WALL_SOLID )
@@ -1506,9 +1506,9 @@ void st_InitDeltaWall(void)
 	if ( max_x < (st_objects[i].x>>ST_FP) )
 	  max_x = (st_objects[i].x>>ST_FP);
       }
-    }    
+    }
     /* if ( cnt < upper_trash_limit ) */
-    if ( max_x < max_l ) 
+    if ( max_x < max_l )
     {
       st_NewWall();
     }
@@ -1522,15 +1522,15 @@ void st_InitDeltaTrash(void)
   uint8_t cnt = 0;
   uint8_t max_x = 0;
   uint8_t max_l;
-  
+
   uint8_t upper_trash_limit = ST_OBJ_CNT-7;
   uint8_t min_dist_for_new = 20;
   uint8_t my_difficulty = st_difficulty;
-  
+
   if ( my_difficulty > 14 )
     my_difficulty = 14;
   min_dist_for_new -= my_difficulty;
-  
+
   for( i = 0; i < ST_OBJ_CNT; i++ )
   {
     if ( st_objects[i].ot == ST_OT_TRASH1 || st_objects[i].ot == ST_OT_TRASH2 || st_objects[i].ot == ST_OT_GADGET  || st_objects[i].ot == ST_OT_BIG_TRASH )
@@ -1540,12 +1540,12 @@ void st_InitDeltaTrash(void)
 	max_x = (st_objects[i].x>>ST_FP);
     }
   }
-  
+
   max_l = ST_AREA_WIDTH;
   max_l -= min_dist_for_new;
-  
+
   if ( cnt < upper_trash_limit )
-    if ( max_x < max_l ) 
+    if ( max_x < max_l )
     {
       if (  (st_difficulty >= 3)  && ((st_rnd() & 7) == 0) )
 	st_NewGadget(ST_AREA_WIDTH-1, rand() & (ST_AREA_HEIGHT-1));
@@ -1577,12 +1577,12 @@ void st_DrawInGame(uint8_t fps)
   /* draw all objects */
   for( i = 0; i < ST_OBJ_CNT; i++ )
       st_DrawObj(i);
-  
+
   //dog_ClrBox(0, ST_AREA_HEIGHT, st_u8g2->width-1, ST_AREA_HEIGHT+3);
 
   u8g2_SetDrawColor(st_u8g2, 0);
   u8g2_DrawBox(st_u8g2, 0, u8g_height_minus_one - ST_AREA_HEIGHT-3, st_u8g2->width, 4);
-  
+
   u8g2_SetDrawColor(st_u8g2, 1);
   u8g2_DrawHLine(st_u8g2, 0, u8g_height_minus_one - ST_AREA_HEIGHT+1, ST_AREA_WIDTH);
   u8g2_DrawHLine(st_u8g2, 0, u8g_height_minus_one, ST_AREA_WIDTH);
@@ -1591,12 +1591,12 @@ void st_DrawInGame(uint8_t fps)
   u8g2_DrawHLine(st_u8g2, 10, u8g_height_minus_one - ST_AREA_HEIGHT-3, (st_to_diff_cnt>>ST_DIFF_FP)+1);
   u8g2_DrawVLine(st_u8g2, 10, u8g_height_minus_one - ST_AREA_HEIGHT-4, 3);
   u8g2_DrawVLine(st_u8g2, 10+ST_DIFF_VIS_LEN, u8g_height_minus_one - ST_AREA_HEIGHT-4, 3);
-  
-  
+
+
   /* player points */
   u8g2_DrawStr(st_u8g2, ST_AREA_WIDTH-5*4-2, u8g_height_minus_one - ST_AREA_HEIGHT, st_itoa(st_player_points_delayed));
-  
-  
+
+
   /* FPS output */
   if ( fps > 0 )
   {
@@ -1678,14 +1678,14 @@ void st_StepInGame(uint8_t player_pos, uint8_t is_auto_fire, uint8_t is_fire)
 {
   uint8_t i, j;
   uint8_t missle_mask;
-  
+
   /* rescale player pos */
   //st_player_pos = ((uint16_t)player_pos * (uint16_t)ST_AREA_HEIGHT)/256;
   if ( player_pos < 64 )
     st_player_pos = 0;
   else if ( player_pos >= 192 )
     st_player_pos = ST_AREA_HEIGHT-2-1;
-  else 
+  else
     st_player_pos = ((uint16_t)((player_pos-64)) * (uint16_t)(ST_AREA_HEIGHT-2))/128;
   st_player_pos+=1;
   /* move all objects */
@@ -1697,7 +1697,7 @@ void st_StepInGame(uint8_t player_pos, uint8_t is_auto_fire, uint8_t is_fire)
     if ( st_objects[i].ot != 0 )
       if ( st_IsOut(i) != 0 )
 	st_Disappear(i);
-      
+
   /* missle and destruction handling */
   for( i = 0; i < ST_OBJ_CNT; i++ )
   {
@@ -1711,32 +1711,32 @@ void st_StepInGame(uint8_t player_pos, uint8_t is_auto_fire, uint8_t is_fire)
 	      st_Destroy(i);
 	    }
   }
-  
+
   /* handle fire counter */
   st_FireStep(is_auto_fire, is_fire);
-  
+
   /* fire */
   for( i = 0; i < ST_OBJ_CNT; i++ )
     st_Fire(i);
-	  
+
   /* create new objects */
   st_InitDelta();
-	
+
   /* increase difficulty */
-	    
+
   st_to_diff_cnt++;
   if ( st_to_diff_cnt == (ST_DIFF_VIS_LEN<<ST_DIFF_FP) )
   {
     st_to_diff_cnt = 0;
     st_difficulty++;
     st_player_points += ST_POINTS_PER_LEVEL;
-  }  
-  
+  }
+
   /* update visible player points */
   if ( st_player_points_delayed < st_player_points )
     st_player_points_delayed++;
 }
-  
+
 void st_Step(uint8_t player_pos, uint8_t is_auto_fire, uint8_t is_fire)
 {
   switch(st_state)
@@ -1773,7 +1773,7 @@ void st_Step(uint8_t player_pos, uint8_t is_auto_fire, uint8_t is_fire)
 
 
 void setup(void) {
-  u8g2.begin(); 
+  u8g2.begin();
 }
 
 uint8_t a;
@@ -1795,11 +1795,11 @@ void loop(void) {
     {
       st_Draw(0);
     } while( u8g2.nextPage() );
-    
+
     if ( digitalRead(pin_down) ) {
       y++;
     }
-    
+
     if ( digitalRead(pin_up) ) {
       y--;
     }

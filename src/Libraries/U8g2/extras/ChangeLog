@@ -157,7 +157,7 @@ https://github.com/olikraus/u8g2 ChangeLog
   * Support for SH1107 (issue 501)
   * Support for HX1230 (issue 469)
   * Bugfix for displays with display height not a multiple of 8 (issue 469)
-  * FontUsage demo for full buffer mode (issue 490) 
+  * FontUsage demo for full buffer mode (issue 490)
   * Added 1x2 (double height) draw procedures to U8x8 (issue 474)
     With this feature a 128x32 display can replace a 16x2 Char LCD.
   * New constructor for the Good Display 200x200 eInk (issue 454)
@@ -165,7 +165,7 @@ https://github.com/olikraus/u8g2 ChangeLog
   * Double height (2x1) chars for U8x8 API (issue 474)
   * Excluded I2C for several ATMega uC which do not have HW I2C (issue 508)
   * Fixed UC1610 contrast command (issue 428)
-  * Added WQY Chinese fonts at sizes 12, 13, 14, 15 and 16 
+  * Added WQY Chinese fonts at sizes 12, 13, 14, 15 and 16
      including gb2312 support (issue 455)
   * Added new full buffer demo for the Chinese fonts (Shennong.ino, issue #455)
   * Added siji icon font u8g2_font_siji_t_6x10 (issue 451)
@@ -186,14 +186,14 @@ https://github.com/olikraus/u8g2 ChangeLog
   * Added tom-thumb font (issue 563)
   * Added AVR specific optimization for 3-wire Software SPI (issue 586)
 2018-08-24	v2.23.18  olikraus@gmail.com
-  * NEW FONT FORMAT for speedup of the unicode font section (issue 596)  
-  * Fixed a bug in the font construction for monospaced fonts (issue 669) 
+  * NEW FONT FORMAT for speedup of the unicode font section (issue 596)
+  * Fixed a bug in the font construction for monospaced fonts (issue 669)
   * Fixed a bug with the CS line for huge KS0108 displays (issue 631)
   * Fixed #if's for some AVR uC (issue 662)
   * Added support for SH1108 controller (issue 619)
   * Added support for T6963 160x80 Displays (issue 635)
   * Added support for EA W128128 (issue 641)
-  * Added support for LC7981 240x64 (issue 642)  
+  * Added support for LC7981 240x64 (issue 642)
   * Added support for ST7567 ENH-DG128064 (issue 616)
   * Included pull request for ST7586, support for ERC240160 & s028hn118a (pull request 660)
   * Added SpaceTrash game (issue 622)
@@ -207,7 +207,7 @@ https://github.com/olikraus/u8g2 ChangeLog
   * Added support for SSD0323 (issue 720)
 2019-02-09	v2.25.10  olikraus@gmail.com
   * Improved speed for I2C with SSD1306 controller: 4% faster now (issue 735)
-  * Fixed code problems (issues 766 and 754)  
+  * Fixed code problems (issues 766 and 754)
   * Added battery symbols and emoticons (issue 747)
   * New U8x8 font format, added large U8x8 fonts (issue 771)
   * Added alternative version for ERC12864 (issue 790)
@@ -246,9 +246,9 @@ https://github.com/olikraus/u8g2 ChangeLog
   * Added several fonts from dafont.com (issue 1093)
   * Added 3-wire HW SPI (issue 1041)
 2020-12-28	v2.28.10	olikraus@gmail.com
-  * Added Euro Symbol to _te fonts (issue 1321) 
-  * Added support for ST7528 (issue 986) 
-  * Added support for ST7571 (issue 1298) 
+  * Added Euro Symbol to _te fonts (issue 1321)
+  * Added support for ST7528 (issue 986)
+  * Added support for ST7571 (issue 1298)
   * Added support for ST7586 YMC240160 (issue 1183)
   * Added support for UC1617 JLX128128 (issue 1151)
   * Added support for SH1106 Visionox 128X32 (issue 1250)
@@ -293,7 +293,7 @@ https://github.com/olikraus/u8g2 ChangeLog
   * LC7981 128X128, NOT TESTED (issue 1913)
   * SSD1316 96x32 (issue 1938, not tested, moved to 2.34.x)
   * GP1287AI 256X50, GP1247AI 253X63 contributed (issue 1907)
-  * Added support for IST3088 (issue 1887) 
+  * Added support for IST3088 (issue 1887)
   * Double size font functions: drawGlyphX2, drawStrX2, drawUTF8X2 (issue 1919)
   * Experimental support for ST75160, TESTING REQUIRED (issue 1642)
   * Bugfix font compression: Reduced fontsize by up to 4% (issue 1941)
@@ -309,7 +309,7 @@ https://github.com/olikraus/u8g2 ChangeLog
   * ST75256 JLX160x80 (NOT TESTED, issue 2058)
   * UC1638 240x128 (issue 2075)
   * SED1330 320x200 (issue 1086)
-  * Bugfix: Clear font_height_mode during setup to ensure correct default values in 
+  * Bugfix: Clear font_height_mode during setup to ensure correct default values in
      cases where the u8g2 struct / class is created via dynamic memory allocation (issue 2046)
   * Bugfix: Fix line draw procedure in 16 bit mode (issue 2053)
   * Added Spleen Monospaced Font from https://github.com/fcambus/spleen (issue 2015)
@@ -322,4 +322,4 @@ https://github.com/olikraus/u8g2 ChangeLog
   * Added 04b fonts from u8glib (issue 2157)
   * Added "font_tiny5" (issue 2185)
   * Added MUI (https://github.com/olikraus/u8g2/wiki/muimanual) examples (issue 1747)
-  
+

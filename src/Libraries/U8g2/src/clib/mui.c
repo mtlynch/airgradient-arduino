@@ -1,7 +1,7 @@
 /*
 
   mui.c
-  
+
   Monochrome minimal user interface: Core library.
 
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
@@ -9,31 +9,31 @@
   Copyright (c) 2021, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-  
+
 
   "mui.c" is a graphical user interface, developed as part of u8g2.
   However "mui.c" is independent of u8g2 and can be used without u8g2 code.
@@ -48,26 +48,26 @@
   u: Single char argument with the user interface form number
 
   "Uu" the interface                                                    --> no ID
-  
+
   Manual ID:
   "Fijxy"  Generic field: Places field with id ii at x/y        --> ID=ij
   "Bijxy/text/"   Generic field (Button) with Text   --> ID=ij
   "Tiixya/text/"  Generic field with argument and text --> ID = ij
   "Aiixya"
-  
+
   Fixed ID:
   "Si" the style                                                        --> ID=@i
   "Lxy/labeltext/"  Places a text at the specified position, field with   -     -> ID=.L, .l
   "Gxyu/menutext/"  Go to the specified menu without placing the user interface form on the stack       --> ID=.G, .g
-  
-  
+
+
   cijxy
   cijxy/text/
   cijxya/text/
-  
+
   cxy/text/
   cxya/text/
-  
+
 */
 
 
@@ -131,12 +131,12 @@ static size_t mui_fds_parse_text(mui_t *ui, fds_t *s)
   ui->delimiter = mui_get_fds_char(s);
   uint8_t c;
   fds_t *t = s;
-  
+
   //printf("mui_fds_parse_text del=%d\n", delimiter);
 #ifdef MUI_CHECK_EOFDS
   if ( ui->delimiter == 0 )
     return 0;
-#endif 
+#endif
   t++;
   for( ;; )
   {
@@ -145,7 +145,7 @@ static size_t mui_fds_parse_text(mui_t *ui, fds_t *s)
 #ifdef MUI_CHECK_EOFDS
     if ( c == 0 )
       break;
-#endif 
+#endif
     if ( c == ui->delimiter )
     {
       t++;
@@ -171,7 +171,7 @@ static size_t mui_fds_parse_text(mui_t *ui, fds_t *s)
 
   if ( mui_fds_first_token(ui) )
   {
-    do 
+    do
     {
       // handle token in ui->text
     } while ( mui_fds_next_token(ui) )
@@ -203,7 +203,7 @@ uint8_t mui_fds_next_token(mui_t *ui)
 #ifdef MUI_CHECK_EOFDS
     if ( c == 0 )
       break;
-#endif 
+#endif
     if ( c == ui->delimiter )
       break;
     if ( c == '|'  )
@@ -211,12 +211,12 @@ uint8_t mui_fds_next_token(mui_t *ui)
       ui->token++;  // place ui->token on the first char of the next token
       break;
     }
-    
+
     if ( i < MUI_MAX_TEXT_LEN )
     {
       ui->text[i++] = c;
     }
-    
+
     ui->token++;
   }
   ui->text[i] = '\0' ;
@@ -230,11 +230,11 @@ uint8_t mui_fds_next_token(mui_t *ui)
   the result is stored in ui->text
 */
 uint8_t mui_fds_get_nth_token(mui_t *ui, uint8_t n)
-{  
+{
   // printf("mui_fds_get_nth_token: call, n=%d\n", n);
   if ( mui_fds_first_token(ui) )
   {
-    do 
+    do
     {
       if ( n == 0 )
       {
@@ -253,7 +253,7 @@ uint8_t mui_fds_get_token_cnt(mui_t *ui)
   uint8_t n = 0;
   if ( mui_fds_first_token(ui) )
   {
-    do 
+    do
     {
       n++;
     } while ( mui_fds_next_token(ui) );
@@ -331,26 +331,26 @@ static uint8_t mui_prepare_current_field(mui_t *ui)
   int muif_tidx;
 
   ui->uif = NULL;
-  ui->dflags = 0;    
+  ui->dflags = 0;
   ui->id0 = 0;
   ui->id1 = 0;
   ui->arg = 0;
 
   /* calculate the length of the command and copy the text argument */
   /* this will also clear the text in cases where there is no text argument */
-  ui->len = mui_fds_get_cmd_size(ui, ui->fds); 
+  ui->len = mui_fds_get_cmd_size(ui, ui->fds);
   //printf("mui_prepare_current_field len=%d\n", ui->len);
 
   /* get the command and check whether end of form is reached */
   ui->cmd = mui_get_fds_char(ui->fds);
   //printf("mui_prepare_current_field cmd='%c' len=%d\n", ui->cmd, ui->len);
-  
+
   /* Copy the cmd also to second id value. This is required for some commands, others will overwrite this below */
   ui->id1 = ui->cmd;
-  
+
   /* now make the command uppercase so that both, upper and lower case are considered */
   ui->cmd &= 0xdf; /* consider upper and lower case */
-  
+
   if ( ui->cmd == 'U' || ui->cmd == 0 )
     return 0;
 
@@ -359,7 +359,7 @@ static uint8_t mui_prepare_current_field(mui_t *ui)
     ui->dflags |= MUIF_DFLAG_IS_CURSOR_FOCUS;
   if ( ui->fds == ui->touch_focus_fds )
     ui->dflags |= MUIF_DFLAG_IS_TOUCH_FOCUS;
-  
+
 
   /* get the id0 and id1 values */
   if  ( ui->cmd == 'F' || ui->cmd == 'B' || ui->cmd == 'T' || ui->cmd == 'A' )
@@ -397,7 +397,7 @@ static uint8_t mui_prepare_current_field(mui_t *ui)
 
   //MUI_DEBUG("mui_prepare_current_field cmd='%c' len=%d arg=%d\n", ui->cmd, ui->len, ui->arg);
 
-  
+
   /* find the field  */
   muif_tidx = mui_find_uif(ui, ui->id0, ui->id1);
   //printf("mui_prepare_current_field: muif_tidx=%d\n", muif_tidx);
@@ -409,8 +409,8 @@ static uint8_t mui_prepare_current_field(mui_t *ui)
   return 0;
 }
 
-/* 
-  assumes that ui->fds has been assigned correctly 
+/*
+  assumes that ui->fds has been assigned correctly
   and that ui->target_fds and ui->tmp_fds had been cleared if required
 
   Usually do not call this function directly, instead use mui_loop_over_form
@@ -423,10 +423,10 @@ static void mui_inner_loop_over_form(mui_t *ui, uint8_t (*task)(mui_t *ui))
   uint8_t cmd;
 
   //MUI_DEBUG("mui_inner_loop_over_form start %p\n", task);
-  
+
   ui->fds += mui_fds_get_cmd_size(ui, ui->fds);      // skip the first entry, it is U always
   for(;;)
-  {    
+  {
     //printf("fds=%p *fds='%c'\n", ui->fds, ui->fds[0]);
     /* get the command and check whether end of form is reached */
     cmd = mui_get_fds_char(ui->fds);
@@ -440,7 +440,7 @@ static void mui_inner_loop_over_form(mui_t *ui, uint8_t (*task)(mui_t *ui))
       }
     ui->fds += ui->len;
   }
-  
+
   //MUI_DEBUG("mui_inner_loop_over_form end %p\n", task);
 }
 
@@ -449,12 +449,12 @@ static void mui_loop_over_form(mui_t *ui, uint8_t (*task)(mui_t *ui))
 {
   if ( mui_IsFormActive(ui) == 0 )
     return;
-  
+
   ui->fds = ui->current_form_fds;
   ui->target_fds = NULL;
   ui->tmp_fds = NULL;
-  
-  mui_inner_loop_over_form(ui, task);  
+
+  mui_inner_loop_over_form(ui, task);
 }
 
 /*
@@ -464,7 +464,7 @@ fds_t *mui_find_form(mui_t *ui, uint8_t n)
 {
   fds_t *fds = ui->root_fds;
   uint8_t cmd;
-  
+
   for( ;; )
   {
     cmd = mui_get_fds_char(fds);
@@ -478,7 +478,7 @@ fds_t *mui_find_form(mui_t *ui, uint8_t n)
       }
       /* not found, just coninue */
     }
-    
+
     fds += mui_fds_get_cmd_size(ui, fds);
   }
   return NULL;
@@ -563,7 +563,7 @@ uint8_t mui_task_find_next_cursor_uif(mui_t *ui)
   {
     if ( ui->tmp_fds != NULL )
     {
-      ui->target_fds = ui->fds;        
+      ui->target_fds = ui->fds;
       ui->tmp_fds = NULL;
       return 1;         /* stop looping */
     }
@@ -626,8 +626,8 @@ static uint8_t mui_send_cursor_msg(mui_t *ui, uint8_t msg)
 
 /* === user API === */
 
-/* 
-  returns the field pos which has the current focus 
+/*
+  returns the field pos which has the current focus
   If the first selectable field has the focus, then 0 will be returned
   Unselectable fields (for example labels) are skipped by this count.
   If no fields are selectable, then 0 is returned
@@ -639,7 +639,7 @@ static uint8_t mui_send_cursor_msg(mui_t *ui, uint8_t msg)
 uint8_t mui_GetCurrentCursorFocusPosition(mui_t *ui)
 {
   //fds_t *fds = ui->fds;
-  ui->tmp8 = 0;  
+  ui->tmp8 = 0;
   mui_loop_over_form(ui, mui_task_get_current_cursor_focus_position);
   //ui->fds = fds;
   return ui->tmp8;
@@ -655,11 +655,11 @@ void mui_next_field(mui_t *ui)
 {
   mui_loop_over_form(ui, mui_task_find_next_cursor_uif);
   // ui->cursor_focus_position++;
-  ui->cursor_focus_fds = ui->target_fds;      // NULL is ok  
+  ui->cursor_focus_fds = ui->target_fds;      // NULL is ok
   if ( ui->target_fds == NULL )
   {
     mui_loop_over_form(ui, mui_task_find_first_cursor_uif);
-    ui->cursor_focus_fds = ui->target_fds;      // NULL is ok  
+    ui->cursor_focus_fds = ui->target_fds;      // NULL is ok
     // ui->cursor_focus_position = 0;
   }
 }
@@ -669,23 +669,23 @@ void mui_next_field(mui_t *ui)
   this function will overwrite the ui field related member variables
   nth_token can be 0 if the fiel text is not a option list
   the result is stored in ui->text
-  
+
   token delimiter is '|' (pipe symbol)
-  
+
   fds:  The start of a field (MUI_DATA)
   nth_token: The position of the token, which should be returned
 */
 uint8_t mui_GetSelectableFieldTextOption(mui_t *ui, fds_t *fds, uint8_t nth_token)
 {
-  fds_t *fds_backup = ui->fds;                                // backup the current fds, so that this function can be called inside a task loop 
+  fds_t *fds_backup = ui->fds;                                // backup the current fds, so that this function can be called inside a task loop
   int len = ui->len;          // backup length of the current command, 26 sep 2021: probably this is not required any more
   uint8_t is_found;
-  
+
   ui->fds = fds;
-  // at this point ui->fds contains the field which contains the tokens  
+  // at this point ui->fds contains the field which contains the tokens
   // now get the opion string out of the text field. nth_token can be 0 if this is no opion string
   is_found = mui_fds_get_nth_token(ui, nth_token);          // return value is ignored here
-  
+
   ui->fds = fds_backup;                        // restore the previous fds position
   ui->len = len;
   // result is stored in ui->text
@@ -694,15 +694,15 @@ uint8_t mui_GetSelectableFieldTextOption(mui_t *ui, fds_t *fds, uint8_t nth_toke
 
 uint8_t mui_GetSelectableFieldOptionCnt(mui_t *ui, fds_t *fds)
 {
-  fds_t *fds_backup = ui->fds;                                // backup the current fds, so that this function can be called inside a task loop 
+  fds_t *fds_backup = ui->fds;                                // backup the current fds, so that this function can be called inside a task loop
   int len = ui->len;          // backup length of the current command   26 sep 2021: probably this is not required any more
   uint8_t cnt = 0;
-  
+
   ui->fds = fds;
-  // at this point ui->fds contains the field which contains the tokens  
+  // at this point ui->fds contains the field which contains the tokens
   // now get the opion string out of the text field. nth_token can be 0 if this is no opion string
-  cnt = mui_fds_get_token_cnt(ui); 
-  
+  cnt = mui_fds_get_token_cnt(ui);
+
   ui->fds = fds_backup;                        // restore the previous fds position
   ui->len = len;
   // result is stored in ui->text
@@ -718,7 +718,7 @@ static uint8_t mui_send_cursor_enter_msg(mui_t *ui)
   return mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_ENTER);
 }
 
-/* 
+/*
   if called from a field function, then the current field variables are destroyed, so that call should be the last call in the field callback.
   mui_EnterForm is similar to mui_GotoForm and differes only in the second argument (which is the form id instead of the fds pointer)
 */
@@ -726,35 +726,35 @@ void mui_EnterForm(mui_t *ui, fds_t *fds, uint8_t initial_cursor_position)
 {
   /* exit any previous form, will not do anything if there is no current form */
   mui_LeaveForm(ui);
-  
+
   /* clean focus fields */
   ui->touch_focus_fds = NULL;
   ui->cursor_focus_fds = NULL;
-  
+
   /* reset all the scoll values */
   ui->form_scroll_top = 0;
   ui->form_scroll_visible = 0;
   ui->form_scroll_total = 0;
-  
+
   /* assign the form, which should be entered */
   ui->current_form_fds = fds;
-  
+
   /* inform all fields that we start a new form */
   MUI_DEBUG("mui_EnterForm: form_start, initial_cursor_position=%d\n", initial_cursor_position);
   mui_loop_over_form(ui, mui_task_form_start);
-  
+
   /* assign initional cursor focus */
   MUI_DEBUG("mui_EnterForm: find_first_cursor_uif\n");
-  mui_loop_over_form(ui, mui_task_find_first_cursor_uif);  
-  ui->cursor_focus_fds = ui->target_fds;      // NULL is ok  
+  mui_loop_over_form(ui, mui_task_find_first_cursor_uif);
+  ui->cursor_focus_fds = ui->target_fds;      // NULL is ok
   MUI_DEBUG("mui_EnterForm: find_first_cursor_uif target_fds=%p\n", ui->target_fds);
-  
+
   while( initial_cursor_position > 0 )
   {
     mui_NextField(ui);          // mui_next_field(ui) is not sufficient in case of scrolling
     initial_cursor_position--;
   }
-  
+
   while( mui_send_cursor_enter_msg(ui) == 255 )
   {
     mui_NextField(ui);          // mui_next_field(ui) is not sufficient in case of scrolling
@@ -769,13 +769,13 @@ void mui_LeaveForm(mui_t *ui)
 {
   if ( mui_IsFormActive(ui) == 0 )
     return;
-  
+
   mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_LEAVE);
   ui->cursor_focus_fds = NULL;
-  
+
   /* inform all fields that we leave the form */
   MUI_DEBUG("mui_LeaveForm: form_end\n");
-  mui_loop_over_form(ui, mui_task_form_end);  
+  mui_loop_over_form(ui, mui_task_form_end);
   ui->current_form_fds = NULL;
 }
 
@@ -797,7 +797,7 @@ void mui_SaveForm(mui_t *ui)
 {
   if ( mui_IsFormActive(ui) == 0 )
     return;
-  
+
   ui->last_form_fds = ui->cursor_focus_fds;
   ui->last_form_id = mui_get_fds_char(ui->current_form_fds+1);
   ui->last_form_cursor_focus_position = mui_GetCurrentCursorFocusPosition(ui);
@@ -819,12 +819,12 @@ void mui_SaveCursorPosition(mui_t *ui, uint8_t cursor_position)
 {
   uint8_t form_id = mui_get_fds_char(ui->current_form_fds+1);
   MUI_DEBUG("mui_SaveCursorPosition form_id=%d cursor_position=%d\n", form_id, cursor_position);
-  
+
   if ( form_id == ui->menu_form_id[0] )
     ui->menu_form_last_added = 0;
   else if ( form_id == ui->menu_form_id[1] )
     ui->menu_form_last_added = 1;
-  else 
+  else
     ui->menu_form_last_added ^= 1;
   ui->menu_form_id[ui->menu_form_last_added] = form_id;
   ui->menu_form_cursor_focus_position[ui->menu_form_last_added] = cursor_position;
@@ -863,7 +863,7 @@ int mui_GetCurrentFormId(mui_t *ui)
 */
 void mui_NextField(mui_t *ui)
 {
-  do 
+  do
   {
     if ( mui_send_cursor_msg(ui, MUIF_MSG_EVENT_NEXT) )
       return;
@@ -885,14 +885,14 @@ void mui_PrevField(mui_t *ui)
     if ( mui_send_cursor_msg(ui, MUIF_MSG_EVENT_PREV) )
       return;
     mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_LEAVE);
- 
+
     mui_loop_over_form(ui, mui_task_find_prev_cursor_uif);
-    ui->cursor_focus_fds = ui->target_fds;      // NULL is ok  
+    ui->cursor_focus_fds = ui->target_fds;      // NULL is ok
     if ( ui->target_fds == NULL )
     {
       //ui->cursor_focus_position = 0;
       mui_loop_over_form(ui, mui_task_find_last_cursor_uif);
-      ui->cursor_focus_fds = ui->target_fds;      // NULL is ok  
+      ui->cursor_focus_fds = ui->target_fds;      // NULL is ok
     }
   } while( mui_send_cursor_enter_msg(ui) == 255 );
 }
@@ -900,7 +900,7 @@ void mui_PrevField(mui_t *ui)
 
 void mui_SendSelect(mui_t *ui)
 {
-  mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_SELECT);  
+  mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_SELECT);
 }
 
 /*
@@ -908,7 +908,7 @@ void mui_SendSelect(mui_t *ui)
   If such a field exists, then this field is executed, otherwise the current field will receive the select message.
 
   MUIF_EXECUTE_ON_SELECT_BUTTON is set by muif macro MUIF_EXECUTE_ON_SELECT_BUTTON
-  
+
   used by MUIInputVersatileRotaryEncoder.ino example
 */
 void mui_SendSelectWithExecuteOnSelectFieldSearch(mui_t *ui)
@@ -919,23 +919,23 @@ void mui_SendSelectWithExecuteOnSelectFieldSearch(mui_t *ui)
     fds_t *exec_on_select_field = ui->target_fds;
     mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_LEAVE);
     ui->cursor_focus_fds = exec_on_select_field;    /* more cursor on the "exec on select" field */
-    mui_send_cursor_enter_msg(ui);      
-    mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_SELECT);  
+    mui_send_cursor_enter_msg(ui);
+    mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_SELECT);
   }
   else
   {
     /* no "exec on select" field found, just send the select message to the field */
-    mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_SELECT);  
+    mui_send_cursor_msg(ui, MUIF_MSG_CURSOR_SELECT);
   }
 }
 
 
 void mui_SendValueIncrement(mui_t *ui)
 {
-  mui_send_cursor_msg(ui, MUIF_MSG_VALUE_INCREMENT);  
+  mui_send_cursor_msg(ui, MUIF_MSG_VALUE_INCREMENT);
 }
 
 void mui_SendValueDecrement(mui_t *ui)
 {
-  mui_send_cursor_msg(ui, MUIF_MSG_VALUE_DECREMENT);  
+  mui_send_cursor_msg(ui, MUIF_MSG_VALUE_DECREMENT);
 }

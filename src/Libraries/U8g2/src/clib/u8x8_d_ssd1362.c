@@ -1,47 +1,47 @@
 /*
 
   u8x8_d_ssd1362.c
-  
+
   https://github.com/olikraus/u8g2/issues/2051
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 
   Copyright (c) 2022, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-  SSD1362: 
+  SSD1362:
     256 x 64 (ssd1322: 480 x 128)
     16 gray scale
 
 
   Note: Currently the external IREF is activated.
   Maybe we need a constructor with internal IREF
-  
+
 */
 #include "u8x8.h"
 
@@ -80,7 +80,7 @@ static uint8_t *u8x8_ssd1362_8to32(U8X8_UNUSED u8x8_t *u8x8, uint8_t *ptr)
   uint8_t a,b;
   uint8_t i, j;
   uint8_t *dest;
-  
+
   for( j = 0; j < 4; j++ )
   {
     dest = u8x8_ssd1362_to32_dest_buf;
@@ -100,7 +100,7 @@ static uint8_t *u8x8_ssd1362_8to32(U8X8_UNUSED u8x8_t *u8x8, uint8_t *ptr)
       b >>= 1;
     }
   }
-  
+
   return u8x8_ssd1362_to32_dest_buf;
 }
 
@@ -111,7 +111,7 @@ static uint8_t *u8x8_ssd1362_8to24(U8X8_UNUSED u8x8_t *u8x8, uint8_t *ptr)
   uint8_t a,b;
   uint8_t i, j;
   uint8_t *dest;
-  
+
   for( j = 0; j < 3; j++ )
   {
     dest = u8x8_ssd1362_to32_dest_buf;
@@ -131,14 +131,14 @@ static uint8_t *u8x8_ssd1362_8to24(U8X8_UNUSED u8x8_t *u8x8, uint8_t *ptr)
       b >>= 1;
     }
   }
-  
+
   return u8x8_ssd1362_to32_dest_buf;
 }
 
 
 uint8_t u8x8_d_ssd1362_common(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
-  uint8_t x; 
+  uint8_t x;
   uint8_t y, c;
   uint8_t *ptr;
   switch(msg)
@@ -168,18 +168,18 @@ uint8_t u8x8_d_ssd1362_common(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
 #endif
     case U8X8_MSG_DISPLAY_DRAW_TILE:
       u8x8_cad_StartTransfer(u8x8);
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x *= 4;		// convert from tile pos to display column
-      x += u8x8->x_offset;		
-    
+      x += u8x8->x_offset;
+
       y = (((u8x8_tile_t *)arg_ptr)->y_pos);
       y *= 8;
-    
-      
+
+
       u8x8_cad_SendCmd(u8x8, 0x075 );	/* set row address, moved out of the loop (issue 302) */
       u8x8_cad_SendArg(u8x8, y);
       u8x8_cad_SendArg(u8x8, y+7);
-      
+
       do
       {
 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
@@ -191,16 +191,16 @@ uint8_t u8x8_d_ssd1362_common(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
           u8x8_cad_SendArg(u8x8, x );	/* start */
           u8x8_cad_SendArg(u8x8, x+3 );	/* end */
           u8x8_cad_SendData(u8x8, 32, u8x8_ssd1362_8to32(u8x8, ptr));
-	  
+
 	  ptr += 8;
 	  x += 4;
 	  c--;
 	} while( c > 0 );
-	
+
 	arg_int--;
-        
+
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:
@@ -212,7 +212,7 @@ uint8_t u8x8_d_ssd1362_common(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
 
 uint8_t u8x8_d_ssd1362_common_0_75(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
-  uint8_t x; 
+  uint8_t x;
   uint8_t y, c;
   uint8_t *ptr;
   switch(msg)
@@ -242,18 +242,18 @@ uint8_t u8x8_d_ssd1362_common_0_75(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
 #endif
     case U8X8_MSG_DISPLAY_DRAW_TILE:
       u8x8_cad_StartTransfer(u8x8);
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x *= 4;		// convert from tile pos to display column
-      x += u8x8->x_offset;		
-    
+      x += u8x8->x_offset;
+
       y = (((u8x8_tile_t *)arg_ptr)->y_pos);
       y *= 8;
-    
-      
+
+
       u8x8_cad_SendCmd(u8x8, 0x075 );	/* set row address, moved out of the loop (issue 302) */
       u8x8_cad_SendArg(u8x8, y);
       u8x8_cad_SendArg(u8x8, y+7);
-      
+
       do
       {
 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
@@ -274,16 +274,16 @@ uint8_t u8x8_d_ssd1362_common_0_75(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
             u8x8_cad_SendArg(u8x8, x+2 );	/* end */
             u8x8_cad_SendData(u8x8, 24, u8x8_ssd1362_8to24(u8x8, ptr));
           }
-	  
+
 	  ptr += 8;
 	  x += 4;
 	  c--;
 	} while( c > 0 );
-	
+
 	arg_int--;
-        
+
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:
@@ -298,15 +298,15 @@ uint8_t u8x8_d_ssd1362_common_0_75(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
 
 static const uint8_t u8x8_d_ssd1362_256x64_flip0_seq[] = {
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  U8X8_CA(0xa0, 0xc3), //Set Remap c3 = 11000011  
-  
+  U8X8_CA(0xa0, 0xc3), //Set Remap c3 = 11000011
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
 
 static const uint8_t u8x8_d_ssd1362_256x64_flip1_seq[] = {
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  U8X8_CA(0xa0, 0xd0), 
+  U8X8_CA(0xa0, 0xd0),
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -315,7 +315,7 @@ static const u8x8_display_info_t u8x8_ssd1362_256x64_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
   /* reset_pulse_width_ms = */ 100, 	/* ssd1362: 2 us */
@@ -338,16 +338,16 @@ static const u8x8_display_info_t u8x8_ssd1362_256x64_display_info =
 
 /* https://github.com/olikraus/u8g2/issues/2051 */
 static const uint8_t u8x8_d_ssd1362_256x64_init_seq[] = {
-    
+
   U8X8_DLY(1),
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
   U8X8_DLY(1),
-  
+
   U8X8_CA(0xfd, 0x12),            	/* unlock */
   U8X8_C(0xae),		                /* display off */
   U8X8_CA(0x23, 0x00), //POR 0x00; Disable fade mode
   U8X8_CA(0x81, 0x9f), //Set contrast
-  
+
 /*
 Re- map setting in Graphic Display Data RAM
 (GDDRAM)
@@ -371,7 +371,7 @@ A[7] = 0b, Disable SEG left/right remap (RESET)
 A[7] = 1b, Enable SEG left/right remap
 
 */
-  U8X8_CA(0xa0, 0xc3), 
+  U8X8_CA(0xa0, 0xc3),
   U8X8_CA(0xa1, 0), //Set Display Start Line
   U8X8_CA(0xa2, 0), //Set Display Offset
   U8X8_C(0xa4), //Normal Display
@@ -387,7 +387,7 @@ A[7] = 1b, Enable SEG left/right remap
   U8X8_CA(0xbe, 7), //Set cOM deselect voltage level, 7 = 0.86*Vcc
   U8X8_DLY(1),					/* delay 1ms */
 
-  
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -416,7 +416,7 @@ uint8_t u8x8_d_ssd1362_256x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
       }
       break;
-    
+
     default:
       return u8x8_d_ssd1362_common(u8x8, msg, arg_int, arg_ptr);
   }
@@ -429,7 +429,7 @@ static const u8x8_display_info_t u8x8_ssd1362_206x36_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
   /* reset_pulse_width_ms = */ 100, 	/* ssd1362: 2 us */
@@ -444,7 +444,7 @@ static const u8x8_display_info_t u8x8_ssd1362_206x36_display_info =
   /* tile_width = */ 26,		/* 26*8 = 208 */
   /* tile_height = */ 5,                /* 5*8 = 40 */
   /* default_x_offset = */ 0,	/* this is the byte offset (there are two pixel per byte with 4 bit per pixel) */
-  /* flipmode_x_offset = */ 25, 
+  /* flipmode_x_offset = */ 25,
   /* pixel_width = */ 206,
   /* pixel_height = */ 36
 };
@@ -452,16 +452,16 @@ static const u8x8_display_info_t u8x8_ssd1362_206x36_display_info =
 
 /* https://github.com/olikraus/u8g2/issues/2051 */
 static const uint8_t u8x8_d_ssd1362_206x36_init_seq[] = {
-    
+
   U8X8_DLY(1),
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
   U8X8_DLY(1),
-  
+
   U8X8_CA(0xfd, 0x12),            	/* unlock */
   U8X8_C(0xae),		                /* display off */
   U8X8_CA(0x23, 0x00), //POR 0x00; Disable fade mode
   U8X8_CA(0x81, 0x9f), //Set contrast
-  
+
 /*
 Re- map setting in Graphic Display Data RAM
 (GDDRAM)
@@ -485,7 +485,7 @@ A[7] = 0b, Disable SEG left/right remap (RESET)
 A[7] = 1b, Enable SEG left/right remap
 
 */
-  U8X8_CA(0xa0, 0xc3), 
+  U8X8_CA(0xa0, 0xc3),
   U8X8_CA(0xa1, 50), //Set Display Start Line
   U8X8_CA(0xa2, 0), //Set Display Offset
   U8X8_C(0xa4), //Normal Display
@@ -501,7 +501,7 @@ A[7] = 1b, Enable SEG left/right remap
   U8X8_CA(0xbe, 7), //Set cOM deselect voltage level, 7 = 0.86*Vcc
   U8X8_DLY(1),					/* delay 1ms */
 
-  
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -530,7 +530,7 @@ uint8_t u8x8_d_ssd1362_206x36(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
       }
       break;
-    
+
     default:
       return u8x8_d_ssd1362_common_0_75(u8x8, msg, arg_int, arg_ptr);
   }

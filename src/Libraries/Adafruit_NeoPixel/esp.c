@@ -219,6 +219,6 @@ void espShow(uint8_t pin, uint8_t *pixels, uint32_t numBytes, boolean is800KHz) 
 }
 
 #endif // ifndef IDF5
- 
+
 
 #endif // ifdef(ESP32)

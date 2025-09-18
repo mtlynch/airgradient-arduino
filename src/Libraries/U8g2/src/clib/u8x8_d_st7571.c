@@ -7,33 +7,33 @@
   Copyright (c) 2020, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
   ST7571: 128x129 2-bit graylevel LCD
-  
+
   https://github.com/olikraus/u8g2/issues/921
   https://github.com/olikraus/u8g2/issues/1575          128x96
 
@@ -53,7 +53,7 @@ static const uint8_t u8x8_d_st7571_128x128_powersave0_seq[] = {
 
 static const uint8_t u8x8_d_st7571_128x128_powersave1_seq[] = {
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  U8X8_C(0x0ae),		                /* display off */  
+  U8X8_C(0x0ae),		                /* display off */
   U8X8_C(0x0a9),		                /* enter powersave mode */
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
@@ -95,7 +95,7 @@ static uint8_t u8x8_d_st7571_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
     /* handled by the calling function
     case U8X8_MSG_DISPLAY_INIT:
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_st7571_128x128_init_seq);    
+      u8x8_cad_SendSequence(u8x8, u8x8_d_st7571_128x128_init_seq);
       break;
     */
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
@@ -128,13 +128,13 @@ static uint8_t u8x8_d_st7571_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
       u8x8_cad_StartTransfer(u8x8);
 
 
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x *= 8;
       x += u8x8->x_offset;
       u8x8_cad_SendCmd(u8x8, 0x010 | (x>>4) );
       u8x8_cad_SendCmd(u8x8, 0x000 | ((x&15)));
       u8x8_cad_SendCmd(u8x8, 0x0b0 | (((u8x8_tile_t *)arg_ptr)->y_pos));
-    
+
 
 
       do
@@ -145,17 +145,17 @@ static uint8_t u8x8_d_st7571_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
 	/*
         if ( c > 31 )
         {
-          u8x8_cad_SendData(u8x8, 31*8, ptr); 
+          u8x8_cad_SendData(u8x8, 31*8, ptr);
           ptr+=31*8;
           c -= 31;
         }
 	*/
-        
-        u8x8_cad_SendData(u8x8, c*8, ptr); 	
+
+        u8x8_cad_SendData(u8x8, c*8, ptr);
         arg_int--;
       } while( arg_int > 0 );
 
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:
@@ -170,29 +170,29 @@ static uint8_t u8x8_d_st7571_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
 /* QT-2832TSWUG02/ZJY-2832TSWZG02 */
 /* fixed the 0x40 and 0x48 commands, verified with FlipMode example: All ok */
 static const uint8_t u8x8_d_st7571_128x128_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
-  
+
   U8X8_C(0xAE), 				// Display OFF
-  U8X8_C(0x38), 				// Mode Set  
+  U8X8_C(0x38), 				// Mode Set
   U8X8_C(0xB8), 				// FR=1011 (85Hz), BE[1:0]=10, level 3 booster
-  
-  
+
+
   U8X8_C(0xA0), 				// ADC select
   U8X8_C(0xC8), 				// SHL select
-  U8X8_CA(0x44, 0x00), 		// COM0 register  
+  U8X8_CA(0x44, 0x00), 		// COM0 register
   U8X8_CA(0x40, 0x0), 		// initial display line  (0x7f... strange but ok... maybe specific for the JLX128128)
                                                         // 2 sep 2021: maybe this also wrong because the 0x44 command is overwritten later.
                                                         // 4 Mar 2022: Changed to 0
-  
-  U8X8_C(0xAB), 				// OSC ON  
+
+  U8X8_C(0xAB), 				// OSC ON
   U8X8_C(0x25), 				// Voltage regulator
   U8X8_CA(0x81, 0x33), 		// Volume
   U8X8_C(0x54), 				// LCD Bias: 0x056=1/11 (1/11 according to JLX128128 datasheet), 0x054=1/9
-  U8X8_CA(0x48, 0x80), 		// Duty 1/128   // 2 Sep 2021: Should this be 00x48???  
+  U8X8_CA(0x48, 0x80), 		// Duty 1/128   // 2 Sep 2021: Should this be 00x48???
                                                         // 4 Mar 2022, cmd changed to 0x48, arg changed to 0x80
-  
+
   U8X8_C(0x2C), 				// Power Control, VC: ON, VR: OFF, VF: OFF
   U8X8_DLY(200),
   U8X8_C(0x2E), 				// Power Control, VC: ON, VR: ON, VF: OFF
@@ -222,10 +222,10 @@ static const u8x8_display_info_t u8x8_st7571_128x128_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 20,
-  /* reset_pulse_width_ms = */ 5, 	
+  /* reset_pulse_width_ms = */ 5,
   /* post_reset_wait_ms = */ 5, 		/**/
   /* sda_setup_time_ns = */ 20,		/* */
   /* sck_pulse_width_ns = */ 40,	/*  */
@@ -233,7 +233,7 @@ static const u8x8_display_info_t u8x8_st7571_128x128_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 4,	/* 400KHz */
   /* data_setup_time_ns = */ 15,
-  /* write_pulse_width_ns = */ 70,	
+  /* write_pulse_width_ns = */ 70,
   /* tile_width = */ 16,
   /* tile_height = */ 16,
   /* default_x_offset = */ 0,
@@ -244,15 +244,15 @@ static const u8x8_display_info_t u8x8_st7571_128x128_display_info =
 
 uint8_t u8x8_d_st7571_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
-    
+
   if ( u8x8_d_st7571_generic(u8x8, msg, arg_int, arg_ptr) != 0 )
     return 1;
-  
+
   switch(msg)
   {
     case U8X8_MSG_DISPLAY_INIT:
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_st7571_128x128_init_seq); 
+      u8x8_cad_SendSequence(u8x8, u8x8_d_st7571_128x128_init_seq);
       break;
     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7571_128x128_display_info);
@@ -269,29 +269,29 @@ uint8_t u8x8_d_st7571_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
 /*===================================================*/
 /*
   https://github.com/olikraus/u8g2/issues/1575
-  http://www.jlxlcd.cn/html/zh-detail-1211.html 
+  http://www.jlxlcd.cn/html/zh-detail-1211.html
 */
 static const uint8_t u8x8_d_st7571_128x96_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
-  
+
   U8X8_C(0xAE), 				// Display OFF
-  U8X8_C(0x38), 				// Mode Set  
+  U8X8_C(0x38), 				// Mode Set
   //U8X8_C(0xB8), 				// FR=1011 (85Hz), BE[1:0]=10, level 3 booster
-  U8X8_C(0x94),                                 // 128x96: 75 Hz 
-  
+  U8X8_C(0x94),                                 // 128x96: 75 Hz
+
   U8X8_C(0xA0), 				// ADC select
   U8X8_C(0xC8), 				// SHL select
-  U8X8_CA(0x44, 0x20), 		// 128x96: COM0 register  
+  U8X8_CA(0x44, 0x20), 		// 128x96: COM0 register
   U8X8_CA(0x40, 0x00), 		// 128x96 datasheet
-  
-  U8X8_C(0xAB), 				// OSC ON  
+
+  U8X8_C(0xAB), 				// OSC ON
   U8X8_C(0x27), 				// 128x96: Voltage regulator
   U8X8_CA(0x81, 0x28), 		// 128x96: Volume
-  U8X8_C(0x57), 				// 128x96: LCD Bias: 1/12 
+  U8X8_C(0x57), 				// 128x96: LCD Bias: 1/12
   U8X8_CA(0x48, 0x61), 		// 128x96: Duty 1/96
-  
+
   U8X8_C(0x2C), 				// Power Control, VC: ON, VR: OFF, VF: OFF
   U8X8_DLY(200),
   U8X8_C(0x2E), 				// Power Control, VC: ON, VR: ON, VF: OFF
@@ -321,10 +321,10 @@ static const u8x8_display_info_t u8x8_st7571_128x96_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 20,
-  /* reset_pulse_width_ms = */ 5, 	
+  /* reset_pulse_width_ms = */ 5,
   /* post_reset_wait_ms = */ 5, 		/**/
   /* sda_setup_time_ns = */ 20,		/* */
   /* sck_pulse_width_ns = */ 40,	/*  */
@@ -332,7 +332,7 @@ static const u8x8_display_info_t u8x8_st7571_128x96_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 4,	/* 400KHz */
   /* data_setup_time_ns = */ 15,
-  /* write_pulse_width_ns = */ 70,	
+  /* write_pulse_width_ns = */ 70,
   /* tile_width = */ 16,
   /* tile_height = */ 12,
   /* default_x_offset = */ 0,
@@ -343,15 +343,15 @@ static const u8x8_display_info_t u8x8_st7571_128x96_display_info =
 
 uint8_t u8x8_d_st7571_128x96(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
-    
+
   if ( u8x8_d_st7571_generic(u8x8, msg, arg_int, arg_ptr) != 0 )
     return 1;
-  
+
   switch(msg)
   {
     case U8X8_MSG_DISPLAY_INIT:
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_st7571_128x96_init_seq); 
+      u8x8_cad_SendSequence(u8x8, u8x8_d_st7571_128x96_init_seq);
       break;
     case U8X8_MSG_DISPLAY_SETUP_MEMORY:
       u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7571_128x96_display_info);

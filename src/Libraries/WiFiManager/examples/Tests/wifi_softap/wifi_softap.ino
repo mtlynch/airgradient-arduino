@@ -23,12 +23,12 @@ void setup(){
     Serial.setDebugOutput(true);
 
     WiFi.begin("hellowifi","noonehere");
-    
+
     while (WiFi.status() != WL_CONNECTED && millis()<15000) {
         delay(500);
         Serial.print(".");
     }
-    
+
     if(WiFi.status() == WL_CONNECTED){
         Serial.println("");
         Serial.println("WiFi connected.");
@@ -40,8 +40,8 @@ void setup(){
         ///////////////
         /// BUG
         // WiFi.enableSTA(false); // BREAKS softap start, says ok BUT no ap found
-        
-        delay(2000);    
+
+        delay(2000);
         WiFi.softAP("espsoftap","12345678");
     }
 }

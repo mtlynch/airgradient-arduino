@@ -5,34 +5,34 @@
   ST7586s: 384 x 160 x 2
 
   takeover from https://github.com/olikraus/u8g2/issues/1183
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
-  
+
   Copyright (c) 2020, olikraus@gmail.com
-  
+
   All rights reserved.
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
-  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 */
 
 #include "u8g2.h"
@@ -108,16 +108,16 @@ static const uint8_t u8x8_d_st7586s_ymc240160_init_seq[] = {
   U8X8_A(0x080), // COM:C159->C0   SEG: SEG383->SEG0
 
   U8X8_C(0x0B1), // First output COM
-  U8X8_A(0x000), // 
-  
+  U8X8_A(0x000), //
+
   U8X8_C(0x0B0), // Duty Setting (num rows - 1)
-  U8X8_A(0x09F), 
+  U8X8_A(0x09F),
 
   U8X8_C(0x020), // Display inversion off
 
   U8X8_C(0x02A), // Column Address Setting
   U8X8_A(0x000), // COL0 -> COL127
-  U8X8_A(0x000), // 
+  U8X8_A(0x000), //
   U8X8_A(0x000), //
   U8X8_A(0x04F), // 80*3=240 pixels
 
@@ -158,8 +158,8 @@ static const u8x8_display_info_t u8x8_st7586s_ymc240160_display_info =
 };
 
 /*  takeover from https://github.com/olikraus/u8g2/issues/1183 */
-uint8_t u8x8_d_st7586s_ymc240160(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) 
-{  
+uint8_t u8x8_d_st7586s_ymc240160(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+{
   uint8_t c;
   uint8_t *ptr;
   uint8_t i, byte;
@@ -180,7 +180,7 @@ uint8_t u8x8_d_st7586s_ymc240160(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, voi
     c *= 8;
     ptr = ((u8x8_tile_t *) arg_ptr)->tile_ptr;  //
 
-    while (c > 0) 
+    while (c > 0)
     {
       input = (((uint32_t)ptr[0] << 16) | ((uint32_t)ptr[1] << 8) | (uint32_t)ptr[2]);
       for (i=0; i<8; i++)
@@ -199,7 +199,7 @@ uint8_t u8x8_d_st7586s_ymc240160(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, voi
       ptr += 3;
       c -= 3;
     }
-    u8x8_cad_EndTransfer(u8x8); 
+    u8x8_cad_EndTransfer(u8x8);
     break;
   case U8X8_MSG_DISPLAY_INIT:
     u8x8_d_helper_display_init(u8x8);
@@ -218,7 +218,7 @@ uint8_t u8x8_d_st7586s_ymc240160(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, voi
     {
       u8x8_cad_SendSequence(u8x8, u8x8_d_st7586s_ymc240160_flip1_seq);
       u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
-    }	
+    }
     break;
   case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
     if (arg_int == 0)

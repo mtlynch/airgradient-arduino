@@ -8,8 +8,8 @@ void setup(){
 
 	// wifiManager.setAPCallback([this](WiFiManager* wifiManager) {
 	wifiManager.setAPCallback([&](WiFiManager* wifiManager) {
-		Serial.printf("Entered config mode:ip=%s, ssid='%s'\n", 
-                        WiFi.softAPIP().toString().c_str(), 
+		Serial.printf("Entered config mode:ip=%s, ssid='%s'\n",
+                        WiFi.softAPIP().toString().c_str(),
                         wifiManager->getConfigPortalSSID().c_str());
 		_enteredConfigMode = true;
 	});

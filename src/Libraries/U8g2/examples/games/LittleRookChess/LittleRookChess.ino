@@ -1,7 +1,7 @@
 /*
 
   LittleRookChess.ino
-  
+
   A Simple Chess Engine (ported from U8glib)
 
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
@@ -9,46 +9,46 @@
   Copyright (c) 2016, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   Current Rule Limitation
     - no minor promotion, only "Queening" of the pawn
     - threefold repetition is not detected (same board situation appears three times)
 	Note: Could be implemented, but requires tracking of the complete game
     - Fifty-move rule is not checked (no pawn move, no capture within last 50 moves)
-	
+
   Words
     Ply		a half move
-    
+
   General Links
     http://chessprogramming.wikispaces.com/
 
   Arduino specific
     http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1260055596
-    
-  Prefixes  
+
+  Prefixes
     chess_		Generic Chess Application Interface
     ce_		Chess engine, used internally, these function should not be called directly
     cu_		Chess utility function
@@ -60,14 +60,14 @@
 	  --> done
       - castling to the left: King can only move two squares
 	  --> done
-      
-    11.01.2011	
+
+    11.01.2011
       Next Steps:
 	- replace stack_NextCurrentPos with cu_NextPos, cleanup code according to the loop variable
 	    --> done
 	- Castling: Need to check for fields under attack
 	    --> done
-	
+
 	- Check for WIN / LOOSE situation, perhaps call ce_Eval() once on the top-level board setup
 	    just after the real move
 	- cleanup cu_Move
@@ -81,9 +81,9 @@
         - end condition: if KING is under attack and if KING can not move to a field which is under attack...
 	      then the game is lost. What will be returned by the Eval procedure? is it -INF?
 	    --> finished
-	    
+
 	- reduce the use of variable color, all should be reduced to board_orientation and ply&1
-	
+
 	- chess_GetNextMarked shoud make use of cu_NextPos
 	    --> done
 	- chess_ManualMove: again cleanup, solve draw issue (KING is not in check and no legal moves are available)
@@ -114,8 +114,8 @@
     Frame Buffer Examples: clearBuffer/sendBuffer. Fast, but may not work with all Arduino boards because of RAM consumption
     Page Buffer Examples: firstPage/nextPage. Less RAM usage, should work with all Arduino boards.
     U8x8 Text Only Example: No RAM usage, direct communication with display controller. No graphics, 8x8 Text only.
-    
-  This is a page buffer example.    
+
+  This is a page buffer example.
 */
 
 void chess_Init(u8g2_t *u8g, uint8_t body_color);
@@ -141,7 +141,7 @@ void setup(void) {
 
   /* U8g2 Project: Pax Instruments Shield: Enable Backlight */
   pinMode(6, OUTPUT);
-  digitalWrite(6, 0);	
+  digitalWrite(6, 0);
 
   chess_Init(u8g2.getU8g2(), 0);  /* assuming Arduboy OLED here, so make the body_color be 1 for the white OLED pixel */
 }
@@ -200,14 +200,14 @@ king = "K".
 /* The search depth of this chess engine can never exceed this value */
 #define STACK_MAX_SIZE 5
 
-/* chess half move stack: twice the number of undo's, a user can do */ 
+/* chess half move stack: twice the number of undo's, a user can do */
 #define CHM_USER_SIZE 6
 
 /* the CHM_LIST_SIZE must be larger than the maximum search depth */
 /* the overall size of ste half move stack */
 #define CHM_LIST_SIZE (STACK_MAX_SIZE+CHM_USER_SIZE+2)
 
-typedef int16_t eval_t;	/* a variable type to store results from the evaluation */ 
+typedef int16_t eval_t;	/* a variable type to store results from the evaluation */
 //#define EVAL_T_LOST -32768
 #define EVAL_T_MIN -32767
 #define EVAL_T_MAX 32767
@@ -220,7 +220,7 @@ struct _stack_element_struct
   uint8_t current_pos;
   uint8_t current_cp;
   uint8_t current_color;	/* COLOR_WHITE or COLOR_BLACK: must be predefines */
-  
+
   /* the move which belongs to that value, both values are game positions */
   uint8_t best_from_pos;
   uint8_t best_to_pos;
@@ -236,17 +236,17 @@ struct _chm_struct
   uint8_t main_cp;		/* the main piece, which is moved */
   uint8_t main_src;		/* the source position of the main piece */
   uint8_t main_dest; 	/* the destination of the main piece */
-  
+
   uint8_t other_cp;		/* another piece: the captured one, the ROOK in case of castling or PIECE_NONE */
   uint8_t other_src;		/* the delete position of other_cp. Often identical to main_dest except for e.p. and castling */
   uint8_t other_dest;		/* only used for castling: ROOK destination pos */
-  
+
   /* the position of the last pawn, which did a double move forward */
   /* this is required to check en passant conditions */
   /* this array can be indexed by the color of the current player */
   /* this is the condition BEFORE the move was done */
   uint8_t pawn_dbl_move[2];
-  
+
   /* flags for the movement of rook and king; required for castling */
   /* a 1 means: castling is (still) possible */
   /* a 0 means: castling not possible */
@@ -255,7 +255,7 @@ struct _chm_struct
   /*  bit 2 left side black */
   /*  bit 3 right side black */
   /* this is the condition BEFORE the move was done */
-  uint8_t castling_possible;   
+  uint8_t castling_possible;
 };
 
 typedef struct _chm_struct chm_t;
@@ -263,23 +263,23 @@ typedef struct _chm_struct *chm_p;
 
 /* little rook chess, main structure */
 struct _lrc_struct
-{  
+{
   /* half-move (ply) counter: Counts the number of half-moves so far. Starts with 0 */
   /* the lowest bit is used to derive the color of the current player */
   /* will be set to zero in chess_SetupBoard() */
   uint8_t ply_count;
-  
+
   /* the half move stack position counter, counts the number of elements in chm_list */
   uint8_t chm_pos;
-  
+
   /* each element contains a colored piece, empty fields have value 0 */
   /* the field with index 0 is black (lower left) */
-  uint8_t board[64];	
+  uint8_t board[64];
   /* the position of the last pawn, which did a double move forward */
   /* this is required to check en passant conditions */
   /* this array can be indexed by the color of the current player */
-  uint8_t pawn_dbl_move[2]; 
-  
+  uint8_t pawn_dbl_move[2];
+
   /* flags for the movement of rook and king; required for castling */
   /* a 1 means: castling is (still) possible */
   /* a 0 means: castling not possible */
@@ -287,19 +287,19 @@ struct _lrc_struct
   /*  bit 1 right side white */
   /*  bit 2 left side black */
   /*  bit 3 right side black */
-  uint8_t castling_possible; 
-  
+  uint8_t castling_possible;
+
   /* board orientation */
   /* 0: white is below COLOR_WHITE */
   /* 1: black is below COLOR_BLACK */
   /* bascially, this can be used as a color */
   uint8_t orientation;
-  
+
   /* exchange colors of the pieces */
   /* 0: white has an empty body, use this for bright background color */
   /* 1: black has an empty body, use this for dark backround color */
   uint8_t strike_out_color;
-  
+
   /* 0, when the game is ongoing */
   /* 1, when the game is stopped (lost or draw) */
   uint8_t is_game_end;
@@ -307,17 +307,17 @@ struct _lrc_struct
   /* this value is only valid, when is_game_end is not 0 */
   /* values 0 and 1 represent WHITE and BLACK, 2 means a draw */
   uint8_t lost_side_color;
-  
-  
-  
+
+
+
   /* checks are executed in ce_LoopRecur */
   /* these checks will put some marks on the board */
   /* this will be used by the interface to find out */
   /* legal moves */
   uint8_t check_src_pos;
   uint8_t check_mode;		/* CHECK_MODE_NONE, CHECK_MODE_MOVEABLE, CHECK_MODE_TARGET_MOVE */
-  
-  
+
+
   /* count of the attacking pieces, indexed by color */
   uint8_t find_piece_cnt[2];
 
@@ -330,7 +330,7 @@ struct _lrc_struct
   uint8_t curr_depth;
   uint8_t max_depth;
   stack_element_p curr_element;
-  
+
   /* allocated memory for the search stack */
   stack_element_t stack_memory[STACK_MAX_SIZE];
 
@@ -357,7 +357,7 @@ u8g2_t *lrc_u8g;  /* pointer to the C object of u8g2 lib, this is used by the ch
 /* forward declarations */
 /*==============================================================*/
 
-/* 
+/*
   apply no inline to some of the functions:
   avr-gcc very often inlines functions, however not inline saves a lot of program memory!
   On the other hand there are some really short procedures which should be inlined (like cp_GetColor)
@@ -411,7 +411,7 @@ uint8_t stack_Push(uint8_t color)
     return 0;
   lrc_obj.curr_depth++;
   lrc_obj.curr_element = lrc_obj.stack_memory+lrc_obj.curr_depth;
-  
+
   /* change view for the evaluation */
   color ^= 1;
   stack_GetCurrElement()->current_color = color;
@@ -459,8 +459,8 @@ void stack_SetMove(eval_t val, uint8_t to_pos)
   }
 }
 
-/* 
-  calculate next position on a 0x88 board 
+/*
+  calculate next position on a 0x88 board
   loop is constructed in this way:
   i = 0;
   do
@@ -478,7 +478,7 @@ uint8_t cu_NextPos(uint8_t pos)
   if ( ( pos & 0x08 ) != 0 )
   {
     pos+= 0x10;
-    pos&= 0xf0; 
+    pos&= 0xf0;
   }
   if ( ( pos & 0x80 ) != 0 )
     pos = 0;
@@ -493,7 +493,7 @@ uint8_t cu_PrevPos(uint8_t pos)
     pos = 0x077;
   else if ( ( pos & 0x08 ) != 0 )
   {
-    pos &= 0xf0; 
+    pos &= 0xf0;
     pos |= 0x07;
   }
   return pos;
@@ -594,15 +594,15 @@ void cu_ClearBoard(void)
   /* clear the board */
   for( i = 0; i < 64; i++ )
     lrc_obj.board[i] = PIECE_NONE;
-  
+
   lrc_obj.ply_count = 0;
   lrc_obj.orientation = COLOR_WHITE;
-  
+
   lrc_obj.pawn_dbl_move[0] = ILLEGAL_POSITION;
   lrc_obj.pawn_dbl_move[1] = ILLEGAL_POSITION;
-  
+
   lrc_obj.castling_possible = 0x0f;
-  
+
   lrc_obj.is_game_end = 0;
   lrc_obj.lost_side_color = 0;
 
@@ -623,30 +623,30 @@ void chess_SetupBoardTest01(void)
   lrc_obj.board[3] = cp_Construct(COLOR_WHITE, PIECE_KING);
   lrc_obj.board[0+7*8] = cp_Construct(COLOR_BLACK, PIECE_ROOK);
   lrc_obj.board[6] = cp_Construct(COLOR_WHITE, PIECE_QUEEN);
-} 
+}
 
 /* setup the global board */
 void chess_SetupBoard(void)
 {
   uint8_t i;
   register uint8_t bp, wp;
-  
+
   /* clear the board */
   cu_ClearBoard();
-  
+
   /* precronstruct pawns */
   wp = cp_Construct(COLOR_WHITE, PIECE_PAWN);
   bp = cp_Construct(COLOR_BLACK, PIECE_PAWN);
-  
+
   /* setup pawn */
   for( i = 0; i < 8; i++ )
   {
     lrc_obj.board[i+8] = wp;
     lrc_obj.board[i+6*8] = bp;
   }
-  
+
   /* assign remaining pieces */
-  
+
   lrc_obj.board[0] = cp_Construct(COLOR_WHITE, PIECE_ROOK);
   lrc_obj.board[1] = cp_Construct(COLOR_WHITE, PIECE_KNIGHT);
   lrc_obj.board[2] = cp_Construct(COLOR_WHITE, PIECE_BISHOP);
@@ -687,7 +687,7 @@ uint8_t cu_IsIllegalPosition(uint8_t pos, uint8_t my_color)
   /* get the piece from the board */
   board_cp = cp_GetFromBoard(pos);
   /* check if hit our own pieces */
-  if ( board_cp != 0 ) 
+  if ( board_cp != 0 )
     if ( cp_GetColor(board_cp) == my_color )
       return 1;
   /* all ok, we could go to this position */
@@ -729,13 +729,13 @@ eval_t ce_Eval(void)
   eval_t position_opposit_color = 0;
   eval_t result;
   uint8_t pos;
-  
+
   pos = 0;
   do
   {
     /* get colored piece from the board */
     cp = cp_GetFromBoard(pos);
-    
+
     if ( cp_GetPiece(cp) != PIECE_NONE )
     {
       if ( stack_GetCurrElement()->current_color == cp_GetColor(cp) )
@@ -765,15 +765,15 @@ eval_t ce_Eval(void)
     pos = cu_NextPos(pos);
   } while( pos != 0 );
 
-    
+
   /* decide if we lost or won the game */
   if ( is_my_king_present == 0 )
     return EVAL_T_MIN;	/*_LOST*/
   if ( is_opposit_king_present == 0 )
     return EVAL_T_MAX;	/*_WIN*/
-  
+
   /* here is the evaluation function */
-  
+
   result = material_my_color - material_opposit_color;
   result <<= 3;
   result += position_my_color - position_opposit_color;
@@ -813,21 +813,21 @@ void cu_ReduceHistoryByFullMove(void)
 void cu_UndoHalfMove(void)
 {
   chm_p chm;
-  
+
   if ( lrc_obj.chm_pos == 0 )
     return;
-  
+
   lrc_obj.chm_pos--;
 
   chm = lrc_obj.chm_list+lrc_obj.chm_pos;
-  
+
   lrc_obj.pawn_dbl_move[0] = chm->pawn_dbl_move[0];
   lrc_obj.pawn_dbl_move[1] = chm->pawn_dbl_move[1];
   lrc_obj.castling_possible = chm->castling_possible;
-  
+
   cp_SetOnBoard(chm->main_src, chm->main_cp);
   cp_SetOnBoard(chm->main_dest, PIECE_NONE);
-  
+
   if ( chm->other_src != ILLEGAL_POSITION )
     cp_SetOnBoard(chm->other_src, chm->other_cp);
   if ( chm->other_dest != ILLEGAL_POSITION )
@@ -836,11 +836,11 @@ void cu_UndoHalfMove(void)
 }
 
 /*
-  assumes, that the following members of the returned chm structure are filled 
+  assumes, that the following members of the returned chm structure are filled
   uint8_t main_cp;		the main piece, which is moved
   uint8_t main_src;		the source position of the main piece
   uint8_t main_dest; 	the destination of the main piece
-  
+
   uint8_t other_cp;		another piece: the captured one, the ROOK in case of castling or PIECE_NONE
   uint8_t other_src;		the delete position of other_cp. Often identical to main_dest except for e.p. and castling
   uint8_t other_dest;		only used for castling: ROOK destination pos
@@ -849,7 +849,7 @@ void cu_UndoHalfMove(void)
 chm_p cu_PushHalfMove(void)
 {
   chm_p chm;
-  
+
   chm = lrc_obj.chm_list+lrc_obj.chm_pos;
   if ( lrc_obj.chm_pos < CHM_LIST_SIZE-1)
     lrc_obj.chm_pos++;
@@ -888,7 +888,7 @@ const char *cu_GetHalfMoveStr(uint8_t idx)
   static char buf[7];		/*Ka1-b2*/
   char *p = buf;
   chm = lrc_obj.chm_list+idx;
-  
+
   if ( cp_GetPiece(chm->main_cp) != PIECE_NONE )
   {
     if ( cp_GetPiece(chm->main_cp) > PIECE_PAWN )
@@ -922,66 +922,66 @@ const char *cu_GetHalfMoveStr(uint8_t idx)
     - does not perform any checking
     - however it processes "en passant" and casteling
     - backup the move and allow 1x undo
-  
-  2011-02-05: 
+
+  2011-02-05:
     - fill pawn_dbl_move[] for double pawn moves
 	--> done
-    - Implement casteling 
+    - Implement casteling
 	--> done
     - en passant
 	--> done
     - pawn conversion/promotion
 	--> done
-    - half-move backup 
+    - half-move backup
 	--> done
     - cleanup everything, minimize variables
 	--> done
 */
 
 void cu_Move(uint8_t src, uint8_t dest)
-{  
+{
   /* start backup structure */
   chm_p chm = cu_PushHalfMove();
 
   /* these are the values from the board at the positions, provided as arguments to this function */
   uint8_t cp_src, cp_dest;
-  
+
   /* Maybe a second position is cleared and one additional location is set */
   uint8_t clr_pos2;
   uint8_t set_pos2;
   uint8_t set_cp2;
-  
+
   /* get values from board */
   cp_src = cp_GetFromBoard(src);
   cp_dest = cp_GetFromBoard(dest);
 
   /* fill backup structure */
-  
+
   chm->main_cp = cp_src;
   chm->main_src = src;
   chm->main_dest = dest;
-  
+
   chm->other_cp = cp_dest;		/* prepace capture backup */
   chm->other_src = dest;
   chm->other_dest = ILLEGAL_POSITION;
-  
+
   /* setup results as far as possible with some suitable values */
-  
+
   clr_pos2 = ILLEGAL_POSITION;	/* for en passant and castling, two positions might be cleared */
   set_pos2 = ILLEGAL_POSITION;	/* only used for castling */
   set_cp2 = PIECE_NONE;			/* ROOK for castling */
-  
+
   /* check for PAWN */
   if ( cp_GetPiece(cp_src) == PIECE_PAWN )
   {
-    
+
     /* double step: is the distance 2 rows */
     if ( (src - dest == 32) || ( dest - src == 32 ) )
     {
       /* remember the destination position */
       lrc_obj.pawn_dbl_move[cp_GetColor(cp_src)] = dest;
     }
-    
+
     /* check if the PAWN is able to promote */
     else if ( (dest>>4) == 0 || (dest>>4) == 7 )
     {
@@ -989,7 +989,7 @@ void cu_Move(uint8_t src, uint8_t dest)
       cp_src &= ~PIECE_PAWN;
       cp_src |= PIECE_QUEEN;
     }
-    
+
     /* is it en passant capture? */
     /* check for side move */
     else if ( ((src + dest) & 1) != 0 )
@@ -1004,9 +1004,9 @@ void cu_Move(uint8_t src, uint8_t dest)
 	chm->other_src = clr_pos2;
 	chm->other_cp = cp_GetFromBoard(clr_pos2);
       }
-    }    
+    }
   }
-  
+
   /* check for the KING */
   else if ( cp_GetPiece(cp_src) == PIECE_KING )
   {
@@ -1021,40 +1021,40 @@ void cu_Move(uint8_t src, uint8_t dest)
       /* if black KING has moved, disallow castling for black */
       lrc_obj.castling_possible &= 0x03;
     }
-    
+
     /* has it been castling to the left? */
     if ( src - dest == 2 )
     {
       /* let the ROOK move to pos2 */
       set_pos2 = src-1;
       set_cp2 = cp_GetFromBoard(src-4);
-      
+
       /* the ROOK must be cleared from the original position */
       clr_pos2 = src-4;
-      
+
       chm->other_cp = set_cp2;
       chm->other_src = clr_pos2;
       chm->other_dest = set_pos2;
     }
-    
+
     /* has it been castling to the right? */
     else if ( dest - src == 2 )
     {
       /* let the ROOK move to pos2 */
       set_pos2 = src+1;
       set_cp2 = cp_GetFromBoard(src+3);
-      
+
       /* the ROOK must be cleared from the original position */
       clr_pos2 = src+3;
-      
+
       chm->other_cp = set_cp2;
       chm->other_src = clr_pos2;
       chm->other_dest = set_pos2;
-      
+
     }
-    
+
   }
-  
+
   /* check for the ROOK */
   else if ( cp_GetPiece(cp_src) == PIECE_ROOK )
   {
@@ -1071,32 +1071,32 @@ void cu_Move(uint8_t src, uint8_t dest)
     if ( src == 0x77 )
       lrc_obj.castling_possible &= ~0x08;
   }
-  
-  
+
+
   /* apply new board situation */
-  
+
   cp_SetOnBoard(dest, cp_src);
-  
+
   if ( set_pos2 != ILLEGAL_POSITION )
     cp_SetOnBoard(set_pos2, set_cp2);
-  
+
   cp_SetOnBoard(src, PIECE_NONE);
-  
+
   if ( clr_pos2 != ILLEGAL_POSITION )
     cp_SetOnBoard(clr_pos2, PIECE_NONE);
-  
-  
+
+
 }
 
 /*
   this subprocedure decides for evaluation of the current board situation or further (deeper) investigation
-  Argument pos is the new target position if the current piece 
+  Argument pos is the new target position if the current piece
 
 */
 uint8_t ce_LoopRecur(uint8_t pos)
 {
   eval_t eval;
-  
+
   /* 1. check if target position is occupied by the same player (my_color) */
   /*     of if pos is somehow illegal or not valid */
   if ( cu_IsIllegalPosition(pos, stack_GetCurrElement()->current_color) != 0 )
@@ -1105,7 +1105,7 @@ uint8_t ce_LoopRecur(uint8_t pos)
   /* 2. move piece to the specified position, capture opponent piece if required */
   cu_Move(stack_GetCurrElement()->current_pos, pos);
 
-  
+
   /* 3. */
   /* if depth reached: evaluate */
   /* else: go down next level */
@@ -1124,13 +1124,13 @@ uint8_t ce_LoopRecur(uint8_t pos)
     eval = -stack_GetCurrElement()->best_eval;
     stack_Pop();
   }
-  
+
   /* 4. store result */
   stack_SetMove(eval, pos);
-  
+
   /* 5. undo the move */
   cu_UndoHalfMove();
-  
+
   /* 6. check special modes */
   /* the purpose of these checks is to mark special pieces and positions on the board */
   /* these marks can be checked by the user interface to highlight special positions */
@@ -1172,22 +1172,22 @@ static const uint8_t ce_dir_offset_knight[] CHESS_PROGMEM = {14, (uint8_t)-14, 1
 void ce_LoopDirsSingleMultiStep(const uint8_t *d, uint8_t is_multi_step)
 {
   uint8_t loop_pos;
-  
+
   /* with all directions */
   for(;;)
   {
     if ( chess_pgm_read(d) == 0 )
       break;
-    
+
     /* start again from the initial position */
     loop_pos = stack_GetCurrElement()->current_pos;
-    
+
     /* check direction */
     do
     {
       /* check next position into one direction */
       loop_pos += chess_pgm_read(d);
-      
+
       /*
 	go further to ce_LoopRecur()
 	0 will be returned if the target position is illegal or a piece of the own color
@@ -1195,7 +1195,7 @@ void ce_LoopDirsSingleMultiStep(const uint8_t *d, uint8_t is_multi_step)
       */
       if ( ce_LoopRecur(loop_pos) == 0 )
 	break;
-      
+
       /* stop if we had hit another piece */
       if ( cp_GetPiece(cp_GetFromBoard(loop_pos)) != PIECE_NONE )
 	break;
@@ -1244,23 +1244,23 @@ uint8_t cu_IsKingCastling(uint8_t mask, int8_t direction, uint8_t cnt)
 {
   uint8_t pos;
   uint8_t opponent_color;
-  
+
   /* check if the current board state allows castling */
   if ( (lrc_obj.castling_possible & mask) == 0 )
     return 0; 	/* castling not allowed */
-  
+
   /* get the position of the KING, could be white or black king */
   pos = stack_GetCurrElement()->current_pos;
-  
+
   /* calculate the color of the opponent */
   opponent_color = 1;
   opponent_color -= stack_GetCurrElement()->current_color;
-  
+
   /* if the KING itself is given check... */
   if ( ce_GetPositionAttackWeight(pos, opponent_color) > 0 )
     return 0;
 
-  
+
   /* check if fields in the desired direction are emtpy */
   for(;;)
   {
@@ -1273,7 +1273,7 @@ uint8_t cu_IsKingCastling(uint8_t mask, int8_t direction, uint8_t cnt)
     /* if some of the fields are under attack */
     if ( ce_GetPositionAttackWeight(pos, opponent_color) > 0 )
       return 0;
-    
+
     cnt--;
     if ( cnt == 0 )
       break;
@@ -1289,7 +1289,7 @@ void ce_LoopKing(void)
     KING movement. If we would first check for normal moves, than
     any marks might be overwritten by the ROOK in the case of castling.
   */
-  
+
   /* castling (this must be done before checking normal moves (see above) */
   if ( stack_GetCurrElement()->current_color == COLOR_WHITE )
   {
@@ -1321,7 +1321,7 @@ void ce_LoopKing(void)
       ce_LoopRecur(stack_GetCurrElement()->current_pos+2);
     }
   }
-  
+
   /* reuse queen directions */
   ce_LoopDirsSingleMultiStep(ce_dir_offset_queen, 0);
 }
@@ -1372,14 +1372,14 @@ void ce_LoopPawnSideCapture(uint8_t loop_pos)
 
 void ce_LoopPawn(void)
 {
-  uint8_t initial_pos = stack_GetCurrElement()->current_pos; 
+  uint8_t initial_pos = stack_GetCurrElement()->current_pos;
   uint8_t my_color = stack_GetCurrElement()->current_color;
-  
+
   uint8_t loop_pos;
   uint8_t line;
-  
+
   /* one step forward */
-  
+
   loop_pos = initial_pos;
   line = initial_pos;
   line >>= 4;
@@ -1393,15 +1393,15 @@ void ce_LoopPawn(void)
     if ( cp_GetPiece(cp_GetFromBoard(loop_pos)) == PIECE_NONE )
     {
       /* TODO: check for and loop through piece conversion/promotion */
-      ce_LoopRecur(loop_pos);      
+      ce_LoopRecur(loop_pos);
 
       /* second step forward */
-      
+
       /* if pawn is on his starting line */
       if ( (my_color == COLOR_WHITE && line == 1) || (my_color == COLOR_BLACK && line == 6 ) )
       {
 	/* the place before the pawn is not occupied, so we can do double moves, see above */
-	
+
 	if ( my_color == COLOR_WHITE )
 	  loop_pos += 16;
 	else
@@ -1416,7 +1416,7 @@ void ce_LoopPawn(void)
   }
 
   /* capture */
-  
+
   loop_pos = initial_pos;
   if ( my_color == COLOR_WHITE )
     loop_pos += 15;
@@ -1451,29 +1451,29 @@ void ce_LoopPawn(void)
 void ce_FindPieceByStep(uint8_t start_pos, uint8_t piece, const uint8_t *d, uint8_t is_multi_step)
 {
   uint8_t loop_pos, cp;
-  
+
   /* with all directions */
   for(;;)
   {
     if ( chess_pgm_read(d) == 0 )
       break;
-    
+
     /* start again from the initial position */
     loop_pos = start_pos;
-    
+
     /* check direction */
     do
     {
       /* check next position into one direction */
       loop_pos += chess_pgm_read(d);
-      
+
       /* check if the board boundary has been crossed */
       if ( (loop_pos & 0x088) != 0 )
 	break;
-      
+
       /* get the colored piece from the board */
       cp = cp_GetFromBoard(loop_pos);
-      
+
       /* stop if we had hit another piece */
       if ( cp_GetPiece(cp) != PIECE_NONE )
       {
@@ -1528,19 +1528,19 @@ void ce_FindPawnPiece(uint8_t dest_pos, uint8_t color)
   which can directly move to this field.
 
   example:
-    if the black KING is at "pos" and lrc_obj.find_piece_weight[COLOR_WHITE] is not zero 
-    (after executing ce_CalculatePositionWeight(pos)) then the KING must be protected or moveed, because 
+    if the black KING is at "pos" and lrc_obj.find_piece_weight[COLOR_WHITE] is not zero
+    (after executing ce_CalculatePositionWeight(pos)) then the KING must be protected or moveed, because
     the KING was given check.
 */
 
 void ce_CalculatePositionWeight(uint8_t pos)
 {
-  
+
   lrc_obj.find_piece_weight[0] = 0;
   lrc_obj.find_piece_weight[1] = 0;
   lrc_obj.find_piece_cnt[0] = 0;
   lrc_obj.find_piece_cnt[1] = 0;
-  
+
   if ( (pos & 0x088) != 0 )
     return;
 
@@ -1596,7 +1596,7 @@ void ce_LoopPieces(void)
       if ( e->current_color == cp_GetColor(e->current_cp) )
       {
 	chess_Thinking();
-	
+
 	/* find out which piece is used */
 	switch(cp_GetPiece(e->current_cp))
 	{
@@ -1622,7 +1622,7 @@ void ce_LoopPieces(void)
 	    break;
 	}
       }
-    }    
+    }
     e->current_pos = cu_NextPos(e->current_pos);
   } while( e->current_pos != 0 );
 }
@@ -1670,13 +1670,13 @@ void chess_MarkTargetMoves(uint8_t src_pos)
   stack_Init(0);
   stack_GetCurrElement()->current_color = cp_GetColor(cp_GetFromBoard(src_pos));
   lrc_obj.check_src_pos = src_pos;
-  lrc_obj.check_mode = CHECK_MODE_TARGET_MOVE;  
+  lrc_obj.check_mode = CHECK_MODE_TARGET_MOVE;
   ce_LoopPieces();
 }
 
 /*
   first call should start with 255
-  this procedure will return 255 if 
+  this procedure will return 255 if
       - there are no marks at all
       - it has looped over all marks once
 */
@@ -1703,16 +1703,16 @@ uint8_t chess_GetNextMarked(uint8_t arg, uint8_t is_prev)
 void chess_ManualMove(uint8_t src, uint8_t dest)
 {
   uint8_t cp;
-  
+
   /* printf("chess_ManualMove %02x -> %02x\n", src, dest); */
-  
+
   /* if all other things fail, this is the place where the game is to be decided: */
   /* ... if the KING is captured */
   cp = cp_GetFromBoard(dest);
   if ( cp_GetPiece(cp) == PIECE_KING )
   {
     lrc_obj.is_game_end = 1;
-    lrc_obj.lost_side_color = cp_GetColor(cp);    
+    lrc_obj.lost_side_color = cp_GetColor(cp);
   }
 
   /* clear ply history here, to avoid memory overflow */
@@ -1720,10 +1720,10 @@ void chess_ManualMove(uint8_t src, uint8_t dest)
   cu_ReduceHistoryByFullMove();
   /* perform the move on the board */
   cu_Move(src, dest);
-  
+
   /* update en passant double move positions: en passant position is removed after two half moves  */
   lrc_obj.pawn_dbl_move[lrc_obj.ply_count&1]  = ILLEGAL_POSITION;
-  
+
   /* update the global half move counter */
   lrc_obj.ply_count++;
 
@@ -1732,14 +1732,14 @@ void chess_ManualMove(uint8_t src, uint8_t dest)
   /* use at least depth 1, because we must know if the king can still move */
   /* this is: King moves at level 0 and will be captured at level 1 */
   /* so we check if the king can move and will not be captured at search level 1 */
-  
+
   stack_Init(1);
-  ce_LoopPieces(); 
+  ce_LoopPieces();
 
   /* printf("chess_ManualMove/analysis best_from_pos %02x -> best_to_pos %02x\n", stack_GetCurrElement()->best_from_pos, stack_GetCurrElement()->best_to_pos); */
 
   /* analyse the eval result */
-  
+
   /* check if the other player has any moves left */
   if ( stack_GetCurrElement()->best_from_pos == ILLEGAL_POSITION )
   {
@@ -1766,16 +1766,16 @@ void chess_ManualMove(uint8_t src, uint8_t dest)
 	  {
 	    /* KING is under attack (check) and can not move: Game is lost */
 	    lrc_obj.is_game_end = 1;
-	    lrc_obj.lost_side_color = color; 
+	    lrc_obj.lost_side_color = color;
 	  }
 	  else
 	  {
 	    /* KING is NOT under attack (check) but can not move: Game is a draw */
 	    lrc_obj.is_game_end = 1;
-	    lrc_obj.lost_side_color = 2; 
+	    lrc_obj.lost_side_color = 2;
 	  }
 	  /* break out of the loop */
-	  break;	  
+	  break;
 	}
       }
       i = cu_NextPos(i);
@@ -1787,10 +1787,10 @@ void chess_ManualMove(uint8_t src, uint8_t dest)
 void chess_ComputerMove(uint8_t depth)
 {
   stack_Init(depth);
-  
+
   //stack_GetCurrElement()->current_color = lrc_obj.ply_count;
   //stack_GetCurrElement()->current_color &= 1;
-  
+
   cu_ReduceHistoryByFullMove();
   ce_LoopPieces();
 
@@ -1811,7 +1811,7 @@ void chess_ComputerMove(uint8_t depth)
 /*==============================================================*/
 
 extern const uint8_t chess_pieces_body_bm[] CHESS_PROGMEM; // forward decl
-extern const uint8_t chess_black_pieces_bm[] CHESS_PROGMEM; // forward decl 
+extern const uint8_t chess_black_pieces_bm[] CHESS_PROGMEM; // forward decl
 
 // uint8_t chess_key_code = 0;  // obsolete, u8g2 does proper debouncing
 uint8_t chess_key_cmd = 0;
@@ -1835,20 +1835,20 @@ uint8_t mnu_max = 4;
 
 void mnu_DrawHome(uint8_t is_highlight)
 {
-  uint8_t x = lrc_u8g->width - 35;  
+  uint8_t x = lrc_u8g->width - 35;
   uint8_t y = (lrc_u8g->height-1);
   uint8_t t;
-  
+
   u8g2_SetFont(lrc_u8g, u8g2_font_5x7_tr);
   u8g2_SetDefaultForegroundColor(lrc_u8g);
   if ( chess_state == CHESS_STATE_THINKING )
      u8g2_DrawBitmap(lrc_u8g, x, y-8, 1, 8, chess_black_pieces_bm+24);
   else
-  {     
+  {
     t = u8g2_DrawStrP(lrc_u8g, x, y -1, CHESS_PSTR("Options"));
-      
+
     if ( is_highlight )
-      u8g2_DrawFrame(lrc_u8g, x-1, y - MNU_ENTRY_HEIGHT +1, t, MNU_ENTRY_HEIGHT);  
+      u8g2_DrawFrame(lrc_u8g, x-1, y - MNU_ENTRY_HEIGHT +1, t, MNU_ENTRY_HEIGHT);
   }
 }
 
@@ -1860,16 +1860,16 @@ void mnu_DrawEntry(uint8_t y, const char *str, uint8_t is_clr_background, uint8_
   x = u8g2_GetDisplayWidth(lrc_u8g);
   x -= t;
   x >>= 1;
-  
+
   if ( is_clr_background )
   {
     u8g2_SetDefaultBackgroundColor(lrc_u8g);
     u8g2_DrawBox(lrc_u8g, x-3, (lrc_u8g->height-1) - (y+MNU_ENTRY_HEIGHT-1+2), t+5, MNU_ENTRY_HEIGHT+4);
   }
-  
+
   u8g2_SetDefaultForegroundColor(lrc_u8g);
   u8g2_DrawStr(lrc_u8g, x, (lrc_u8g->height-1) - y, str);
-  
+
   if ( is_highlight )
   {
     u8g2_DrawFrame(lrc_u8g, 0, (lrc_u8g->height-1) - y -MNU_ENTRY_HEIGHT +1, u8g2_GetDisplayWidth(lrc_u8g), MNU_ENTRY_HEIGHT);
@@ -1885,26 +1885,26 @@ void mnu_Draw(void)
   y++; 					/* consider also some space for the title */
   y++; 					/* consider also some space for the title */
   y *= MNU_ENTRY_HEIGHT;
-  
+
   /* calculate how much space will be left */
-  t = u8g2_GetDisplayHeight(lrc_u8g);			
+  t = u8g2_GetDisplayHeight(lrc_u8g);
   t -= y;
-  
+
   /* topmost pos start half of that empty space from the top */
   t >>= 1;
   y = u8g2_GetDisplayHeight(lrc_u8g);
   y -= t;
-  
+
   y -= MNU_ENTRY_HEIGHT;
   mnu_DrawEntry(y, mnu_title, 0, 0);
-  
+
   y -= MNU_ENTRY_HEIGHT;
-  
+
 
   u8g2_DrawBitmap(lrc_u8g, 0, 1, 1, 8, chess_black_pieces_bm+24);
   u8g2_DrawBitmap(lrc_u8g, 128-8, 1, 1, 8, chess_black_pieces_bm+24);
 
-  
+
   for( i = 0; i < mnu_max; i++ )
   {
     y -= MNU_ENTRY_HEIGHT;
@@ -1932,9 +1932,9 @@ void mnu_Step(uint8_t key_cmd)
 
 
 
-const uint8_t chess_pieces_body_bm[] CHESS_PROGMEM = 
+const uint8_t chess_pieces_body_bm[] CHESS_PROGMEM =
 {
-  /* PAWN */ 		0x00, 0x00, 0x00, 0x18, 0x18, 0x00, 0x00, 0x00, /* 0x00, 0x00, 0x00, 0x0c, 0x0c, 0x00, 0x00, 0x00, */ 
+  /* PAWN */ 		0x00, 0x00, 0x00, 0x18, 0x18, 0x00, 0x00, 0x00, /* 0x00, 0x00, 0x00, 0x0c, 0x0c, 0x00, 0x00, 0x00, */
   /* KNIGHT */		0x00, 0x00, 0x1c, 0x2c, 0x04, 0x04, 0x0e, 0x00,
   /* BISHOP */		0x00, 0x00, 0x1c, 0x1c, 0x1c, 0x08, 0x00, 0x00, /* 0x00, 0x00, 0x08, 0x1c, 0x1c, 0x08, 0x00, 0x00, */
   /* ROOK */		0x00, 0x00, 0x00, 0x1c, 0x1c, 0x1c, 0x1c, 0x00,
@@ -1944,9 +1944,9 @@ const uint8_t chess_pieces_body_bm[] CHESS_PROGMEM =
 
 #ifdef NOT_REQUIRED
 /* white pieces are constructed by painting black pieces and cutting out the white area */
-const uint8_t chess_white_pieces_bm[] CHESS_PROGMEM = 
+const uint8_t chess_white_pieces_bm[] CHESS_PROGMEM =
 {
-  /* PAWN */ 		0x00, 0x00, 0x0c, 0x12, 0x12, 0x0c, 0x1e, 0x00, 
+  /* PAWN */ 		0x00, 0x00, 0x0c, 0x12, 0x12, 0x0c, 0x1e, 0x00,
   /* KNIGHT */		0x00, 0x1c, 0x22, 0x52, 0x6a, 0x0a, 0x11, 0x1f,
   /* BISHOP */		0x00, 0x08, 0x14, 0x22, 0x22, 0x14, 0x08, 0x7f,
   /* ROOK */		0x00, 0x55, 0x7f, 0x22, 0x22, 0x22, 0x22, 0x7f,
@@ -1955,9 +1955,9 @@ const uint8_t chess_white_pieces_bm[] CHESS_PROGMEM =
 };
 #endif
 
-const uint8_t chess_black_pieces_bm[] CHESS_PROGMEM = 
+const uint8_t chess_black_pieces_bm[] CHESS_PROGMEM =
 {
-  /* PAWN */ 		0x00, 0x00, 0x18, 0x3c, 0x3c, 0x18, 0x3c, 0x00, /* 0x00, 0x00, 0x0c, 0x1e, 0x1e, 0x0c, 0x1e, 0x00, */ 
+  /* PAWN */ 		0x00, 0x00, 0x18, 0x3c, 0x3c, 0x18, 0x3c, 0x00, /* 0x00, 0x00, 0x0c, 0x1e, 0x1e, 0x0c, 0x1e, 0x00, */
   /* KNIGHT */		0x00, 0x1c, 0x3e, 0x7e, 0x6e, 0x0e, 0x1f, 0x1f,
   /* BISHOP */		0x00, 0x1c, 0x2e, 0x3e, 0x3e, 0x1c, 0x08, 0x7f,  /*0x00, 0x08, 0x1c, 0x3e, 0x3e, 0x1c, 0x08, 0x7f,*/
   /* ROOK */		0x00, 0x55, 0x7f, 0x3e, 0x3e, 0x3e, 0x3e, 0x7f,
@@ -1992,19 +1992,19 @@ void chess_DrawFrame(uint8_t pos, uint8_t is_bold)
   y0>>= 4;
   if ( lrc_obj.orientation != COLOR_WHITE )
     y0 ^= 7;
-  
+
   x0 *= chess_boxsize;
   y0 *= chess_boxsize;
-  
+
   u8g2_SetDefaultForegroundColor(lrc_u8g);
   u8g2_DrawFrame(lrc_u8g, x0, chess_low_edge - y0 - chess_boxsize+1, chess_boxsize, chess_boxsize);
-  
-  
+
+
   if ( is_bold )
   {
       x0--;
       y0++;
-  
+
     u8g2_DrawFrame(lrc_u8g, x0, chess_low_edge - y0 - chess_boxsize +1, chess_boxsize+2, chess_boxsize+2);
   }
 }
@@ -2017,7 +2017,7 @@ void chess_DrawBoard(void)
 
   {
     uint8_t x_offset = 1;
-    u8g2_SetDefaultForegroundColor(lrc_u8g);  
+    u8g2_SetDefaultForegroundColor(lrc_u8g);
     for( i = 0; i < 8*8; i+=8 )
     {
       for( j = 0; j < 8*8; j+=8 )
@@ -2051,7 +2051,7 @@ void chess_DrawBoard(void)
       }
     }
   }
-  
+
   for ( i = 0; i < 8; i++ )
   {
     for ( j = 0; j < 8; j++ )
@@ -2069,11 +2069,11 @@ void chess_DrawBoard(void)
       {
       	ptr = chess_black_pieces_bm;
 	      ptr += (cp_GetPiece(cp)-1)*8;
-       
+
         u8g2_SetDefaultForegroundColor(lrc_u8g);
         u8g2_DrawBitmap(lrc_u8g, j*chess_boxsize+chess_boxoffset-1, chess_low_edge - (i*chess_boxsize+chess_boxsize-chess_boxoffset), 1, 8, ptr);
 
-      	if ( cp_GetColor(cp) == lrc_obj.strike_out_color ) 
+      	if ( cp_GetColor(cp) == lrc_obj.strike_out_color )
       	{
       	  ptr = chess_pieces_body_bm;
       	  ptr += (cp_GetPiece(cp)-1)*8;
@@ -2084,7 +2084,7 @@ void chess_DrawBoard(void)
     }
   }
   u8g2_SetDefaultForegroundColor(lrc_u8g);
-  
+
   if ( (chess_source_pos & 0x88) == 0 )
   {
     chess_DrawFrame(chess_source_pos, 1);
@@ -2094,7 +2094,7 @@ void chess_DrawBoard(void)
   {
     chess_DrawFrame(chess_target_pos, 0);
   }
-  
+
 }
 
 
@@ -2111,13 +2111,13 @@ void chess_Init(u8g2_t *u8g, uint8_t body_color)
   u8g2_SetBitmapMode(u8g, 1);		// restore previous behaviour
 
   {
-  
+
     chess_boxsize = 8;
     chess_boxoffset = 1;
   }
-  
-  
-    
+
+
+
   lrc_obj.strike_out_color = body_color;
   chess_SetupBoard();
 }
@@ -2137,31 +2137,31 @@ void chess_Draw(void)
   else
   {
     chess_DrawBoard();
-    
+
     {
       uint8_t i;
       uint8_t entries = lrc_obj.chm_pos;
       if ( entries > 4 )
       	entries = 4;
-      
+
       u8g2_SetFont(lrc_u8g, u8g2_font_5x7_tr);
       u8g2_SetDefaultForegroundColor(lrc_u8g);
       for( i = 0; i < entries; i++ )
       {
-        
+
         u8g2_DrawStr(lrc_u8g, u8g2_GetDisplayWidth(lrc_u8g)-35, 8*(i+1), cu_GetHalfMoveStr(lrc_obj.chm_pos-entries+i));
 
       }
-      
+
     }
-    
+
     if ( chess_state == CHESS_STATE_SELECT_PIECE )
       mnu_DrawHome(chess_source_pos == 255);
     else if ( chess_state == CHESS_STATE_SELECT_TARGET_POS )
       mnu_DrawHome(chess_target_pos == 255);
     else
       mnu_DrawHome(0);
-      
+
     if ( chess_state == CHESS_STATE_GAME_END )
     {
       switch( lrc_obj.lost_side_color )
@@ -2175,7 +2175,7 @@ void chess_Draw(void)
 	default:
 	  mnu_DrawEntry(u8g2_GetDisplayHeight(lrc_u8g) / 2-2, "Stalemate", 1, 1);
 	  break;
-      }  
+      }
     }
   }
 }
@@ -2184,7 +2184,7 @@ void chess_Draw(void)
 void chess_Step(uint8_t keycode)
 {
   chess_key_cmd = keycode;
-  
+
   /*
   if ( keycode == CHESS_KEY_NONE )
   {
@@ -2241,7 +2241,7 @@ void chess_Step(uint8_t keycode)
       chess_target_pos = ILLEGAL_POSITION;
       chess_state = CHESS_STATE_SELECT_PIECE;
       break;
-      
+
     case CHESS_STATE_SELECT_PIECE:
       if ( chess_key_cmd == CHESS_KEY_NEXT )
       {
@@ -2262,7 +2262,7 @@ void chess_Step(uint8_t keycode)
 	  chess_ClearMarks();
 	  chess_MarkTargetMoves(chess_source_pos);
 	  chess_target_pos = chess_GetNextMarked(255, 0);
-	  chess_state = CHESS_STATE_SELECT_TARGET_POS;      
+	  chess_state = CHESS_STATE_SELECT_TARGET_POS;
 	}
       }
       break;
@@ -2310,19 +2310,19 @@ void chess_Step(uint8_t keycode)
     case CHESS_STATE_GAME_END:
       if ( chess_key_cmd != CHESS_KEY_NONE )
       {
-	chess_state = CHESS_STATE_MENU;  
+	chess_state = CHESS_STATE_MENU;
 	chess_SetupBoard();
-      }	
+      }
       break;
   }
-  
+
 }
 
 #endif	/* UNIX_MAIN */
 
 void loop(void) {
   static uint8_t keycode = 0;
-  
+
   u8g2.firstPage();
   do {
     chess_Draw();
@@ -2339,7 +2339,7 @@ void loop(void) {
     keycode = CHESS_KEY_PREV;
   //if ( keycode == U8X8_MSG_GPIO_MENU_HOME )
   //  keycode = CHESS_KEY_SELECT;
-      
+
   chess_Step(keycode);
   keycode = 0;
   delay(1);

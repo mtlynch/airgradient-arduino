@@ -1,9 +1,9 @@
 /*
 
   u8x8_d_gp1287ai.c
-  
+
   https://github.com/olikraus/u8g2/issues/1907
-  https://github.com/olikraus/u8g2/pull/1892  
+  https://github.com/olikraus/u8g2/pull/1892
 
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 

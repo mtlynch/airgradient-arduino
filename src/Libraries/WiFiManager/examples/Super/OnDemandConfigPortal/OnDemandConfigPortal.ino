@@ -1,7 +1,7 @@
 /**
  * This is a kind of unit test for DEV for now
  * It contains many of the public methods
- * 
+ *
  */
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 #include <time.h>
@@ -58,11 +58,11 @@ void saveWifiCallback(){
 //gets called when WiFiManager enters configuration mode
 void configModeCallback (WiFiManager *myWiFiManager) {
   Serial.println("[CALLBACK] configModeCallback fired");
-  // myWiFiManager->setAPStaticIPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0)); 
+  // myWiFiManager->setAPStaticIPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
   // Serial.println(WiFi.softAPIP());
   //if you used auto generated SSID, print it
   // Serial.println(myWiFiManager->getConfigPortalSSID());
-  // 
+  //
   // esp_wifi_set_bandwidth(WIFI_IF_AP, WIFI_BW_HT20);
 }
 
@@ -89,7 +89,7 @@ void handlePreOtaUpdateCallback(){
 
 void setup() {
   // WiFi.mode(WIFI_STA); // explicitly set mode, esp can default to STA+AP
-  
+
   // put your setup code here, to run once:
   Serial.begin(115200);
 
@@ -102,7 +102,7 @@ void setup() {
   Serial.println("Information- - TEST");
 
   Serial.println("[ERROR]  TEST");
-  Serial.println("[INFORMATION] TEST");  
+  Serial.println("[INFORMATION] TEST");
 
 
   // WiFi.setScanMethod(WIFI_ALL_CHANNEL_SCAN); // wifi_scan_method_t scanMethod
@@ -126,7 +126,7 @@ void setup() {
   WiFiManagerParameter custom_ipaddress("input_ip", "input IP", "", 15,"pattern='\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}'"); // custom input attrs (ip mask)
   WiFiManagerParameter custom_input_type("input_pwd", "input pass", "", 15,"type='password'"); // custom input attrs (ip mask)
 
-  const char _customHtml_checkbox[] = "type=\"checkbox\""; 
+  const char _customHtml_checkbox[] = "type=\"checkbox\"";
   WiFiManagerParameter custom_checkbox("my_checkbox", "My Checkbox", "T", 2, _customHtml_checkbox,WFM_LABEL_AFTER);
 
   const char *bufferStr = R"(
@@ -206,7 +206,7 @@ void setup() {
 
   std::vector<const char *> menu = {"wifi","wifinoscan","info","param","custom","close","sep","erase","update","restart","exit"};
   wm.setMenu(menu); // custom menu, pass vector
-  
+
   // wm.setParamsPage(true); // move params to seperate page, not wifi, do not combine with setmenu!
 
   // set STA static ip
@@ -216,10 +216,10 @@ void setup() {
 
   // set AP static ip
   // wm.setAPStaticIPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
-  // wm.setAPStaticIPConfig(IPAddress(10,0,1,99), IPAddress(10,0,1,1), IPAddress(255,255,255,0)); 
+  // wm.setAPStaticIPConfig(IPAddress(10,0,1,99), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
 
   // set country
-  // setting wifi country seems to improve OSX soft ap connectivity, 
+  // setting wifi country seems to improve OSX soft ap connectivity,
   // may help others as well, default is CN which has different channels
 
   // wm.setCountry("US"); // crashing on esp32 2.0
@@ -231,7 +231,7 @@ void setup() {
 
   // set custom channel
   // wm.setWiFiAPChannel(13);
-  
+
   // set AP hidden
   // wm.setAPHidden(true);
 
@@ -240,7 +240,7 @@ void setup() {
 
   // sets wether wm configportal is a blocking loop(legacy) or not, use wm.process() in loop if false
   // wm.setConfigPortalBlocking(false);
-  
+
   if(!WMISBLOCKING){
     wm.setConfigPortalBlocking(false);
   }
@@ -248,7 +248,7 @@ void setup() {
   //sets timeout until configuration portal gets turned off
   //useful to make it all retry or go to sleep in seconds
   wm.setConfigPortalTimeout(120);
-  
+
   // set min quality to show in web list, default 8%
   // wm.setMinimumSignalQuality(50);
 
@@ -263,12 +263,12 @@ void setup() {
 
   // show static ip fields
   // wm.setShowStaticFields(true);
-  
+
   // wm.startConfigPortal("AutoConnectAP", "password");
-  
+
   // This is sometimes necessary, it is still unknown when and why this is needed but it may solve some race condition or bug in esp SDK/lib
   // wm.setCleanConnect(true); // disconnect before connect, clean connect
-  
+
   wm.setBreakAfterConfig(true); // needed to use saveWifiCallback
 
   // set custom webserver port, automatic captive portal does not work with custom ports!
@@ -301,7 +301,7 @@ void setup() {
     //if you get here you have connected to the WiFi
      Serial.println("connected...yeey :)");
   }
-  
+
   wifiInfo();
   pinMode(ONDDEMANDPIN, INPUT_PULLUP);
 
@@ -341,13 +341,13 @@ void loop() {
       // wm.reboot();
       // delay(200);
       // return;
-      
+
       wm.setConfigPortalTimeout(140);
       wm.setParamsPage(false); // move params to seperate page, not wifi, do not combine with setmenu!
 
       // disable captive portal redirection
       // wm.setCaptivePortalEnable(false);
-      
+
       if (!wm.startConfigPortal("OnDemandAP","12345678")) {
         Serial.println("failed to connect and hit timeout");
         delay(3000);
@@ -365,7 +365,7 @@ void loop() {
     if(WiFi.status() == WL_CONNECTED){
       getTime();
     }
-    else Serial.println("No Wifi");  
+    else Serial.println("No Wifi");
     mtime = millis();
   }
   // put your main code here, to run repeatedly:
@@ -400,7 +400,7 @@ void debugchipid(){
   // WiFi.mode(WIFI_STA);
   // WiFi.printDiag(Serial);
   // Serial.println(modes[WiFi.getMode()]);
-  
+
   // ESP.eraseConfig();
   // wm.resetSettings();
   // wm.erase(true);

@@ -24,7 +24,7 @@ Espressif ESPx WiFi Connection manager with fallback web configuration portal
 Member to Member Support / Chat
 
  [![Join the chat at https://gitter.im/tablatronix/WiFiManager](https://badges.gitter.im/tablatronix/WiFiManager.svg)](https://gitter.im/tablatronix/WiFiManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
- 
+
 [![Discord](https://img.shields.io/badge/Discord-WiFiManager-%237289da.svg?logo=discord)](https://discord.gg/nS5WGkaQH5)
 The configuration portal is of the captive variety, so on various devices it will present the configuration dialogue as soon as you connect to the created access point.
 
@@ -32,7 +32,7 @@ The configuration portal is of the captive variety, so on various devices it wil
 
 [https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino)
 
-**This works with the ESP32 Arduino platform** 
+**This works with the ESP32 Arduino platform**
 
 [https://github.com/espressif/arduino-esp32](https://github.com/espressif/arduino-esp32)
 
@@ -167,9 +167,9 @@ Also see [examples](https://github.com/tzapu/WiFiManager/tree/master/examples).
 
 #### Install Using PlatformIO
 
-[PlatformIO](https://platformio.org/) is an emerging ecosystem for IoT development, and 
+[PlatformIO](https://platformio.org/) is an emerging ecosystem for IoT development, and
 is an alternative to using the Arduino IDE. Install `WiFiManager`
-using the platformio [library manager](https://docs.platformio.org/en/latest/librarymanager/index.html#librarymanager) in your editor, 
+using the platformio [library manager](https://docs.platformio.org/en/latest/librarymanager/index.html#librarymanager) in your editor,
 or using the [PlatformIO Core CLI](https://docs.platformio.org/en/latest/core/index.html),
 or by adding it to your `platformio.ini` as shown below (recommended approach).
 
@@ -293,7 +293,7 @@ Usage scenario would be:
 - once WiFiManager returns control to your application, read and save the new values using the `WiFiManagerParameter` object.
 ```cpp
  mqtt_server = custom_mqtt_server.getValue();
-```  
+```
 This feature is a lot more involved than all the others, so here are some examples to fully show how it is done.
 You should also take a look at adding custom HTML to your form.
 
@@ -368,7 +368,7 @@ Debug is enabled by default on `Serial` in non-stable releases. To disable add b
 wifiManager.setDebugOutput(false);
 ```
 
-You can pass in a custom stream via constructor 
+You can pass in a custom stream via constructor
 ```CPP
 WiFiManager wifiManager(Serial1);
 ```

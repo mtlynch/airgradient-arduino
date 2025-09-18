@@ -1,37 +1,37 @@
 /*
 
   u8x8_capture.c
-  
+
   Screen capture funcion
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 
   Copyright (c) 2016, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 */
@@ -57,7 +57,7 @@ uint8_t u8x8_capture_get_pixel_1(uint16_t x, uint16_t y, uint8_t *dest_ptr, uint
 }
 
 /* horizontal right lsb memory architecture */
-/* SH1122, LD7032, ST7920, ST7986, LC7981, T6963, SED1330, RA8835, MAX7219, LS0 */ 
+/* SH1122, LD7032, ST7920, ST7986, LC7981, T6963, SED1330, RA8835, MAX7219, LS0 */
 uint8_t u8x8_capture_get_pixel_2(uint16_t x, uint16_t y, uint8_t *dest_ptr, uint8_t tile_width)
 {
   //uint8_t *dest_ptr = capture->buffer;
@@ -91,7 +91,7 @@ void u8x8_capture_write_pbm_buffer(uint8_t *buffer, uint8_t tile_width, uint8_t 
   w *= 8;
   h = tile_height;
   h *= 8;
-    
+
   for( y = 0; y < h; y++)
   {
     for( x = 0; x < w; x++)
@@ -99,7 +99,7 @@ void u8x8_capture_write_pbm_buffer(uint8_t *buffer, uint8_t tile_width, uint8_t 
       if ( get_pixel(x, y, buffer, tile_width) )
 	out("1");
       else
-	out("0"); 	  
+	out("0");
     }
     out("\n");
   }
@@ -115,8 +115,8 @@ void u8x8_capture_write_xbm_pre(uint8_t tile_width, uint8_t tile_height, void (*
   out("\n");
   out("#define xbm_height ");
   out(u8x8_utoa((uint16_t)tile_height*8));
-  out("\n");  
-  out("static unsigned char xbm_bits[] = {\n");  
+  out("\n");
+  out("static unsigned char xbm_bits[] = {\n");
 }
 
 void u8x8_capture_write_xbm_buffer(uint8_t *buffer, uint8_t tile_width, uint8_t tile_height, uint8_t (*get_pixel)(uint16_t x, uint16_t y, uint8_t *dest_ptr, uint8_t tile_width), void (*out)(const char *s))
@@ -170,7 +170,7 @@ void u8x8_capture_write_xbm_buffer(uint8_t *buffer, uint8_t tile_width, uint8_t 
     out("\n");
   }
   out("};\n");
-  
+
 }
 
 
@@ -218,7 +218,7 @@ uint8_t u8x8_d_capture(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr
   {
     uint8_t x, y, c;
     uint8_t *ptr;
-    x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+    x = ((u8x8_tile_t *)arg_ptr)->x_pos;
     y = ((u8x8_tile_t *)arg_ptr)->y_pos;
     c = ((u8x8_tile_t *)arg_ptr)->cnt;
     ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;

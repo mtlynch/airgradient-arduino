@@ -1,39 +1,39 @@
 /*
 
-  u8x8_d_hd44102.c 
-  
+  u8x8_d_hd44102.c
+
   Support for HD44102 and T7932 controller (https://github.com/olikraus/u8g2/issues/1492)
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 
   Copyright (c) 2021, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-  
+
 */
 #include "u8x8.h"
 
@@ -41,8 +41,8 @@
 
 
 static const uint8_t u8x8_d_hd44102_init_seq[] = {
-  U8X8_C(0x03b),		                /* upcount  */  
-  U8X8_C(0x03e),		                /* start at the top  */  
+  U8X8_C(0x03b),		                /* upcount  */
+  U8X8_C(0x03e),		                /* start at the top  */
   U8X8_END()             			/* end of sequence */
 };
 
@@ -67,7 +67,7 @@ static const uint8_t u8x8_d_hd44102_powersave1_seq[] = {
   cs2: 3-bit chip select pattern for the right display (100..149)
 
   The csX bit pattern is:
-    bit 0: CS 
+    bit 0: CS
     bit 1: CS1
     bit 2: CS2
     see u8x8_byte_set_ks0108_cs() in u8x8_byte.c
@@ -77,7 +77,7 @@ static void u8x8_hd44102_outy(u8x8_t *u8x8, uint8_t *data, uint8_t cnt, uint8_t 
 {
   uint8_t pos = offset;
   uint8_t data_cnt;
-  
+
   /* write to left display? */
   if ( pos < 50 && cnt > 0 )
   {
@@ -92,14 +92,14 @@ static void u8x8_hd44102_outy(u8x8_t *u8x8, uint8_t *data, uint8_t cnt, uint8_t 
     u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, cs0, NULL);
     u8x8_cad_SendCmd(u8x8, (page << 6) | pos );
     u8x8_cad_SendData(u8x8, data_cnt, data);
-    u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs_none, NULL); 
+    u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs_none, NULL);
 
     /* adjust the data */
     data += data_cnt;
     pos += data_cnt;
     cnt -= data_cnt;
   }
-  
+
   /* write to middle display? */
   if ( pos < 100 && cnt > 0 )
   {
@@ -114,14 +114,14 @@ static void u8x8_hd44102_outy(u8x8_t *u8x8, uint8_t *data, uint8_t cnt, uint8_t 
     u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, cs1, NULL);
     u8x8_cad_SendCmd(u8x8, (page << 6) | (pos-50) );
     u8x8_cad_SendData(u8x8, data_cnt, data);
-    u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs_none, NULL); 
+    u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs_none, NULL);
 
     /* adjust the data */
     data += data_cnt;
     pos += data_cnt;
     cnt -= data_cnt;
   }
-  
+
   /* write to right display? */
   if ( pos < 150 && cnt > 0 )
   {
@@ -136,7 +136,7 @@ static void u8x8_hd44102_outy(u8x8_t *u8x8, uint8_t *data, uint8_t cnt, uint8_t 
     u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, cs2, NULL);
     u8x8_cad_SendCmd(u8x8, (page << 6) | (pos-100) );
     u8x8_cad_SendData(u8x8, data_cnt, data);
-    u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs_none, NULL); 
+    u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs_none, NULL);
 
     /* adjust the data */
     data += data_cnt;
@@ -152,12 +152,12 @@ static const u8x8_display_info_t u8x8_hd44102_150x32_display_info =
 {
   /* chip_enable_level = */ 0,		/* KS0108/HD44102: Not used */
   /* chip_disable_level = */ 1,		/* KS0108/HD44102: Not used */
-  
+
   /* post_chip_enable_wait_ns = */ 100,
   /* pre_chip_disable_wait_ns = */ 20,
-  /* reset_pulse_width_ms = */ 1, 
-  /* post_reset_wait_ms = */ 6, 	
-  /* sda_setup_time_ns = */ 12,		
+  /* reset_pulse_width_ms = */ 1,
+  /* post_reset_wait_ms = */ 6,
+  /* sda_setup_time_ns = */ 12,
   /* sck_pulse_width_ns = */ 75,	/* KS0108/HD44102: Not used */
   /* sck_clock_hz = */ 4000000UL,	/* KS0108/HD44102: Not used */
   /* spi_mode = */ 0,				/* active high, rising edge */
@@ -193,10 +193,10 @@ uint8_t u8x8_d_t7932_150x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
         u8x8_cad_SendSequence(u8x8, u8x8_d_hd44102_init_seq);
         u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs[3], NULL);
       }
-    
+
       break;
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
-      
+
       for( i = 0; i < 3; i++ )
       {
         u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, cs[i], NULL);
@@ -208,7 +208,7 @@ uint8_t u8x8_d_t7932_150x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
         {
           u8x8_cad_SendSequence(u8x8, u8x8_d_hd44102_powersave1_seq);
         }
-        u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs[3], NULL);	
+        u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, cs[3], NULL);
       }
       break;
 // The HD44102 can not mirror the cols and rows, use U8g2 for rotation
@@ -222,20 +222,20 @@ uint8_t u8x8_d_t7932_150x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
       cnt = ((u8x8_tile_t *)arg_ptr)->cnt;
       x*=8;
       cnt*=8;
-    
+
       do
       {
-        u8x8_hd44102_outy(u8x8, 
-          ((u8x8_tile_t *)arg_ptr)->tile_ptr, 
-          cnt, 
-          ((u8x8_tile_t *)arg_ptr)->y_pos, 
-          x, 
+        u8x8_hd44102_outy(u8x8,
+          ((u8x8_tile_t *)arg_ptr)->tile_ptr,
+          cnt,
+          ((u8x8_tile_t *)arg_ptr)->y_pos,
+          x,
           cs[3], cs[0], cs[1], cs[2]);
         arg_int--;
         x += cnt;
       } while (arg_int > 0);
-    
-    
+
+
       break;
     default:
       return 0;
@@ -247,12 +247,12 @@ static const u8x8_display_info_t u8x8_hd44102_100x64_display_info =
 {
   /* chip_enable_level = */ 0,		/* KS0108/HD44102: Not used */
   /* chip_disable_level = */ 1,		/* KS0108/HD44102: Not used */
-  
+
   /* post_chip_enable_wait_ns = */ 100,
   /* pre_chip_disable_wait_ns = */ 20,
-  /* reset_pulse_width_ms = */ 1, 
-  /* post_reset_wait_ms = */ 6, 	
-  /* sda_setup_time_ns = */ 12,		
+  /* reset_pulse_width_ms = */ 1,
+  /* post_reset_wait_ms = */ 6,
+  /* sda_setup_time_ns = */ 12,
   /* sck_pulse_width_ns = */ 75,	/* KS0108/HD44102: Not used */
   /* sck_clock_hz = */ 4000000UL,	/* KS0108/HD44102: Not used */
   /* spi_mode = */ 0,				/* active high, rising edge */
@@ -285,10 +285,10 @@ uint8_t u8x8_d_hd44102_100x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
         u8x8_cad_SendSequence(u8x8, u8x8_d_hd44102_init_seq);
         u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, 7, NULL);
       }
-    
+
       break;
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
-      
+
       for( i = 0; i < 4; i++ )
       {
         u8x8->cad_cb(u8x8, U8X8_MSG_CAD_START_TRANSFER, i, NULL);
@@ -300,7 +300,7 @@ uint8_t u8x8_d_hd44102_100x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
         {
           u8x8_cad_SendSequence(u8x8, u8x8_d_hd44102_powersave1_seq);
         }
-        u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, 7, NULL);	
+        u8x8->cad_cb(u8x8, U8X8_MSG_CAD_END_TRANSFER, 7, NULL);
       }
       break;
 // The HD44102 can not mirror the cols and rows, use U8g2 for rotation
@@ -310,7 +310,7 @@ uint8_t u8x8_d_hd44102_100x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
 //    case U8X8_MSG_DISPLAY_SET_CONTRAST:
 //      break;
     case U8X8_MSG_DISPLAY_DRAW_TILE:
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;      
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       cnt = ((u8x8_tile_t *)arg_ptr)->cnt;
       page = ((u8x8_tile_t *)arg_ptr)->y_pos;
       x*=8;
@@ -319,11 +319,11 @@ uint8_t u8x8_d_hd44102_100x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
       {
         do
         {
-          u8x8_hd44102_outy(u8x8, 
-            ((u8x8_tile_t *)arg_ptr)->tile_ptr, 
-            cnt, 
-            page, 
-            x, 
+          u8x8_hd44102_outy(u8x8,
+            ((u8x8_tile_t *)arg_ptr)->tile_ptr,
+            cnt,
+            page,
+            x,
             7, 0, 1, 7);
           arg_int--;
           x += cnt;
@@ -333,17 +333,17 @@ uint8_t u8x8_d_hd44102_100x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
       {
         do
         {
-          u8x8_hd44102_outy(u8x8, 
-            ((u8x8_tile_t *)arg_ptr)->tile_ptr, 
-            cnt, 
-            page-4, 
-            x, 
+          u8x8_hd44102_outy(u8x8,
+            ((u8x8_tile_t *)arg_ptr)->tile_ptr,
+            cnt,
+            page-4,
+            x,
             7, 2, 3, 7);
           arg_int--;
           x += cnt;
         } while (arg_int > 0);
       }
-    
+
       break;
     default:
       return 0;

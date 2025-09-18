@@ -2,7 +2,7 @@
   This is an example for our Monochrome OLEDs based on SH110X drivers
 
   This example is for a 128x64 size display using SPi to communicate
-  5 pins are required to interface 
+  5 pins are required to interface
 
   Adafruit invests time and resources providing this open source code,
   please support Adafruit and open-source hardware by purchasing

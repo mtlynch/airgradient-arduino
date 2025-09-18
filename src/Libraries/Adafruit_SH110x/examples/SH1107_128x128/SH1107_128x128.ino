@@ -64,7 +64,7 @@ void setup()   {
 
   display.begin(0x3D, true); // Address 0x3D default
  //display.setContrast (0); // dim display
- 
+
   display.display();
   delay(2000);
 

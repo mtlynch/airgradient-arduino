@@ -9,46 +9,46 @@
   Copyright (c) 2021, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   Reference Manual:
     https://github.com/olikraus/u8g2/wiki/muiref
 
-  MUIF_U8G2_LABEL()  
-    replacement for MUIF_LABEL(mui_u8g2_draw_text), 
+  MUIF_U8G2_LABEL()
+    replacement for MUIF_LABEL(mui_u8g2_draw_text),
     used by MUI_LABEL(x,y,"text")
     Supports UTF8
-    
-  MUIF_U8G2_FONT_STYLE(n, font) 
+
+  MUIF_U8G2_FONT_STYLE(n, font)
     A special u8g2 style function, which replaces MUIF_STYLE, but restricts the style change to the
     specific font argument (however, this should be good enough in most cases).
     As usual, the style "n" can be activated with MUI_STYLE(n) in FDS.
     Example:
-      muif_t muif_list[]  MUI_PROGMEM = {  
+      muif_t muif_list[]  MUI_PROGMEM = {
           MUIF_U8G2_LABEL(),
-          MUIF_U8G2_FONT_STYLE(0, u8g2_font_5x8_tr) 
+          MUIF_U8G2_FONT_STYLE(0, u8g2_font_5x8_tr)
         };
         fds_t fds[] MUI_PROGMEM  =
         MUI_FORM(1)
@@ -56,7 +56,7 @@
         MUI_LABEL(5,12, "5x8 Font")
         ;
 
-    
+
 
 
 
@@ -85,7 +85,7 @@ struct mui_u8g2_list_struct
   uint16_t *selection;
   void *data;
   mui_u8g2_get_list_element_cb get_list_element;
-  mui_u8g2_get_list_count_cb get_list_count;  
+  mui_u8g2_get_list_count_cb get_list_count;
 } MUI_PROGMEM;
 
 typedef const struct mui_u8g2_list_struct mui_u8g2_list_t;
@@ -203,12 +203,12 @@ uint8_t mui_u8g2_u8_opt_line_wa_mud_pf(mui_t *ui, uint8_t msg); /* GIF, MUIF_VAR
 
 /* dropdown list / combo box */
 /* The text part of the parent defines a '|' separated list of elements, which can be selected by the child. */
-/* Argument is a form number where the child element is placed multiple times */ 
+/* Argument is a form number where the child element is placed multiple times */
 /* The child form does not require the ok button, because the child function will return to the parent with the select element */
 uint8_t mui_u8g2_u8_opt_parent_wm_pi(mui_t *ui, uint8_t msg);       /* GIF, MUIF_VARIABLE, MUI_XYAT */
 uint8_t mui_u8g2_u8_opt_radio_child_wm_pi(mui_t *ui, uint8_t msg);        /* GIF, MUIF_VARIABLE, MUI_XYA */
 uint8_t mui_u8g2_u8_opt_radio_child_w1_pi(mui_t *ui, uint8_t msg);          /* GIF, MUIF_VARIABLE, MUI_XYA */
-uint8_t mui_u8g2_u8_opt_child_wm_pi(mui_t *ui, uint8_t msg);                /* MUIF_VARIABLE, MUI_XYA */ 
+uint8_t mui_u8g2_u8_opt_child_wm_pi(mui_t *ui, uint8_t msg);                /* MUIF_VARIABLE, MUI_XYA */
 /* Note: there is no opt_child_goto muif, because this can be done with mui_u8g2_goto_form_w1_pi */
 
 /* (scrollable) jump menu */
@@ -230,8 +230,8 @@ uint8_t mui_u8g2_u8_char_wm_mud_pi(mui_t *ui, uint8_t msg);     /* GIF, MUIF_VAR
 
 /*===== data = u8g2 font data  =====*/
 
-//#define MUIF_U8G2_FONT_STYLE(n,font)  MUIF("S" #n, 0, (void *)(font), mui_u8g2_set_font_style_function) 
-#define MUIF_U8G2_FONT_STYLE(n, font) { 'S', #n[0], 0, 0, (void *)(font), mui_u8g2_set_font_style_function} 
+//#define MUIF_U8G2_FONT_STYLE(n,font)  MUIF("S" #n, 0, (void *)(font), mui_u8g2_set_font_style_function)
+#define MUIF_U8G2_FONT_STYLE(n, font) { 'S', #n[0], 0, 0, (void *)(font), mui_u8g2_set_font_style_function}
 
 
 uint8_t mui_u8g2_set_font_style_function(mui_t *ui, uint8_t msg);
@@ -258,7 +258,7 @@ uint8_t mui_u8g2_u8_min_max_wm_mud_pf(mui_t *ui, uint8_t msg);  /* GIF, MUIF_U8G
   MUIF(id, MUIF_CFLAG_IS_CURSOR_SELECTABLE,  \
   (void *)((mui_u8g2_u8_min_max_step_t [] ) {{ (valptr) MUI_U8G2_COMMA (min) MUI_U8G2_COMMA (max) MUI_U8G2_COMMA (step) MUI_U8G2_COMMA (flags) MUI_U8G2_COMMA (0) }}), \
   (muif))
-  
+
 
 uint8_t mui_u8g2_u8_bar_wm_mse_pi(mui_t *ui, uint8_t msg);
 uint8_t mui_u8g2_u8_bar_wm_mud_pi(mui_t *ui, uint8_t msg);
@@ -270,7 +270,7 @@ uint8_t mui_u8g2_u8_bar_wm_mud_pf(mui_t *ui, uint8_t msg);
   MUIF(id, MUIF_CFLAG_IS_CURSOR_SELECTABLE,  \
   (void *)((mui_u8g2_u8_min_max_step_t [] ) {{ (valptr) MUI_U8G2_COMMA (min) MUI_U8G2_COMMA (max) MUI_U8G2_COMMA (step) MUI_U8G2_COMMA (flags) MUI_U8G2_COMMA (width) }}), \
   (muif))
-  
+
 
 uint8_t mui_u8g2_u8_fixed_width_bar_wm_mse_pi(mui_t *ui, uint8_t msg);
 uint8_t mui_u8g2_u8_fixed_width_bar_wm_mud_pi(mui_t *ui, uint8_t msg);
@@ -287,7 +287,7 @@ uint8_t mui_u8g2_u8_fixed_width_bar_wm_mud_pf(mui_t *ui, uint8_t msg);
   MUIF(id, MUIF_CFLAG_IS_CURSOR_SELECTABLE,  \
   (void *)((mui_u8g2_list_t [] ) {{ (valptr) MUI_U8G2_COMMA (dataptr) MUI_U8G2_COMMA (getcb) MUI_U8G2_COMMA (cntcb)}}), \
   (muif))
-  
+
 uint8_t mui_u8g2_u16_list_line_wa_mse_pi(mui_t *ui, uint8_t msg);       /* GIF, MUIF_U8G2_U16_LIST, MUI_XYA, arg=pixel fieldsize */
 uint8_t mui_u8g2_u16_list_line_wa_mud_pi(mui_t *ui, uint8_t msg);       /* GIF, MUIF_U8G2_U16_LIST, MUI_XYA, arg=pixel fieldsize */
 

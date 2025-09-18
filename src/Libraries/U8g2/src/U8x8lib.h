@@ -1,37 +1,37 @@
 /*
 
   U8x8lib.h
-  
+
   C++ Arduino wrapper for the u8x8 struct and c functions.
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 
   Copyright (c) 2016, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 */
@@ -48,21 +48,21 @@
 
 /*
   Uncomment this to switch off Wire.setClock() invocations.
-  This is useful if you connect multiple devices to the same I2C bus that 
+  This is useful if you connect multiple devices to the same I2C bus that
   is used for the monochrome display.
-  For example the Arduino Nano RP2040 connect uses the only I2C bus 
+  For example the Arduino Nano RP2040 connect uses the only I2C bus
   already for the internal communication with the integrated on-board components
   wifi, crypto and accelerometer and does not work correctly if the U8g2 library
   modifies the I2c clock speed.
   Instead of uncommenting the line below (which needs a library modification)
   you can also just add the following define before including the U8x8lib header:
       #define U8X8_DO_NOT_SET_WIRE_CLOCK
-      #include "U8x8lib.h" 
+      #include "U8x8lib.h"
 */
 // #define U8X8_DO_NOT_SET_WIRE_CLOCK
 
-/* 
-  Uncomment this to enable AVR optimization for I2C 
+/*
+  Uncomment this to enable AVR optimization for I2C
   This is disabled by default, because it will not correctly set the pullups.
   Instead the SW will always drive the I2C bus.
 */
@@ -92,42 +92,42 @@
 
 #ifdef U8X8_HAVE_HW_SPI
 #undef U8X8_HAVE_HW_SPI
-#endif 
+#endif
 
 #endif
 
 #ifdef U8X8_HAVE_HW_SPI
 #undef U8X8_HAVE_HW_SPI
-#endif 
+#endif
 
 #ifdef U8X8_HAVE_HW_I2C
 #undef U8X8_HAVE_HW_I2C
-#endif 
+#endif
 
 #endif
 
 #ifdef __AVR_ATtiny85__
 #ifdef U8X8_HAVE_HW_SPI
 #undef U8X8_HAVE_HW_SPI
-#endif 
+#endif
 
 #ifdef U8X8_HAVE_HW_I2C
 #undef U8X8_HAVE_HW_I2C
-#endif 
+#endif
 #endif
 
 /* ATmegaXXM1 do not have I2C */
 #if defined(__AVR_ATmega16M1__) || defined(__AVR_ATmega32M1__) || defined(__AVR_ATmega64M1__)
 #ifdef U8X8_HAVE_HW_I2C
 #undef U8X8_HAVE_HW_I2C
-#endif 
+#endif
 #endif
 
 /* ATmegaXXC1 do not have I2C */
 #if defined(__AVR_ATmega16C1__) || defined(__AVR_ATmega32C1__) || defined(__AVR_ATmega64C1__)
 #ifdef U8X8_HAVE_HW_I2C
 #undef U8X8_HAVE_HW_I2C
-#endif 
+#endif
 #endif
 
 
@@ -196,21 +196,21 @@ class U8X8
     u8x8_t u8x8;
   public:
     uint8_t tx, ty;
-  
+
     U8X8(void) { home();  }
     u8x8_t *getU8x8(void) { return &u8x8; }
 
-    void sendF(const char *fmt, ...) 
+    void sendF(const char *fmt, ...)
       { va_list va; va_start(va, fmt); u8x8_cad_vsendf(&u8x8, fmt, va); va_end(va); }
-    
+
     uint32_t getBusClock(void) { return u8x8.bus_clock; }
     void setBusClock(uint32_t clock_speed) { u8x8.bus_clock = clock_speed; }
-    
+
     void setI2CAddress(uint8_t adr) { u8x8_SetI2CAddress(&u8x8, adr); }
 
     uint8_t getCols(void) { return u8x8_GetCols(&u8x8); }
     uint8_t getRows(void) { return u8x8_GetRows(&u8x8); }
-    
+
     void drawTile(uint8_t x, uint8_t y, uint8_t cnt, uint8_t *tile_ptr) {
       u8x8_DrawTile(&u8x8, x, y, cnt, tile_ptr); }
 
@@ -219,8 +219,8 @@ class U8X8
       void setUserPtr(void *p) { u8x8_SetUserPtr(&u8x8, p); }
 #endif
 
-      
-#ifdef U8X8_USE_PINS 
+
+#ifdef U8X8_USE_PINS
     /* set the menu pins before calling begin() or initDisplay() */
     void setMenuSelectPin(uint8_t val) {
       u8x8_SetMenuSelectPin(&u8x8, val); }
@@ -235,28 +235,28 @@ class U8X8
     void setMenuHomePin(uint8_t val) {
       u8x8_SetMenuHomePin(&u8x8, val); }
 #endif
-      
+
     void initDisplay(void) {
       u8x8_InitDisplay(&u8x8); }
 
     /* call initInterface if the uC comes out of deep sleep mode and display is already running */
-    /* initInterface is part if initDisplay, do not call both use either initDisplay OR initInterface */       
-    void initInterface(void) {          
+    /* initInterface is part if initDisplay, do not call both use either initDisplay OR initInterface */
+    void initInterface(void) {
       u8x8_InitInterface(&u8x8); }
-      
+
     void clearDisplay(void) {
       u8x8_ClearDisplay(&u8x8); }
 
     void fillDisplay(void) {
       u8x8_FillDisplay(&u8x8); }
-      
+
     void setPowerSave(uint8_t is_enable) {
       u8x8_SetPowerSave(&u8x8, is_enable); }
 
     bool begin(void) {
       initDisplay(); clearDisplay(); setPowerSave(0); return 1; }
 
-#ifdef U8X8_USE_PINS 
+#ifdef U8X8_USE_PINS
     /* use U8X8_PIN_NONE if a pin is not required */
     bool begin(uint8_t menu_select_pin, uint8_t menu_next_pin, uint8_t menu_prev_pin, uint8_t menu_up_pin = U8X8_PIN_NONE, uint8_t menu_down_pin = U8X8_PIN_NONE, uint8_t menu_home_pin = U8X8_PIN_NONE) {
       setMenuSelectPin(menu_select_pin);
@@ -267,13 +267,13 @@ class U8X8
       setMenuHomePin(menu_home_pin);
       return begin(); }
 #endif
-      
+
     void setFlipMode(uint8_t mode) {
       u8x8_SetFlipMode(&u8x8, mode); }
 
     void refreshDisplay(void) {			// Dec 16: Only required for SSD1606
       u8x8_RefreshDisplay(&u8x8); }
-      
+
     void clearLine(uint8_t line) {
       u8x8_ClearLine(&u8x8, line); }
 
@@ -297,7 +297,7 @@ class U8X8
 
     void drawString(uint8_t x, uint8_t y, const char *s) {
       u8x8_DrawString(&u8x8, x, y, s); }
-      
+
     void drawUTF8(uint8_t x, uint8_t y, const char *s) {
       u8x8_DrawUTF8(&u8x8, x, y, s); }
 
@@ -306,16 +306,16 @@ class U8X8
 
     void draw1x2String(uint8_t x, uint8_t y, const char *s) {
       u8x8_Draw1x2String(&u8x8, x, y, s); }
-      
+
     void draw2x2UTF8(uint8_t x, uint8_t y, const char *s) {
       u8x8_Draw2x2UTF8(&u8x8, x, y, s); }
 
     void draw1x2UTF8(uint8_t x, uint8_t y, const char *s) {
       u8x8_Draw1x2UTF8(&u8x8, x, y, s); }
-      
+
     uint8_t getUTF8Len(const char *s) {
       return u8x8_GetUTF8Len(&u8x8, s); }
-    
+
     size_t write(uint8_t v);
     /* code extended and moved to .cpp file, issue 74
     size_t write(uint8_t v) {
@@ -324,19 +324,19 @@ class U8X8
       return 1;
      }
       */
-     
+
     size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
-	cnt += write(*buffer++); 
+	cnt += write(*buffer++);
 	size--;
       }
       return cnt;
     }
-     
+
      void inverse(void) { setInverseFont(1); }
      void noInverse(void) { setInverseFont(0); }
-     
+
     /* return 0 for no event or U8X8_MSG_GPIO_MENU_SELECT, */
     /* U8X8_MSG_GPIO_MENU_NEXT, U8X8_MSG_GPIO_MENU_PREV, */
     /* U8X8_MSG_GPIO_MENU_HOME */
@@ -348,7 +348,7 @@ class U8X8
       return u8x8_UserInterfaceMessage(&u8x8, title1, title2, title3, buttons); }
     uint8_t userInterfaceInputValue(const char *title, const char *pre, uint8_t *value, uint8_t lo, uint8_t hi, uint8_t digits, const char *post) {
       return u8x8_UserInterfaceInputValue(&u8x8, title, pre, value, lo, hi, digits, post); }
-         
+
      /* LiquidCrystal compatible functions */
     void home(void) { tx = 0; ty = 0; }
     void clear(void) { clearDisplay(); home(); }
@@ -357,7 +357,7 @@ class U8X8
     void setCursor(uint8_t x, uint8_t y) { tx = x; ty = y; }
 
     void drawLog(uint8_t x, uint8_t y, class U8X8LOG &u8x8log);
-    
+
 };
 
 class U8X8LOG
@@ -365,33 +365,33 @@ class U8X8LOG
 : public Print
 #endif
 {
-  
+
   public:
     u8log_t u8log;
-  
+
     /* the constructor does nothing, use begin() instead */
     U8X8LOG(void) { }
-  
+
     /* connect to u8g2, draw to u8g2 whenever required */
-    bool begin(class U8X8 &u8x8, uint8_t width, uint8_t height, uint8_t *buf)  { 
-      u8log_Init(&u8log, width, height, buf);      
+    bool begin(class U8X8 &u8x8, uint8_t width, uint8_t height, uint8_t *buf)  {
+      u8log_Init(&u8log, width, height, buf);
       u8log_SetCallback(&u8log, u8log_u8x8_cb, u8x8.getU8x8());
       return true;
     }
-    
+
     /* disconnected version, manual redraw required */
-    bool begin(uint8_t width, uint8_t height, uint8_t *buf) { 
-      u8log_Init(&u8log, width, height, buf);  
+    bool begin(uint8_t width, uint8_t height, uint8_t *buf) {
+      u8log_Init(&u8log, width, height, buf);
       return true;
     }
-    
+
     void setLineHeightOffset(int8_t line_height_offset) {
       u8log_SetLineHeightOffset(&u8log, line_height_offset); }
 
     void setRedrawMode(uint8_t is_redraw_line_for_each_char) {
       u8log_SetRedrawMode(&u8log, is_redraw_line_for_each_char); }
-    
-    /* virtual function for print base class */    
+
+    /* virtual function for print base class */
     size_t write(uint8_t v) {
       u8log_WriteChar(&u8log, v);
       return 1;
@@ -400,11 +400,11 @@ class U8X8LOG
     size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
-	cnt += write(*buffer++); 
+	cnt += write(*buffer++);
 	size--;
       }
       return cnt;
-    }  
+    }
 
     void writeString(const char *s) { u8log_WriteString(&u8log, s); }
     void writeChar(uint8_t c) { u8log_WriteChar(&u8log, c); }
@@ -412,14 +412,14 @@ class U8X8LOG
     void writeHex16(uint16_t v) { u8log_WriteHex16(&u8log, v); }
     void writeHex32(uint32_t v) { u8log_WriteHex32(&u8log, v); }
     void writeDec8(uint8_t v, uint8_t d) { u8log_WriteDec8(&u8log, v, d); }
-    void writeDec16(uint8_t v, uint8_t d) { u8log_WriteDec16(&u8log, v, d); }    
+    void writeDec16(uint8_t v, uint8_t d) { u8log_WriteDec16(&u8log, v, d); }
 };
 
 
 /* u8log_u8x8.c */
 inline void U8X8::drawLog(uint8_t x, uint8_t y, class U8X8LOG &u8x8log)
 {
-  u8x8_DrawLog(&u8x8, x, y, &(u8x8log.u8log)); 
+  u8x8_DrawLog(&u8x8, x, y, &(u8x8log.u8log));
 }
 
 
@@ -8519,7 +8519,7 @@ class U8X8_GP1247AI_253X63_2ND_4W_HW_SPI : public U8X8 {
 };
 
 // constructor list end
-  
+
 
 #endif // U8X8_USE_PINS
 

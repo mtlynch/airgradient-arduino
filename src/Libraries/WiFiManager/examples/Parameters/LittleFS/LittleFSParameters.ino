@@ -37,7 +37,7 @@ void writeFile(fs::FS &fs, const char * path, const char * message){
   file.close();
 }
 
-int data = 4; 
+int data = 4;
 
 #include <WiFiManager.h>
 #define TRIGGER_PIN 2
@@ -49,7 +49,7 @@ Serial.println("LittleFS mount failed");
 return;
 }
 data = readFile(LittleFS, "/data.txt").toInt();
-WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP  
+WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP
   // put your setup code here, to run once:
   pinMode(TRIGGER_PIN, INPUT_PULLUP);
   WiFiManager wm;
@@ -59,13 +59,13 @@ WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP
   if(!res) {
      Serial.println("Failed to connect");
      // ESP.restart();
-  } 
+  }
 
 }
 
 void loop() {
 if ( digitalRead(TRIGGER_PIN) == LOW) {
-    WiFiManager wm;    
+    WiFiManager wm;
     //wm.resetSettings();
     wm.setConfigPortalTimeout(timeout);
     if (!wm.startConfigPortal("Sharmander")) {

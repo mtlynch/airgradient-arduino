@@ -7,7 +7,7 @@ void setup() {
 
     // put your setup code here, to run once:
     Serial.begin(115200);
-    
+
     //WiFiManager, Local intialization. Once its business is done, there is no need to keep it around
     WiFiManager wm;
 
@@ -28,14 +28,14 @@ void setup() {
     if(!res) {
         Serial.println("Failed to connect");
         // ESP.restart();
-    } 
+    }
     else {
-        //if you get here you have connected to the WiFi    
+        //if you get here you have connected to the WiFi
         Serial.println("connected...yeey :)");
     }
 
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:   
+    // put your main code here, to run repeatedly:
 }

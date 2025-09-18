@@ -9,7 +9,7 @@
   Glyphs: 222/228
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_amstrad_cpc_extended_f[1796] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_f") = 
+const uint8_t u8x8_font_amstrad_cpc_extended_f[1796] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\7\7\0\7\7\0\0\24\177\177\34"
   "\177\177\24\0\0$*\177\177*\22\0Ff\60\30\14fb\0\60zO]\67zH\0\0\0\0\7"
   "\7\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\10*>\34\34>*\10\0\10\10>"
@@ -73,7 +73,7 @@ const uint8_t u8x8_font_amstrad_cpc_extended_f[1796] U8X8_FONT_SECTION("u8x8_fon
   Glyphs: 95/228
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_amstrad_cpc_extended_r[764] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_r") = 
+const uint8_t u8x8_font_amstrad_cpc_extended_r[764] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_r") =
   " ~\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\7\7\0\7\7\0\0\24\177\177\34"
   "\177\177\24\0\0$*\177\177*\22\0Ff\60\30\14fb\0\60zO]\67zH\0\0\0\0\7"
   "\7\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\10*>\34\34>*\10\0\10\10>"
@@ -104,7 +104,7 @@ const uint8_t u8x8_font_amstrad_cpc_extended_r[764] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 18/228
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_amstrad_cpc_extended_n[220] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_n") = 
+const uint8_t u8x8_font_amstrad_cpc_extended_n[220] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34\34>*\10\0\10\10>"
@@ -118,7 +118,7 @@ const uint8_t u8x8_font_amstrad_cpc_extended_n[220] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 64/228
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_amstrad_cpc_extended_u[517] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_u") = 
+const uint8_t u8x8_font_amstrad_cpc_extended_u[517] U8X8_FONT_SECTION("u8x8_font_amstrad_cpc_extended_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\7\7\0\7\7\0\0\24\177\177\34"
   "\177\177\24\0\0$*\177\177*\22\0Ff\60\30\14fb\0\60zO]\67zH\0\0\0\0\7"
   "\7\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\10*>\34\34>*\10\0\10\10>"
@@ -142,7 +142,7 @@ const uint8_t u8x8_font_amstrad_cpc_extended_u[517] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 191/1848
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_5x7_f[1796] U8X8_FONT_SECTION("u8x8_font_5x7_f") = 
+const uint8_t u8x8_font_5x7_f[1796] U8X8_FONT_SECTION("u8x8_font_5x7_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\0^\0\0\0\0\0\0\16\0\16\0\0\0\0(|(|"
   "(\0\0\0\10T|T \0\0\0&\20\10d\0\0\0\0(T(@\0\0\0\0\0\0\16\0"
   "\0\0\0\0\0<B\0\0\0\0\0\0B<\0\0\0\0\0\0T\70T\0\0\0\0\20\20|\20"
@@ -206,7 +206,7 @@ const uint8_t u8x8_font_5x7_f[1796] U8X8_FONT_SECTION("u8x8_font_5x7_f") =
   Glyphs: 95/1848
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_5x7_r[764] U8X8_FONT_SECTION("u8x8_font_5x7_r") = 
+const uint8_t u8x8_font_5x7_r[764] U8X8_FONT_SECTION("u8x8_font_5x7_r") =
   " ~\1\1\0\0\0\0\0\0\0\0\0\0^\0\0\0\0\0\0\16\0\16\0\0\0\0(|(|"
   "(\0\0\0\10T|T \0\0\0&\20\10d\0\0\0\0(T(@\0\0\0\0\0\0\16\0"
   "\0\0\0\0\0<B\0\0\0\0\0\0B<\0\0\0\0\0\0T\70T\0\0\0\0\20\20|\20"
@@ -237,7 +237,7 @@ const uint8_t u8x8_font_5x7_r[764] U8X8_FONT_SECTION("u8x8_font_5x7_r") =
   Glyphs: 18/1848
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_5x7_n[220] U8X8_FONT_SECTION("u8x8_font_5x7_n") = 
+const uint8_t u8x8_font_5x7_n[220] U8X8_FONT_SECTION("u8x8_font_5x7_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\70T\0\0\0\0\20\20|\20"
@@ -251,7 +251,7 @@ const uint8_t u8x8_font_5x7_n[220] U8X8_FONT_SECTION("u8x8_font_5x7_n") =
   Glyphs: 191/1426
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_5x8_f[1796] U8X8_FONT_SECTION("u8x8_font_5x8_f") = 
+const uint8_t u8x8_font_5x8_f[1796] U8X8_FONT_SECTION("u8x8_font_5x8_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\0^\0\0\0\0\0\0\16\0\16\0\0\0\0\24\177\24\177"
   "\24\0\0\0\4*\177*\20\0\0\0\0\26\10\64\0\0\0\0\66I\66@\0\0\0\0\0\0\16\0"
   "\0\0\0\0\0<B\0\0\0\0\0\0B<\0\0\0\0\0T\70\70T\0\0\0\0\20\20|\20"
@@ -315,7 +315,7 @@ const uint8_t u8x8_font_5x8_f[1796] U8X8_FONT_SECTION("u8x8_font_5x8_f") =
   Glyphs: 95/1426
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_5x8_r[764] U8X8_FONT_SECTION("u8x8_font_5x8_r") = 
+const uint8_t u8x8_font_5x8_r[764] U8X8_FONT_SECTION("u8x8_font_5x8_r") =
   " ~\1\1\0\0\0\0\0\0\0\0\0\0^\0\0\0\0\0\0\16\0\16\0\0\0\0\24\177\24\177"
   "\24\0\0\0\4*\177*\20\0\0\0\0\26\10\64\0\0\0\0\66I\66@\0\0\0\0\0\0\16\0"
   "\0\0\0\0\0<B\0\0\0\0\0\0B<\0\0\0\0\0T\70\70T\0\0\0\0\20\20|\20"
@@ -346,7 +346,7 @@ const uint8_t u8x8_font_5x8_r[764] U8X8_FONT_SECTION("u8x8_font_5x8_r") =
   Glyphs: 18/1426
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_5x8_n[220] U8X8_FONT_SECTION("u8x8_font_5x8_n") = 
+const uint8_t u8x8_font_5x8_n[220] U8X8_FONT_SECTION("u8x8_font_5x8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\70\70T\0\0\0\0\20\20|\20"
@@ -360,7 +360,7 @@ const uint8_t u8x8_font_5x8_n[220] U8X8_FONT_SECTION("u8x8_font_5x8_n") =
   Glyphs: 191/3703
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_8x13_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_f") = 
+const uint8_t u8x8_font_8x13_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_f") =
   " \377\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\0\0\0\0\0\0\0\13"
   "\0\0\0\0\0\0\70\0\0\70\0\0\0\0\0\0\0\0\0\0\0@\360@@\360@\0\0\1\7\1"
   "\1\7\1\0\0`\220\370\220\20\0\0\0\4\4\17\4\3\0\0\0\20(\20\300 \30\0\0\10\6\1"
@@ -480,7 +480,7 @@ const uint8_t u8x8_font_8x13_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_f
   Glyphs: 95/3703
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_8x13_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_r") = 
+const uint8_t u8x8_font_8x13_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_r") =
   " ~\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\0\0\0\0\0\0\0\13"
   "\0\0\0\0\0\0\70\0\0\70\0\0\0\0\0\0\0\0\0\0\0@\360@@\360@\0\0\1\7\1"
   "\1\7\1\0\0`\220\370\220\20\0\0\0\4\4\17\4\3\0\0\0\20(\20\300 \30\0\0\10\6\1"
@@ -535,7 +535,7 @@ const uint8_t u8x8_font_8x13_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_r
   Glyphs: 18/3703
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_8x13_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_n") = 
+const uint8_t u8x8_font_8x13_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_n") =
   " :\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -556,7 +556,7 @@ const uint8_t u8x8_font_8x13_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_8x13_1x2_n"
   Glyphs: 191/1141
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_8x13B_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_f") = 
+const uint8_t u8x8_font_8x13B_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_f") =
   " \377\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\374\0\0\0\0\0\0\15"
   "\15\0\0\0\0<<\0<<\0\0\0\0\0\0\0\0\0\0`\370\370`\370\370`\0\3\17\17\3"
   "\17\17\3\0p\370\310\374\210\230\20\0\4\14\10\37\11\17\7\0\34\24\234\340p\34\14\0\14\16\3\1"
@@ -676,7 +676,7 @@ const uint8_t u8x8_font_8x13B_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2
   Glyphs: 95/1141
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_8x13B_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_r") = 
+const uint8_t u8x8_font_8x13B_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_r") =
   " ~\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\374\0\0\0\0\0\0\15"
   "\15\0\0\0\0<<\0<<\0\0\0\0\0\0\0\0\0\0`\370\370`\370\370`\0\3\17\17\3"
   "\17\17\3\0p\370\310\374\210\230\20\0\4\14\10\37\11\17\7\0\34\24\234\340p\34\14\0\14\16\3\1"
@@ -731,7 +731,7 @@ const uint8_t u8x8_font_8x13B_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2
   Glyphs: 18/1141
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_8x13B_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_n") = 
+const uint8_t u8x8_font_8x13B_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_n") =
   " :\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -752,7 +752,7 @@ const uint8_t u8x8_font_8x13B_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_8x13B_1x2_
   Glyphs: 191/2576
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_7x14_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_f") = 
+const uint8_t u8x8_font_7x14_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_f") =
   " \377\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\0\0\0\0\0\0\0"
   "\33\0\0\0\0\0\0<\0<\0\0\0\0\0\0\0\0\0\0\0\0@\370@\370@\0\0\0\2\37"
   "\2\37\2\0\0`\220\20\370\20`\0\0\14\20\21\77\21\16\0\0\60HH\360 \30\0\0\30\4\17"
@@ -872,7 +872,7 @@ const uint8_t u8x8_font_7x14_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_f
   Glyphs: 95/2576
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_7x14_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_r") = 
+const uint8_t u8x8_font_7x14_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_r") =
   " ~\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\0\0\0\0\0\0\0"
   "\33\0\0\0\0\0\0<\0<\0\0\0\0\0\0\0\0\0\0\0\0@\370@\370@\0\0\0\2\37"
   "\2\37\2\0\0`\220\20\370\20`\0\0\14\20\21\77\21\16\0\0\60HH\360 \30\0\0\30\4\17"
@@ -927,7 +927,7 @@ const uint8_t u8x8_font_7x14_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_r
   Glyphs: 18/2576
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_7x14_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_n") = 
+const uint8_t u8x8_font_7x14_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_n") =
   " :\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -948,7 +948,7 @@ const uint8_t u8x8_font_7x14_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_7x14_1x2_n"
   Glyphs: 191/1009
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_7x14B_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_f") = 
+const uint8_t u8x8_font_7x14B_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_f") =
   " \377\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\370\0\0\0\0\0\0\33"
   "\33\0\0\0\0\0<<\0<<\0\0\0\0\0\0\0\0\0\0@\370\370\370\370@\0\0\2\37\37"
   "\37\37\2\0\0`\220\370\370\20`\0\0\14\20\77\77\21\16\0\0\60xH\360\70\30\0\0\30\34\17"
@@ -1068,7 +1068,7 @@ const uint8_t u8x8_font_7x14B_1x2_f[3588] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2
   Glyphs: 95/1009
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_7x14B_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_r") = 
+const uint8_t u8x8_font_7x14B_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_r") =
   " ~\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\370\0\0\0\0\0\0\33"
   "\33\0\0\0\0\0<<\0<<\0\0\0\0\0\0\0\0\0\0@\370\370\370\370@\0\0\2\37\37"
   "\37\37\2\0\0`\220\370\370\20`\0\0\14\20\77\77\21\16\0\0\60xH\360\70\30\0\0\30\34\17"
@@ -1123,7 +1123,7 @@ const uint8_t u8x8_font_7x14B_1x2_r[1524] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2
   Glyphs: 18/1009
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_7x14B_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_n") = 
+const uint8_t u8x8_font_7x14B_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_n") =
   " :\1\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -1144,7 +1144,7 @@ const uint8_t u8x8_font_7x14B_1x2_n[436] U8X8_FONT_SECTION("u8x8_font_7x14B_1x2_
   Glyphs: 28/28
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_arrow_1x1[229] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_1x1") = 
+const uint8_t u8x8_font_open_iconic_arrow_1x1[229] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_1x1") =
   "@[\1\1\0 `\377` \0\0\10\34>\10\10\10\10\10\10\10\10\10\10>\34\10\0\4\6\377"
   "\6\4\0\0<n\317\201\201\317n<<f\303\201\347\347f<<f\347\347\201\303f<<v\363\201"
   "\201\363v<\0\0 \177\377 \0\0\20\30<\30\30\30\30\30\30\30\30\30\30<\34\10\0\0\6\377"
@@ -1159,7 +1159,7 @@ const uint8_t u8x8_font_open_iconic_arrow_1x1[229] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 5/5
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_check_1x1[45] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_1x1") = 
+const uint8_t u8x8_font_open_iconic_check_1x1[45] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_1x1") =
   "@D\1\1\20\70pp\70\34\16\4<~\357\357\347\363~<<~\333\347\347\333~<\177AAI"
   "IDr\0B\347~<<~\347B";
 /*
@@ -1168,7 +1168,7 @@ const uint8_t u8x8_font_open_iconic_check_1x1[45] U8X8_FONT_SECTION("u8x8_font_o
   Glyphs: 17/17
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_embedded_1x1[140] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_1x1") = 
+const uint8_t u8x8_font_open_iconic_embedded_1x1[140] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_1x1") =
   "@P\1\1~BBBBB~\30 \60>\277\277>\60 \30~~\347\347~~\30\0\0dg"
   "=\4\0\0\0|~\37\37~|\0\300\340p\70\30\0\2\0\20\60<\16\70\30\20\20\300\370\376\247"
   "\376\360\300\0\300\340p>\37\30\30\10~~~~~~~\30\0$<\333Z$\0\0<~\377\377"
@@ -1180,7 +1180,7 @@ const uint8_t u8x8_font_open_iconic_embedded_1x1[140] U8X8_FONT_SECTION("u8x8_fo
   Glyphs: 18/18
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_play_1x1[148] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_1x1") = 
+const uint8_t u8x8_font_open_iconic_play_1x1[148] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_1x1") =
   "@Q\1\1\30\0~\0\377\0<\0\14\34|\36\36\0\77\0\320\330\334\336\336\334\330\320p~\3\1"
   "\1\3~p\0~~\0\0~~\0\0~<<\30\30\0\0\0<~~~~<\0\0\30<~"
   "\0\30<~~<\30\0~<\30\0~~\0\30\30<~\0~<\30\30\0~~\0\0~~~"
@@ -1192,7 +1192,7 @@ const uint8_t u8x8_font_open_iconic_play_1x1[148] U8X8_FONT_SECTION("u8x8_font_o
   Glyphs: 19/19
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_thing_1x1[156] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_1x1") = 
+const uint8_t u8x8_font_open_iconic_thing_1x1[156] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_1x1") =
   "@R\1\1\10\370\234\373\373\234\370\10\334\334\337\335\335\337\334\334zZzZzzzz\300\360\370>"
   "\77\31\31\16\0\360\362\361\361\376\360\0p\310\264\242Q\11\6\0\374\374\77\77\374\374\60\60\200\340\360p"
   "\14\16\6\1\0x\334\276\376\374x\0`~bBBb~`\34\42AAAb\374\300\0\377\301\301"
@@ -1204,7 +1204,7 @@ const uint8_t u8x8_font_open_iconic_thing_1x1[156] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 6/6
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_weather_1x1[52] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_1x1") = 
+const uint8_t u8x8_font_open_iconic_weather_1x1[52] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_1x1") =
   "@E\1\1\60x|~~~|pf\367\373\375\374\374\370\340<~~\360\340``\0\30\334\16\357"
   "\17\337\36\70\0\10x<<x\10\0\0B\30<<\30B";
 /*
@@ -1213,7 +1213,7 @@ const uint8_t u8x8_font_open_iconic_weather_1x1[52] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 28/28
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_arrow_2x2[900] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_2x2") = 
+const uint8_t u8x8_font_open_iconic_arrow_2x2[900] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_2x2") =
   "@[\2\2\0\0\0\0\0\0\377\377\0\0\0\0\0\0\0\0\0\0\4\14\34<\177\177<\34\14\4"
   "\0\0\0\0\0\300\340\360\370\374\300\300\300\300\300\300\300\300\300\300\0\0\1\3\7\17\0\0\0\0\0\0"
   "\0\0\0\0\300\300\300\300\300\300\300\300\300\300\374\370\360\340\300\0\0\0\0\0\0\0\0\0\0\0\17\7"
@@ -1249,7 +1249,7 @@ const uint8_t u8x8_font_open_iconic_arrow_2x2[900] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 5/5
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_check_2x2[164] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_2x2") = 
+const uint8_t u8x8_font_open_iconic_check_2x2[164] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_2x2") =
   "@D\2\2\0\200\300\200\0\0\0\200\300\340\360\370\374x\60\0\1\3\7\17\37>\77\37\17\7\3\1"
   "\0\0\0\0\340\370\374\376~\177\377\377\177\77\37\216\316\374\370\340\7\37\77\177~\374\370\370\374\376\377\177"
   "\177\77\37\7\340\370\374\376\316\217\37\77\77\37\217\316\376\374\370\340\7\37\77\177s\361\370\374\374\370\361s"
@@ -1262,7 +1262,7 @@ const uint8_t u8x8_font_open_iconic_check_2x2[164] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 17/17
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_embedded_2x2[548] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_2x2") = 
+const uint8_t u8x8_font_open_iconic_embedded_2x2[548] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_2x2") =
   "@P\2\2\374\374\14\14\14\14\14\14\14\14\14\14\374\374\300\300\77\77\60\60\60\60\60\60\60\60\60\60"
   "\77\77\3\3\0\0\0\300\374\376\377\377\377\377\376\374\300\0\0\0\14\16\17\17\17\17O\317\317O\17\17"
   "\17\17\16\14\200\300\334\374\374\70\36\37\37\36\70\374\374\334\300\200\1\3;\77\77\34x\370\370x\34\77"
@@ -1287,7 +1287,7 @@ const uint8_t u8x8_font_open_iconic_embedded_2x2[548] U8X8_FONT_SECTION("u8x8_fo
   Glyphs: 18/18
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_play_2x2[580] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_2x2") = 
+const uint8_t u8x8_font_open_iconic_play_2x2[580] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_2x2") =
   "@Q\2\2\300\300\0\0\374\374\0\0\377\377\0\0\360\360\0\0\3\3\0\0\77\77\0\0\377\377\0\0"
   "\17\17\0\0\360\360\360\360\360\370\370\374\374\376\0\0\377\377\0\0\0\0\1\17\77\61\1\3\3\7\0\0"
   "\17\17\0\0\0\0\200\300\360\370\374\376\376\374\370\360\300\200\0\0\362\363\363\363\363\363\363\363\363\363\363\363"
@@ -1313,7 +1313,7 @@ const uint8_t u8x8_font_open_iconic_play_2x2[580] U8X8_FONT_SECTION("u8x8_font_o
   Glyphs: 19/19
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_thing_2x2[612] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_2x2") = 
+const uint8_t u8x8_font_open_iconic_thing_2x2[612] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_2x2") =
   "@R\2\2\300\300\300\340\360\374\316\307\307\316\374\360\340\300\300\300\0\0\377\377\303\303\377\377\377\377\303\303"
   "\377\377\0\0\360\360\360\360\376\377\363\363\363\363\377\376\360\360\360\360\363\363\363\363\363\363\363\363\363\363\363\363"
   "\363\363\363\363\314\314\314\314\314\314\314\314\314\314\314\314\314\314\314\314\77\77\63\63\77\77\63\63\77\77\77\77"
@@ -1340,7 +1340,7 @@ const uint8_t u8x8_font_open_iconic_thing_2x2[612] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 6/6
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_weather_2x2[197] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_2x2") = 
+const uint8_t u8x8_font_open_iconic_weather_2x2[197] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_2x2") =
   "@E\2\2\0\200\300\300\340\370\370\374\374\374\374\370\370\340\0\0\17\37\77\77\77\77\77\77\77\77\77\77"
   "\77\77\77\36x~>\37\217\347\343\362\362\360\360\340\340\200\0\0<~\377\377\377\377\377\377\377\377\377\377"
   "\377\377\374x\340\370\374\376\377\340\200\0\0\0\0\0\0\0\0\0\3\17\37\77\177\177\177\377\376|||"
@@ -1354,7 +1354,7 @@ const uint8_t u8x8_font_open_iconic_weather_2x2[197] U8X8_FONT_SECTION("u8x8_fon
   Glyphs: 28/28
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_arrow_4x4[3588] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_4x4") = 
+const uint8_t u8x8_font_open_iconic_arrow_4x4[3588] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_4x4") =
   "@[\4\4\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\20\60p\360\360\360\360\360\377\377\377\377\360\360\360\360\360p\60\20\0\0\0\0"
@@ -1474,7 +1474,7 @@ const uint8_t u8x8_font_open_iconic_arrow_4x4[3588] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 5/5
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_check_4x4[644] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_4x4") = 
+const uint8_t u8x8_font_open_iconic_check_4x4[644] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_4x4") =
   "@D\4\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\200\300\340\360\340\300"
   "\200\0\0\0\0\0\200\300\340\360\340\300\200\0\0\0\0\0\200\300\340\360\370\374\376\377\377\377\377\377\177\77"
   "\37\17\6\0\2\7\17\37\77\177\377\377\377\377\376\374\376\377\377\377\377\377\177\77\37\17\7\3\1\0\0\0"
@@ -1502,7 +1502,7 @@ const uint8_t u8x8_font_open_iconic_check_4x4[644] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 17/17
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_embedded_4x4[2180] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_4x4") = 
+const uint8_t u8x8_font_open_iconic_embedded_4x4[2180] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_4x4") =
   "@P\4\4\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360\360"
   "\0\0\0\0\377\377\377\377\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377"
   "\360\360\360\360\377\377\377\377\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377"
@@ -1578,7 +1578,7 @@ const uint8_t u8x8_font_open_iconic_embedded_4x4[2180] U8X8_FONT_SECTION("u8x8_f
   Glyphs: 18/18
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_play_4x4[2308] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_4x4") = 
+const uint8_t u8x8_font_open_iconic_play_4x4[2308] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_4x4") =
   "@Q\4\4\0\0\0\0\0\0\0\0\360\360\360\360\0\0\0\0\377\377\377\377\0\0\0\0\0\0\0\0"
   "\0\0\0\0\360\360\360\360\0\0\0\0\377\377\377\377\0\0\0\0\377\377\377\377\0\0\0\0\377\377\377\377"
   "\0\0\0\0\17\17\17\17\0\0\0\0\377\377\377\377\0\0\0\0\377\377\377\377\0\0\0\0\377\377\377\377"
@@ -1658,7 +1658,7 @@ const uint8_t u8x8_font_open_iconic_play_4x4[2308] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 19/19
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_thing_4x4[2436] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_4x4") = 
+const uint8_t u8x8_font_open_iconic_thing_4x4[2436] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_4x4") =
   "@R\4\4\0\0\0\0\0\0\0\0\0\200\300\360\370\374~\77\77~\374\370\360\300\200\0\0\0\0\0"
   "\0\0\0\0\360\360\360\360\360\360\374\376\377\377\377\363\361\360\360\360\360\360\360\361\363\377\377\377\376\374\360\360"
   "\360\360\360\360\0\0\0\0\377\377\377\377\37\17\17\37\377\377\377\377\377\377\377\377\37\17\17\37\377\377\377\377"
@@ -1742,7 +1742,7 @@ const uint8_t u8x8_font_open_iconic_thing_4x4[2436] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 6/6
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_weather_4x4[772] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_4x4") = 
+const uint8_t u8x8_font_open_iconic_weather_4x4[772] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_4x4") =
   "@E\4\4\0\0\0\0\0\0\0\0\0\0\200\300\300\340\340\360\360\360\360\360\360\340\340\300\300\200\0\0"
   "\0\0\0\0\0\200\300\340\340\360\360\360\374\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\376\370"
   "\0\0\0\0~\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377"
@@ -1774,7 +1774,7 @@ const uint8_t u8x8_font_open_iconic_weather_4x4[772] U8X8_FONT_SECTION("u8x8_fon
   Glyphs: 28/28
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_arrow_8x8[14340] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_8x8") = 
+const uint8_t u8x8_font_open_iconic_arrow_8x8[14340] U8X8_FONT_SECTION("u8x8_font_open_iconic_arrow_8x8") =
   "@[\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377"
   "\377\377\377\377\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377"
@@ -2230,7 +2230,7 @@ const uint8_t u8x8_font_open_iconic_arrow_8x8[14340] U8X8_FONT_SECTION("u8x8_fon
   Glyphs: 5/5
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_check_8x8[2564] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_8x8") = 
+const uint8_t u8x8_font_open_iconic_check_8x8[2564] U8X8_FONT_SECTION("u8x8_font_open_iconic_check_8x8") =
   "@D\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -2318,7 +2318,7 @@ const uint8_t u8x8_font_open_iconic_check_8x8[2564] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 17/17
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_embedded_8x8[8708] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_8x8") = 
+const uint8_t u8x8_font_open_iconic_embedded_8x8[8708] U8X8_FONT_SECTION("u8x8_font_open_iconic_embedded_8x8") =
   "@P\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377\377"
@@ -2598,7 +2598,7 @@ const uint8_t u8x8_font_open_iconic_embedded_8x8[8708] U8X8_FONT_SECTION("u8x8_f
   Glyphs: 18/18
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_play_8x8[9220] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_8x8") = 
+const uint8_t u8x8_font_open_iconic_play_8x8[9220] U8X8_FONT_SECTION("u8x8_font_open_iconic_play_8x8") =
   "@Q\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\377\377\377\377\377\377\377\377\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377\377\377\377\377\0\0\0\0"
@@ -2894,7 +2894,7 @@ const uint8_t u8x8_font_open_iconic_play_8x8[9220] U8X8_FONT_SECTION("u8x8_font_
   Glyphs: 19/19
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_thing_8x8[9732] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_8x8") = 
+const uint8_t u8x8_font_open_iconic_thing_8x8[9732] U8X8_FONT_SECTION("u8x8_font_open_iconic_thing_8x8") =
   "@R\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\200\300\340\370"
   "\374\376\377\377\377\377\376\374\370\340\300\200\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\200\300\340\360\370\376\377\377\377\377\377"
@@ -3206,7 +3206,7 @@ const uint8_t u8x8_font_open_iconic_thing_8x8[9732] U8X8_FONT_SECTION("u8x8_font
   Glyphs: 6/6
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_open_iconic_weather_8x8[3076] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_8x8") = 
+const uint8_t u8x8_font_open_iconic_weather_8x8[3076] U8X8_FONT_SECTION("u8x8_font_open_iconic_weather_8x8") =
   "@E\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\200\300\340\360\360\370\374\374"
@@ -3310,7 +3310,7 @@ const uint8_t u8x8_font_open_iconic_weather_8x8[3076] U8X8_FONT_SECTION("u8x8_fo
   Glyphs: 224/256
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_profont29_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_profont29_2x3_f") = 
+const uint8_t u8x8_font_profont29_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_profont29_2x3_f") =
   " \377\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\77\77\77\0\0\0\0\0\0\0\0\0\0\0\0\0\7\7\7\0\0\0\0"
@@ -3654,7 +3654,7 @@ const uint8_t u8x8_font_profont29_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_prof
   Glyphs: 96/256
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_profont29_2x3_r[4612] U8X8_FONT_SECTION("u8x8_font_profont29_2x3_r") = 
+const uint8_t u8x8_font_profont29_2x3_r[4612] U8X8_FONT_SECTION("u8x8_font_profont29_2x3_r") =
   " \177\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\77\77\77\0\0\0\0\0\0\0\0\0\0\0\0\0\7\7\7\0\0\0\0"
@@ -3806,7 +3806,7 @@ const uint8_t u8x8_font_profont29_2x3_r[4612] U8X8_FONT_SECTION("u8x8_font_profo
   Glyphs: 18/256
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_profont29_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_profont29_2x3_n") = 
+const uint8_t u8x8_font_profont29_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_profont29_2x3_n") =
   " :\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -3854,7 +3854,7 @@ const uint8_t u8x8_font_profont29_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_profo
   Glyphs: 96/170
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_artossans8_r[772] U8X8_FONT_SECTION("u8x8_font_artossans8_r") = 
+const uint8_t u8x8_font_artossans8_r[772] U8X8_FONT_SECTION("u8x8_font_artossans8_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\0_\0\0\0\0\0\3\0\0\0\3\0\0\0\42\177\42"
   "\42\177\42\0\0$*k*\22\0\0B%\22\10$R!\0\0 VIIU\42P\0\0\0\0"
   "\3\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\0\12\4\37\4\12\0\0\10\10>"
@@ -3886,7 +3886,7 @@ const uint8_t u8x8_font_artossans8_r[772] U8X8_FONT_SECTION("u8x8_font_artossans
   Glyphs: 18/170
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_artossans8_n[220] U8X8_FONT_SECTION("u8x8_font_artossans8_n") = 
+const uint8_t u8x8_font_artossans8_n[220] U8X8_FONT_SECTION("u8x8_font_artossans8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\24\10>\10\24\0\0\20\20|"
@@ -3900,7 +3900,7 @@ const uint8_t u8x8_font_artossans8_n[220] U8X8_FONT_SECTION("u8x8_font_artossans
   Glyphs: 64/170
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_artossans8_u[517] U8X8_FONT_SECTION("u8x8_font_artossans8_u") = 
+const uint8_t u8x8_font_artossans8_u[517] U8X8_FONT_SECTION("u8x8_font_artossans8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0_\0\0\0\0\0\3\0\0\0\3\0\0\0\42\177\42"
   "\42\177\42\0\0$*k*\22\0\0B%\22\10$R!\0\0 VIIU\42P\0\0\0\0"
   "\3\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\0\12\4\37\4\12\0\0\10\10>"
@@ -3924,7 +3924,7 @@ const uint8_t u8x8_font_artossans8_u[517] U8X8_FONT_SECTION("u8x8_font_artossans
   Glyphs: 95/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_artosserif8_r[764] U8X8_FONT_SECTION("u8x8_font_artosserif8_r") = 
+const uint8_t u8x8_font_artosserif8_r[764] U8X8_FONT_SECTION("u8x8_font_artosserif8_r") =
   " ~\1\1\0\0\0\0\0\0\0\0\0\0\0_\0\0\0\0\0\3\0\0\0\3\0\0\0\42\177\42"
   "\42\177\42\0\0$*k*\22\0\0B%\22\10$R!\0\0 VIIU\42P\0\0\0\0"
   "\3\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\0\12\4\37\4\12\0\0\10\10>"
@@ -3955,7 +3955,7 @@ const uint8_t u8x8_font_artosserif8_r[764] U8X8_FONT_SECTION("u8x8_font_artosser
   Glyphs: 18/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_artosserif8_n[220] U8X8_FONT_SECTION("u8x8_font_artosserif8_n") = 
+const uint8_t u8x8_font_artosserif8_n[220] U8X8_FONT_SECTION("u8x8_font_artosserif8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\24\10>\10\24\0\0\20\20|"
@@ -3969,7 +3969,7 @@ const uint8_t u8x8_font_artosserif8_n[220] U8X8_FONT_SECTION("u8x8_font_artosser
   Glyphs: 64/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_artosserif8_u[517] U8X8_FONT_SECTION("u8x8_font_artosserif8_u") = 
+const uint8_t u8x8_font_artosserif8_u[517] U8X8_FONT_SECTION("u8x8_font_artosserif8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0_\0\0\0\0\0\3\0\0\0\3\0\0\0\42\177\42"
   "\42\177\42\0\0$*k*\22\0\0B%\22\10$R!\0\0 VIIU\42P\0\0\0\0"
   "\3\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\0\12\4\37\4\12\0\0\10\10>"
@@ -3993,7 +3993,7 @@ const uint8_t u8x8_font_artosserif8_u[517] U8X8_FONT_SECTION("u8x8_font_artosser
   Glyphs: 96/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_chroma48medium8_r[772] U8X8_FONT_SECTION("u8x8_font_chroma48medium8_r") = 
+const uint8_t u8x8_font_chroma48medium8_r[772] U8X8_FONT_SECTION("u8x8_font_chroma48medium8_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\0^\0\0\0\0\0\0\6\0\0\6\0\0\0$~$"
   "$~$\0\0$k**k\22\0\0F&\20\10db\0\0\64JJT P\0\0\0\0\0"
   "\6\0\0\0\0\0\0<B\0\0\0\0\0\0B<\0\0\0\0*\34>\34*\0\0\0\10\10>"
@@ -4025,7 +4025,7 @@ const uint8_t u8x8_font_chroma48medium8_r[772] U8X8_FONT_SECTION("u8x8_font_chro
   Glyphs: 18/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_chroma48medium8_n[220] U8X8_FONT_SECTION("u8x8_font_chroma48medium8_n") = 
+const uint8_t u8x8_font_chroma48medium8_n[220] U8X8_FONT_SECTION("u8x8_font_chroma48medium8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\70|\70T\0\0\0\20\20|"
@@ -4039,7 +4039,7 @@ const uint8_t u8x8_font_chroma48medium8_n[220] U8X8_FONT_SECTION("u8x8_font_chro
   Glyphs: 64/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_chroma48medium8_u[517] U8X8_FONT_SECTION("u8x8_font_chroma48medium8_u") = 
+const uint8_t u8x8_font_chroma48medium8_u[517] U8X8_FONT_SECTION("u8x8_font_chroma48medium8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0^\0\0\0\0\0\0\6\0\0\6\0\0\0$~$"
   "$~$\0\0$k**k\22\0\0F&\20\10db\0\0\64JJT P\0\0\0\0\0"
   "\6\0\0\0\0\0\0<B\0\0\0\0\0\0B<\0\0\0\0*\34>\34*\0\0\0\10\10>"
@@ -4063,7 +4063,7 @@ const uint8_t u8x8_font_chroma48medium8_u[517] U8X8_FONT_SECTION("u8x8_font_chro
   Glyphs: 18/72
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_saikyosansbold8_n[220] U8X8_FONT_SECTION("u8x8_font_saikyosansbold8_n") = 
+const uint8_t u8x8_font_saikyosansbold8_n[220] U8X8_FONT_SECTION("u8x8_font_saikyosansbold8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34>*\10\0\0\20\20|"
@@ -4077,7 +4077,7 @@ const uint8_t u8x8_font_saikyosansbold8_n[220] U8X8_FONT_SECTION("u8x8_font_saik
   Glyphs: 64/72
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_saikyosansbold8_u[517] U8X8_FONT_SECTION("u8x8_font_saikyosansbold8_u") = 
+const uint8_t u8x8_font_saikyosansbold8_u[517] U8X8_FONT_SECTION("u8x8_font_saikyosansbold8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\7\7\0\0\7\7\0\0\42\177\177"
   "\42\177\177\42$.*k*:\22\0Ff\60\30\14fb\0 v_I\77vP\0\0\0\0\7"
   "\7\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\4\25\37\16\37\25\4\0\0\10\10>"
@@ -4101,7 +4101,7 @@ const uint8_t u8x8_font_saikyosansbold8_u[517] U8X8_FONT_SECTION("u8x8_font_saik
   Glyphs: 96/170
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_torussansbold8_r[772] U8X8_FONT_SECTION("u8x8_font_torussansbold8_r") = 
+const uint8_t u8x8_font_torussansbold8_r[772] U8X8_FONT_SECTION("u8x8_font_torussansbold8_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\3\7\0\0\7\3\0\0\42\177\177"
   "\42\177\177\42\0$.kk:\22\0\0c\63\30\14fc\0\0 vOY\67fP\0\0\0\7"
   "\3\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\0\12\4\37\4\12\0\0\0\10\10"
@@ -4133,7 +4133,7 @@ const uint8_t u8x8_font_torussansbold8_r[772] U8X8_FONT_SECTION("u8x8_font_torus
   Glyphs: 18/170
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_torussansbold8_n[220] U8X8_FONT_SECTION("u8x8_font_torussansbold8_n") = 
+const uint8_t u8x8_font_torussansbold8_n[220] U8X8_FONT_SECTION("u8x8_font_torussansbold8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\24\10>\10\24\0\0\0\20\20"
@@ -4147,7 +4147,7 @@ const uint8_t u8x8_font_torussansbold8_n[220] U8X8_FONT_SECTION("u8x8_font_torus
   Glyphs: 64/170
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_torussansbold8_u[517] U8X8_FONT_SECTION("u8x8_font_torussansbold8_u") = 
+const uint8_t u8x8_font_torussansbold8_u[517] U8X8_FONT_SECTION("u8x8_font_torussansbold8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\3\7\0\0\7\3\0\0\42\177\177"
   "\42\177\177\42\0$.kk:\22\0\0c\63\30\14fc\0\0 vOY\67fP\0\0\0\7"
   "\3\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\0\12\4\37\4\12\0\0\0\10\10"
@@ -4171,7 +4171,7 @@ const uint8_t u8x8_font_torussansbold8_u[517] U8X8_FONT_SECTION("u8x8_font_torus
   Glyphs: 96/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_victoriabold8_r[772] U8X8_FONT_SECTION("u8x8_font_victoriabold8_r") = 
+const uint8_t u8x8_font_victoriabold8_r[772] U8X8_FONT_SECTION("u8x8_font_victoriabold8_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\7\7\0\0\7\7\0\0\42\177\177"
   "\42\177\177\42\0$.kk:\22\0\0c\63\30\14fc\0\0 v_I\177vP\0\0\0\7"
   "\7\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\4\25\37\16\37\25\4\0\0\0\10\10"
@@ -4203,7 +4203,7 @@ const uint8_t u8x8_font_victoriabold8_r[772] U8X8_FONT_SECTION("u8x8_font_victor
   Glyphs: 18/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_victoriabold8_n[220] U8X8_FONT_SECTION("u8x8_font_victoriabold8_n") = 
+const uint8_t u8x8_font_victoriabold8_n[220] U8X8_FONT_SECTION("u8x8_font_victoriabold8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34>*\10\0\0\0\20\20"
@@ -4217,7 +4217,7 @@ const uint8_t u8x8_font_victoriabold8_n[220] U8X8_FONT_SECTION("u8x8_font_victor
   Glyphs: 64/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_victoriabold8_u[517] U8X8_FONT_SECTION("u8x8_font_victoriabold8_u") = 
+const uint8_t u8x8_font_victoriabold8_u[517] U8X8_FONT_SECTION("u8x8_font_victoriabold8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0__\0\0\0\0\7\7\0\0\7\7\0\0\42\177\177"
   "\42\177\177\42\0$.kk:\22\0\0c\63\30\14fc\0\0 v_I\177vP\0\0\0\7"
   "\7\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\4\25\37\16\37\25\4\0\0\0\10\10"
@@ -4241,7 +4241,7 @@ const uint8_t u8x8_font_victoriabold8_u[517] U8X8_FONT_SECTION("u8x8_font_victor
   Glyphs: 96/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_victoriamedium8_r[772] U8X8_FONT_SECTION("u8x8_font_victoriamedium8_r") = 
+const uint8_t u8x8_font_victoriamedium8_r[772] U8X8_FONT_SECTION("u8x8_font_victoriamedium8_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\0_\0\0\0\0\0\7\0\0\0\7\0\0\0\42\177\42"
   "\42\177\42\0\0$*k*\22\0\0\0\42\20\10\4\42\0\0 VIIV P\0\0\0\0\7"
   "\0\0\0\0\0\0\34\42A\0\0\0\0\0A\42\34\0\0\0\0*\34\177\34*\0\0\0\10\10>"
@@ -4273,7 +4273,7 @@ const uint8_t u8x8_font_victoriamedium8_r[772] U8X8_FONT_SECTION("u8x8_font_vict
   Glyphs: 18/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_victoriamedium8_n[220] U8X8_FONT_SECTION("u8x8_font_victoriamedium8_n") = 
+const uint8_t u8x8_font_victoriamedium8_n[220] U8X8_FONT_SECTION("u8x8_font_victoriamedium8_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\70\376\70T\0\0\0\20\20|"
@@ -4287,7 +4287,7 @@ const uint8_t u8x8_font_victoriamedium8_n[220] U8X8_FONT_SECTION("u8x8_font_vict
   Glyphs: 64/98
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_victoriamedium8_u[517] U8X8_FONT_SECTION("u8x8_font_victoriamedium8_u") = 
+const uint8_t u8x8_font_victoriamedium8_u[517] U8X8_FONT_SECTION("u8x8_font_victoriamedium8_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\0_\0\0\0\0\0\7\0\0\0\7\0\0\0\42\177\42"
   "\42\177\42\0\0$*k*\22\0\0\0\42\20\10\4\42\0\0 VIIV P\0\0\0\0\7"
   "\0\0\0\0\0\0\34\42A\0\0\0\0\0A\42\34\0\0\0\0*\34\177\34*\0\0\0\10\10>"
@@ -4311,7 +4311,7 @@ const uint8_t u8x8_font_victoriamedium8_u[517] U8X8_FONT_SECTION("u8x8_font_vict
   Glyphs: 191/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courB18_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_courB18_2x3_f") = 
+const uint8_t u8x8_font_courB18_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_courB18_2x3_f") =
   " \377\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\374\374\370\0\0\0"
   "\0\0\0\0\0\0\0\0\0\1\277\277\1\0\0\0\0\0\0\0\0\0\0\0\0\0\3\3\0\0\0\0"
@@ -4655,7 +4655,7 @@ const uint8_t u8x8_font_courB18_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_courB1
   Glyphs: 95/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courB18_2x3_r[4564] U8X8_FONT_SECTION("u8x8_font_courB18_2x3_r") = 
+const uint8_t u8x8_font_courB18_2x3_r[4564] U8X8_FONT_SECTION("u8x8_font_courB18_2x3_r") =
   " ~\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\370\374\374\370\0\0\0"
   "\0\0\0\0\0\0\0\0\0\1\277\277\1\0\0\0\0\0\0\0\0\0\0\0\0\0\3\3\0\0\0\0"
@@ -4805,7 +4805,7 @@ const uint8_t u8x8_font_courB18_2x3_r[4564] U8X8_FONT_SECTION("u8x8_font_courB18
   Glyphs: 18/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courB18_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_courB18_2x3_n") = 
+const uint8_t u8x8_font_courB18_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_courB18_2x3_n") =
   " :\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -4853,7 +4853,7 @@ const uint8_t u8x8_font_courB18_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_courB18
   Glyphs: 191/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courR18_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_courR18_2x3_f") = 
+const uint8_t u8x8_font_courR18_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_courR18_2x3_f") =
   " \377\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\374\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\37\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\3\3\0\0\0\0"
@@ -5197,7 +5197,7 @@ const uint8_t u8x8_font_courR18_2x3_f[10756] U8X8_FONT_SECTION("u8x8_font_courR1
   Glyphs: 95/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courR18_2x3_r[4564] U8X8_FONT_SECTION("u8x8_font_courR18_2x3_r") = 
+const uint8_t u8x8_font_courR18_2x3_r[4564] U8X8_FONT_SECTION("u8x8_font_courR18_2x3_r") =
   " ~\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\374\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\37\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\3\3\0\0\0\0"
@@ -5347,7 +5347,7 @@ const uint8_t u8x8_font_courR18_2x3_r[4564] U8X8_FONT_SECTION("u8x8_font_courR18
   Glyphs: 18/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courR18_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_courR18_2x3_n") = 
+const uint8_t u8x8_font_courR18_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_courR18_2x3_n") =
   " :\2\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -5395,7 +5395,7 @@ const uint8_t u8x8_font_courR18_2x3_n[1300] U8X8_FONT_SECTION("u8x8_font_courR18
   Glyphs: 191/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courB24_3x4_f[21508] U8X8_FONT_SECTION("u8x8_font_courB24_3x4_f") = 
+const uint8_t u8x8_font_courB24_3x4_f[21508] U8X8_FONT_SECTION("u8x8_font_courB24_3x4_f") =
   " \377\3\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -6075,7 +6075,7 @@ const uint8_t u8x8_font_courB24_3x4_f[21508] U8X8_FONT_SECTION("u8x8_font_courB2
   Glyphs: 95/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courB24_3x4_r[9124] U8X8_FONT_SECTION("u8x8_font_courB24_3x4_r") = 
+const uint8_t u8x8_font_courB24_3x4_r[9124] U8X8_FONT_SECTION("u8x8_font_courB24_3x4_r") =
   " ~\3\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -6368,7 +6368,7 @@ const uint8_t u8x8_font_courB24_3x4_r[9124] U8X8_FONT_SECTION("u8x8_font_courB24
   Glyphs: 18/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courB24_3x4_n[2596] U8X8_FONT_SECTION("u8x8_font_courB24_3x4_n") = 
+const uint8_t u8x8_font_courB24_3x4_n[2596] U8X8_FONT_SECTION("u8x8_font_courB24_3x4_n") =
   " :\3\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -6457,7 +6457,7 @@ const uint8_t u8x8_font_courB24_3x4_n[2596] U8X8_FONT_SECTION("u8x8_font_courB24
   Glyphs: 191/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courR24_3x4_f[21508] U8X8_FONT_SECTION("u8x8_font_courR24_3x4_f") = 
+const uint8_t u8x8_font_courR24_3x4_f[21508] U8X8_FONT_SECTION("u8x8_font_courR24_3x4_f") =
   " \377\3\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -7137,7 +7137,7 @@ const uint8_t u8x8_font_courR24_3x4_f[21508] U8X8_FONT_SECTION("u8x8_font_courR2
   Glyphs: 95/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courR24_3x4_r[9124] U8X8_FONT_SECTION("u8x8_font_courR24_3x4_r") = 
+const uint8_t u8x8_font_courR24_3x4_r[9124] U8X8_FONT_SECTION("u8x8_font_courR24_3x4_r") =
   " ~\3\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -7430,7 +7430,7 @@ const uint8_t u8x8_font_courR24_3x4_r[9124] U8X8_FONT_SECTION("u8x8_font_courR24
   Glyphs: 18/873
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_courR24_3x4_n[2596] U8X8_FONT_SECTION("u8x8_font_courR24_3x4_n") = 
+const uint8_t u8x8_font_courR24_3x4_n[2596] U8X8_FONT_SECTION("u8x8_font_courR24_3x4_n") =
   " :\3\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -7519,7 +7519,7 @@ const uint8_t u8x8_font_courR24_3x4_n[2596] U8X8_FONT_SECTION("u8x8_font_courR24
   Glyphs: 89/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_f[7076] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_o_2x2_f") = 
+const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_f[7076] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_o_2x2_f") =
   " \374\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0~\303\1\1\303~\0\0\0\0\0\0\0\0\0\0\0\37\22\22\37\0\0\0\0\0\0\0"
   "\0\0\0\0\37\21\21\37\37\21\21\37\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -7748,7 +7748,7 @@ const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_f[7076] U8X8_FONT_SECTION
   Glyphs: 74/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_r[2916] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_o_2x2_r") = 
+const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_r[2916] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_o_2x2_r") =
   " z\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0~\303\1\1\303~\0\0\0\0\0\0\0\0\0\0\0\37\22\22\37\0\0\0\0\0\0\0"
   "\0\0\0\0\37\21\21\37\37\21\21\37\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -7847,7 +7847,7 @@ const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_r[2916] U8X8_FONT_SECTION
   Glyphs: 16/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_o_2x2_n") = 
+const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_o_2x2_n") =
   " :\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -7882,7 +7882,7 @@ const uint8_t u8x8_font_lucasarts_scumm_subtitle_o_2x2_n[868] U8X8_FONT_SECTION(
   Glyphs: 89/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_f[7076] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_r_2x2_f") = 
+const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_f[7076] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_r_2x2_f") =
   " \374\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0<\376\376<\0\0\0\0\0\0\0\0\0\0\0\0\0\15\15\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\16\16\0\0\16\16\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -8111,7 +8111,7 @@ const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_f[7076] U8X8_FONT_SECTION
   Glyphs: 74/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_r[2916] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_r_2x2_r") = 
+const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_r[2916] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_r_2x2_r") =
   " z\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0<\376\376<\0\0\0\0\0\0\0\0\0\0\0\0\0\15\15\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\16\16\0\0\16\16\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -8210,7 +8210,7 @@ const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_r[2916] U8X8_FONT_SECTION
   Glyphs: 16/95
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_r_2x2_n") = 
+const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_lucasarts_scumm_subtitle_r_2x2_n") =
   " :\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -8245,7 +8245,7 @@ const uint8_t u8x8_font_lucasarts_scumm_subtitle_r_2x2_n[868] U8X8_FONT_SECTION(
   Glyphs: 191/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr21_2x4_f[14340] U8X8_FONT_SECTION("u8x8_font_inr21_2x4_f") = 
+const uint8_t u8x8_font_inr21_2x4_f[14340] U8X8_FONT_SECTION("u8x8_font_inr21_2x4_f") =
   " \377\2\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\70\374\374\370\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\0\0"
@@ -8701,7 +8701,7 @@ const uint8_t u8x8_font_inr21_2x4_f[14340] U8X8_FONT_SECTION("u8x8_font_inr21_2x
   Glyphs: 95/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr21_2x4_r[6084] U8X8_FONT_SECTION("u8x8_font_inr21_2x4_r") = 
+const uint8_t u8x8_font_inr21_2x4_r[6084] U8X8_FONT_SECTION("u8x8_font_inr21_2x4_r") =
   " ~\2\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\70\374\374\370\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\0\0"
@@ -8899,7 +8899,7 @@ const uint8_t u8x8_font_inr21_2x4_r[6084] U8X8_FONT_SECTION("u8x8_font_inr21_2x4
   Glyphs: 18/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr21_2x4_n[1732] U8X8_FONT_SECTION("u8x8_font_inr21_2x4_n") = 
+const uint8_t u8x8_font_inr21_2x4_n[1732] U8X8_FONT_SECTION("u8x8_font_inr21_2x4_n") =
   " :\2\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -8961,7 +8961,7 @@ const uint8_t u8x8_font_inr21_2x4_n[1732] U8X8_FONT_SECTION("u8x8_font_inr21_2x4
   Glyphs: 191/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr33_3x6_f[32260] U8X8_FONT_SECTION("u8x8_font_inr33_3x6_f") = 
+const uint8_t u8x8_font_inr33_3x6_f[32260] U8X8_FONT_SECTION("u8x8_font_inr33_3x6_f") =
   " \377\3\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -9977,7 +9977,7 @@ const uint8_t u8x8_font_inr33_3x6_f[32260] U8X8_FONT_SECTION("u8x8_font_inr33_3x
   Glyphs: 95/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr33_3x6_r[13684] U8X8_FONT_SECTION("u8x8_font_inr33_3x6_r") = 
+const uint8_t u8x8_font_inr33_3x6_r[13684] U8X8_FONT_SECTION("u8x8_font_inr33_3x6_r") =
   " ~\3\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -10412,7 +10412,7 @@ const uint8_t u8x8_font_inr33_3x6_r[13684] U8X8_FONT_SECTION("u8x8_font_inr33_3x
   Glyphs: 18/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr33_3x6_n[3892] U8X8_FONT_SECTION("u8x8_font_inr33_3x6_n") = 
+const uint8_t u8x8_font_inr33_3x6_n[3892] U8X8_FONT_SECTION("u8x8_font_inr33_3x6_n") =
   " :\3\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -10542,7 +10542,7 @@ const uint8_t u8x8_font_inr33_3x6_n[3892] U8X8_FONT_SECTION("u8x8_font_inr33_3x6
   BBX Build Mode: 3
 */
 #ifdef U8G2_USE_LARGE_FONTS
-const uint8_t u8x8_font_inr46_4x8_f[57348] U8X8_FONT_SECTION("u8x8_font_inr46_4x8_f") = 
+const uint8_t u8x8_font_inr46_4x8_f[57348] U8X8_FONT_SECTION("u8x8_font_inr46_4x8_f") =
   " \377\4\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -12343,7 +12343,7 @@ const uint8_t u8x8_font_inr46_4x8_f[57348] U8X8_FONT_SECTION("u8x8_font_inr46_4x
   Glyphs: 95/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr46_4x8_r[24324] U8X8_FONT_SECTION("u8x8_font_inr46_4x8_r") = 
+const uint8_t u8x8_font_inr46_4x8_r[24324] U8X8_FONT_SECTION("u8x8_font_inr46_4x8_r") =
   " ~\4\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -13111,7 +13111,7 @@ const uint8_t u8x8_font_inr46_4x8_r[24324] U8X8_FONT_SECTION("u8x8_font_inr46_4x
   Glyphs: 18/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inr46_4x8_n[6916] U8X8_FONT_SECTION("u8x8_font_inr46_4x8_n") = 
+const uint8_t u8x8_font_inr46_4x8_n[6916] U8X8_FONT_SECTION("u8x8_font_inr46_4x8_n") =
   " :\4\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -13335,7 +13335,7 @@ const uint8_t u8x8_font_inr46_4x8_n[6916] U8X8_FONT_SECTION("u8x8_font_inr46_4x8
   Glyphs: 191/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb21_2x4_f[14340] U8X8_FONT_SECTION("u8x8_font_inb21_2x4_f") = 
+const uint8_t u8x8_font_inb21_2x4_f[14340] U8X8_FONT_SECTION("u8x8_font_inb21_2x4_f") =
   " \377\2\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0x\374\374\374\370\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\1\0\0"
@@ -13791,7 +13791,7 @@ const uint8_t u8x8_font_inb21_2x4_f[14340] U8X8_FONT_SECTION("u8x8_font_inb21_2x
   Glyphs: 95/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb21_2x4_r[6084] U8X8_FONT_SECTION("u8x8_font_inb21_2x4_r") = 
+const uint8_t u8x8_font_inb21_2x4_r[6084] U8X8_FONT_SECTION("u8x8_font_inb21_2x4_r") =
   " ~\2\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0x\374\374\374\370\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\1\0\0"
@@ -13989,7 +13989,7 @@ const uint8_t u8x8_font_inb21_2x4_r[6084] U8X8_FONT_SECTION("u8x8_font_inb21_2x4
   Glyphs: 18/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb21_2x4_n[1732] U8X8_FONT_SECTION("u8x8_font_inb21_2x4_n") = 
+const uint8_t u8x8_font_inb21_2x4_n[1732] U8X8_FONT_SECTION("u8x8_font_inb21_2x4_n") =
   " :\2\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -14051,7 +14051,7 @@ const uint8_t u8x8_font_inb21_2x4_n[1732] U8X8_FONT_SECTION("u8x8_font_inb21_2x4
   Glyphs: 191/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb33_3x6_f[32260] U8X8_FONT_SECTION("u8x8_font_inb33_3x6_f") = 
+const uint8_t u8x8_font_inb33_3x6_f[32260] U8X8_FONT_SECTION("u8x8_font_inb33_3x6_f") =
   " \377\3\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -15067,7 +15067,7 @@ const uint8_t u8x8_font_inb33_3x6_f[32260] U8X8_FONT_SECTION("u8x8_font_inb33_3x
   Glyphs: 95/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb33_3x6_r[13684] U8X8_FONT_SECTION("u8x8_font_inb33_3x6_r") = 
+const uint8_t u8x8_font_inb33_3x6_r[13684] U8X8_FONT_SECTION("u8x8_font_inb33_3x6_r") =
   " ~\3\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -15502,7 +15502,7 @@ const uint8_t u8x8_font_inb33_3x6_r[13684] U8X8_FONT_SECTION("u8x8_font_inb33_3x
   Glyphs: 18/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb33_3x6_n[3892] U8X8_FONT_SECTION("u8x8_font_inb33_3x6_n") = 
+const uint8_t u8x8_font_inb33_3x6_n[3892] U8X8_FONT_SECTION("u8x8_font_inb33_3x6_n") =
   " :\3\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -15632,7 +15632,7 @@ const uint8_t u8x8_font_inb33_3x6_n[3892] U8X8_FONT_SECTION("u8x8_font_inb33_3x6
   BBX Build Mode: 3
 */
 #ifdef U8G2_USE_LARGE_FONTS
-const uint8_t u8x8_font_inb46_4x8_f[57348] U8X8_FONT_SECTION("u8x8_font_inb46_4x8_f") = 
+const uint8_t u8x8_font_inb46_4x8_f[57348] U8X8_FONT_SECTION("u8x8_font_inb46_4x8_f") =
   " \377\4\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -17433,7 +17433,7 @@ const uint8_t u8x8_font_inb46_4x8_f[57348] U8X8_FONT_SECTION("u8x8_font_inb46_4x
   Glyphs: 95/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb46_4x8_r[24324] U8X8_FONT_SECTION("u8x8_font_inb46_4x8_r") = 
+const uint8_t u8x8_font_inb46_4x8_r[24324] U8X8_FONT_SECTION("u8x8_font_inb46_4x8_r") =
   " ~\4\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -18201,7 +18201,7 @@ const uint8_t u8x8_font_inb46_4x8_r[24324] U8X8_FONT_SECTION("u8x8_font_inb46_4x
   Glyphs: 18/658
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_inb46_4x8_n[6916] U8X8_FONT_SECTION("u8x8_font_inb46_4x8_n") = 
+const uint8_t u8x8_font_inb46_4x8_n[6916] U8X8_FONT_SECTION("u8x8_font_inb46_4x8_n") =
   " :\4\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -18421,11 +18421,11 @@ const uint8_t u8x8_font_inb46_4x8_n[6916] U8X8_FONT_SECTION("u8x8_font_inb46_4x8
   "\0\0\0";
 /*
   Fontname: -FreeType-Press Start 2P-Medium-R-Normal--8-80-72-72-P-69-ISO10646-1
-  Copyright: (c) 2011 Cody 
+  Copyright: (c) 2011 Cody
   Glyphs: 192/556
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pressstart2p_f[1796] U8X8_FONT_SECTION("u8x8_font_pressstart2p_f") = 
+const uint8_t u8x8_font_pressstart2p_f[1796] U8X8_FONT_SECTION("u8x8_font_pressstart2p_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\0__\7\0\0\0\0\7\7\0\7\7\0\0\42\177\177\42"
   "\177\177\42\0$.*\177*:\20\0F%\23\10dR\61\0\66\177I_v`P\0\0\0\7\7"
   "\0\0\0\0\0\0\34>cA\0\0\0Ac>\34\0\0\0\10*>\34>*\10\0\0\10\10>"
@@ -18485,11 +18485,11 @@ const uint8_t u8x8_font_pressstart2p_f[1796] U8X8_FONT_SECTION("u8x8_font_presss
   "\241\375|";
 /*
   Fontname: -FreeType-Press Start 2P-Medium-R-Normal--8-80-72-72-P-69-ISO10646-1
-  Copyright: (c) 2011 Cody 
+  Copyright: (c) 2011 Cody
   Glyphs: 96/556
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pressstart2p_r[772] U8X8_FONT_SECTION("u8x8_font_pressstart2p_r") = 
+const uint8_t u8x8_font_pressstart2p_r[772] U8X8_FONT_SECTION("u8x8_font_pressstart2p_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0__\7\0\0\0\0\7\7\0\7\7\0\0\42\177\177\42"
   "\177\177\42\0$.*\177*:\20\0F%\23\10dR\61\0\66\177I_v`P\0\0\0\7\7"
   "\0\0\0\0\0\0\34>cA\0\0\0Ac>\34\0\0\0\10*>\34>*\10\0\0\10\10>"
@@ -18517,11 +18517,11 @@ const uint8_t u8x8_font_pressstart2p_r[772] U8X8_FONT_SECTION("u8x8_font_pressst
   "``\0";
 /*
   Fontname: -FreeType-Press Start 2P-Medium-R-Normal--8-80-72-72-P-69-ISO10646-1
-  Copyright: (c) 2011 Cody 
+  Copyright: (c) 2011 Cody
   Glyphs: 18/556
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pressstart2p_n[220] U8X8_FONT_SECTION("u8x8_font_pressstart2p_n") = 
+const uint8_t u8x8_font_pressstart2p_n[220] U8X8_FONT_SECTION("u8x8_font_pressstart2p_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34>*\10\0\0\10\10>"
@@ -18531,11 +18531,11 @@ const uint8_t u8x8_font_pressstart2p_n[220] U8X8_FONT_SECTION("u8x8_font_pressst
   "\15\7\3\0\66OMYYv\60\0\6OIIi\77\36\0\0\0\66\66\0\0\0";
 /*
   Fontname: -FreeType-Press Start 2P-Medium-R-Normal--8-80-72-72-P-69-ISO10646-1
-  Copyright: (c) 2011 Cody 
+  Copyright: (c) 2011 Cody
   Glyphs: 64/556
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pressstart2p_u[516] U8X8_FONT_SECTION("u8x8_font_pressstart2p_u") = 
+const uint8_t u8x8_font_pressstart2p_u[516] U8X8_FONT_SECTION("u8x8_font_pressstart2p_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0__\7\0\0\0\0\7\7\0\7\7\0\0\42\177\177\42"
   "\177\177\42\0$.*\177*:\20\0F%\23\10dR\61\0\66\177I_v`P\0\0\0\7\7"
   "\0\0\0\0\0\0\34>cA\0\0\0Ac>\34\0\0\0\10*>\34>*\10\0\0\10\10>"
@@ -18559,7 +18559,7 @@ const uint8_t u8x8_font_pressstart2p_u[516] U8X8_FONT_SECTION("u8x8_font_pressst
   Glyphs: 192/260
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pcsenior_f[1796] U8X8_FONT_SECTION("u8x8_font_pcsenior_f") = 
+const uint8_t u8x8_font_pcsenior_f[1796] U8X8_FONT_SECTION("u8x8_font_pcsenior_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\0\7\7\0\7\7\0\0\24\177\177\24"
   "\177\177\24\0$.kk:\22\0\0Ff\60\30\14fb\0\60zO]\67zH\0\4\7\3\0"
   "\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18623,7 +18623,7 @@ const uint8_t u8x8_font_pcsenior_f[1796] U8X8_FONT_SECTION("u8x8_font_pcsenior_f
   Glyphs: 96/260
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pcsenior_r[772] U8X8_FONT_SECTION("u8x8_font_pcsenior_r") = 
+const uint8_t u8x8_font_pcsenior_r[772] U8X8_FONT_SECTION("u8x8_font_pcsenior_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\0\7\7\0\7\7\0\0\24\177\177\24"
   "\177\177\24\0$.kk:\22\0\0Ff\60\30\14fb\0\60zO]\67zH\0\4\7\3\0"
   "\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18655,7 +18655,7 @@ const uint8_t u8x8_font_pcsenior_r[772] U8X8_FONT_SECTION("u8x8_font_pcsenior_r"
   Glyphs: 18/260
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pcsenior_n[220] U8X8_FONT_SECTION("u8x8_font_pcsenior_n") = 
+const uint8_t u8x8_font_pcsenior_n[220] U8X8_FONT_SECTION("u8x8_font_pcsenior_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18669,7 +18669,7 @@ const uint8_t u8x8_font_pcsenior_n[220] U8X8_FONT_SECTION("u8x8_font_pcsenior_n"
   Glyphs: 64/260
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pcsenior_u[517] U8X8_FONT_SECTION("u8x8_font_pcsenior_u") = 
+const uint8_t u8x8_font_pcsenior_u[517] U8X8_FONT_SECTION("u8x8_font_pcsenior_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\0\7\7\0\7\7\0\0\24\177\177\24"
   "\177\177\24\0$.kk:\22\0\0Ff\60\30\14fb\0\60zO]\67zH\0\4\7\3\0"
   "\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18693,7 +18693,7 @@ const uint8_t u8x8_font_pcsenior_u[517] U8X8_FONT_SECTION("u8x8_font_pcsenior_u"
   Glyphs: 192/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcgathin_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_f") = 
+const uint8_t u8x8_font_pxplusibmcgathin_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\0\6_\6\0\0\0\0\0\7\0\0\7\0\0\0\24\177\24"
   "\24\177\24\0\0$*kk*\22\0\0F&\20\10db\0\60JEM\62HH\0\0\0\4\3"
   "\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\10*\34\34\34*\10\0\0\10\10>"
@@ -18757,7 +18757,7 @@ const uint8_t u8x8_font_pxplusibmcgathin_f[1796] U8X8_FONT_SECTION("u8x8_font_px
   Glyphs: 96/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcgathin_r[773] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_r") = 
+const uint8_t u8x8_font_pxplusibmcgathin_r[773] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\6_\6\0\0\0\0\0\7\0\0\7\0\0\0\24\177\24"
   "\24\177\24\0\0$*kk*\22\0\0F&\20\10db\0\60JEM\62HH\0\0\0\4\3"
   "\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\10*\34\34\34*\10\0\0\10\10>"
@@ -18789,7 +18789,7 @@ const uint8_t u8x8_font_pxplusibmcgathin_r[773] U8X8_FONT_SECTION("u8x8_font_pxp
   Glyphs: 18/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcgathin_n[220] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_n") = 
+const uint8_t u8x8_font_pxplusibmcgathin_n[220] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*\34\34\34*\10\0\0\10\10>"
@@ -18803,7 +18803,7 @@ const uint8_t u8x8_font_pxplusibmcgathin_n[220] U8X8_FONT_SECTION("u8x8_font_pxp
   Glyphs: 64/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcgathin_u[517] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_u") = 
+const uint8_t u8x8_font_pxplusibmcgathin_u[517] U8X8_FONT_SECTION("u8x8_font_pxplusibmcgathin_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\6_\6\0\0\0\0\0\7\0\0\7\0\0\0\24\177\24"
   "\24\177\24\0\0$*kk*\22\0\0F&\20\10db\0\60JEM\62HH\0\0\0\4\3"
   "\0\0\0\0\0\34\42A\0\0\0\0\0\0A\42\34\0\0\0\10*\34\34\34*\10\0\0\10\10>"
@@ -18827,7 +18827,7 @@ const uint8_t u8x8_font_pxplusibmcgathin_u[517] U8X8_FONT_SECTION("u8x8_font_pxp
   Glyphs: 192/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcga_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_f") = 
+const uint8_t u8x8_font_pxplusibmcga_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\0\7\7\0\7\7\0\0\24\177\177\24"
   "\177\177\24\0$.kk:\22\0\0Ff\60\30\14fb\0\60zO]\67zH\0\4\7\3\0"
   "\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18891,7 +18891,7 @@ const uint8_t u8x8_font_pxplusibmcga_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplus
   Glyphs: 96/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcga_r[772] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_r") = 
+const uint8_t u8x8_font_pxplusibmcga_r[772] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\0\7\7\0\7\7\0\0\24\177\177\24"
   "\177\177\24\0$.kk:\22\0\0Ff\60\30\14fb\0\60zO]\67zH\0\4\7\3\0"
   "\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18923,7 +18923,7 @@ const uint8_t u8x8_font_pxplusibmcga_r[772] U8X8_FONT_SECTION("u8x8_font_pxplusi
   Glyphs: 18/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcga_n[220] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_n") = 
+const uint8_t u8x8_font_pxplusibmcga_n[220] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18937,7 +18937,7 @@ const uint8_t u8x8_font_pxplusibmcga_n[220] U8X8_FONT_SECTION("u8x8_font_pxplusi
   Glyphs: 64/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplusibmcga_u[517] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_u") = 
+const uint8_t u8x8_font_pxplusibmcga_u[517] U8X8_FONT_SECTION("u8x8_font_pxplusibmcga_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\0\7\7\0\7\7\0\0\24\177\177\24"
   "\177\177\24\0$.kk:\22\0\0Ff\60\30\14fb\0\60zO]\67zH\0\4\7\3\0"
   "\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\0\10*>\34\34>*\10\10\10>>"
@@ -18961,7 +18961,7 @@ const uint8_t u8x8_font_pxplusibmcga_u[517] U8X8_FONT_SECTION("u8x8_font_pxplusi
   Glyphs: 192/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplustandynewtv_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_f") = 
+const uint8_t u8x8_font_pxplustandynewtv_f[1796] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_f") =
   " \377\1\1\0\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\3\7\0\0\7\3\0\24\177\177\24"
   "\177\177\24\0\0$.kk:\22\0Ff\60\30\14fb\0\60zO]\67zH\0\0\0\4\7"
   "\3\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\10*>\34\34>*\10\0\10\10>"
@@ -19025,7 +19025,7 @@ const uint8_t u8x8_font_pxplustandynewtv_f[1796] U8X8_FONT_SECTION("u8x8_font_px
   Glyphs: 96/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplustandynewtv_r[772] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_r") = 
+const uint8_t u8x8_font_pxplustandynewtv_r[772] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_r") =
   " \177\1\1\0\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\3\7\0\0\7\3\0\24\177\177\24"
   "\177\177\24\0\0$.kk:\22\0Ff\60\30\14fb\0\60zO]\67zH\0\0\0\4\7"
   "\3\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\10*>\34\34>*\10\0\10\10>"
@@ -19057,7 +19057,7 @@ const uint8_t u8x8_font_pxplustandynewtv_r[772] U8X8_FONT_SECTION("u8x8_font_pxp
   Glyphs: 18/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplustandynewtv_n[220] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_n") = 
+const uint8_t u8x8_font_pxplustandynewtv_n[220] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_n") =
   " :\1\1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\10*>\34\34>*\10\0\10\10>"
@@ -19071,7 +19071,7 @@ const uint8_t u8x8_font_pxplustandynewtv_n[220] U8X8_FONT_SECTION("u8x8_font_pxp
   Glyphs: 64/781
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_pxplustandynewtv_u[517] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_u") = 
+const uint8_t u8x8_font_pxplustandynewtv_u[517] U8X8_FONT_SECTION("u8x8_font_pxplustandynewtv_u") =
   " _\1\1\0\0\0\0\0\0\0\0\0\0\6__\6\0\0\0\3\7\0\0\7\3\0\24\177\177\24"
   "\177\177\24\0\0$.kk:\22\0Ff\60\30\14fb\0\60zO]\67zH\0\0\0\4\7"
   "\3\0\0\0\0\0\34>cA\0\0\0\0Ac>\34\0\0\10*>\34\34>*\10\0\10\10>"
@@ -19095,7 +19095,7 @@ const uint8_t u8x8_font_pxplustandynewtv_u[517] U8X8_FONT_SECTION("u8x8_font_pxp
   Glyphs: 151/288
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_px437wyse700a_2x2_f[7172] U8X8_FONT_SECTION("u8x8_font_px437wyse700a_2x2_f") = 
+const uint8_t u8x8_font_px437wyse700a_2x2_f[7172] U8X8_FONT_SECTION("u8x8_font_px437wyse700a_2x2_f") =
   " \377\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0p\370\374\374\374\374\370p\0\0\0\0\0\0\0\0\0\0\33\33\33\33\0\0"
   "\0\0\0\0\0\0\6\16\36\36\0\0\0\0\36\36\16\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -19327,7 +19327,7 @@ const uint8_t u8x8_font_px437wyse700a_2x2_f[7172] U8X8_FONT_SECTION("u8x8_font_p
   Glyphs: 96/288
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_px437wyse700a_2x2_r[3077] U8X8_FONT_SECTION("u8x8_font_px437wyse700a_2x2_r") = 
+const uint8_t u8x8_font_px437wyse700a_2x2_r[3077] U8X8_FONT_SECTION("u8x8_font_px437wyse700a_2x2_r") =
   " \177\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0p\370\374\374\374\374\370p\0\0\0\0\0\0\0\0\0\0\33\33\33\33\0\0"
   "\0\0\0\0\0\0\6\16\36\36\0\0\0\0\36\36\16\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -19431,7 +19431,7 @@ const uint8_t u8x8_font_px437wyse700a_2x2_r[3077] U8X8_FONT_SECTION("u8x8_font_p
   Glyphs: 18/288
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_px437wyse700a_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_px437wyse700a_2x2_n") = 
+const uint8_t u8x8_font_px437wyse700a_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_px437wyse700a_2x2_n") =
   " :\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -19466,7 +19466,7 @@ const uint8_t u8x8_font_px437wyse700a_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_px
   Glyphs: 151/288
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_px437wyse700b_2x2_f[7172] U8X8_FONT_SECTION("u8x8_font_px437wyse700b_2x2_f") = 
+const uint8_t u8x8_font_px437wyse700b_2x2_f[7172] U8X8_FONT_SECTION("u8x8_font_px437wyse700b_2x2_f") =
   " \377\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\374\374\374\0\0\0\0\0\0\0\0\0\0\0\0\0\33\33\33\0\0"
   "\0\0\0\0\0\0\0\36\36\36\0\0\0\0\36\36\36\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -19698,7 +19698,7 @@ const uint8_t u8x8_font_px437wyse700b_2x2_f[7172] U8X8_FONT_SECTION("u8x8_font_p
   Glyphs: 96/288
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_px437wyse700b_2x2_r[3077] U8X8_FONT_SECTION("u8x8_font_px437wyse700b_2x2_r") = 
+const uint8_t u8x8_font_px437wyse700b_2x2_r[3077] U8X8_FONT_SECTION("u8x8_font_px437wyse700b_2x2_r") =
   " \177\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\374\374\374\0\0\0\0\0\0\0\0\0\0\0\0\0\33\33\33\0\0"
   "\0\0\0\0\0\0\0\36\36\36\0\0\0\0\36\36\36\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -19802,7 +19802,7 @@ const uint8_t u8x8_font_px437wyse700b_2x2_r[3077] U8X8_FONT_SECTION("u8x8_font_p
   Glyphs: 18/288
   BBX Build Mode: 3
 */
-const uint8_t u8x8_font_px437wyse700b_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_px437wyse700b_2x2_n") = 
+const uint8_t u8x8_font_px437wyse700b_2x2_n[868] U8X8_FONT_SECTION("u8x8_font_px437wyse700b_2x2_n") =
   " :\2\2\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"

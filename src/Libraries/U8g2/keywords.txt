@@ -2,7 +2,7 @@
 
 # Syntax Coloring Map For u8g2
 
-####################################### 
+#######################################
 
 # Class (KEYWORD1)
 
@@ -18,7 +18,7 @@ u8g2	KEYWORD1
 
 # Methods and Functions (KEYWORD2)
 
-#######################################	
+#######################################
 
 
 begin	KEYWORD2
@@ -105,7 +105,7 @@ setBufferCurrTileRow	KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
- 
+
 
 u8g2_font_u8glib_4_tf	LITERAL1
 u8g2_font_u8glib_4_tr	LITERAL1

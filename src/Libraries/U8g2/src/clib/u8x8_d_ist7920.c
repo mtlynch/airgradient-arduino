@@ -1,39 +1,39 @@
 /*
 
   u8x8_d_ist7920.c
-  
+
   this is NOT ST7920!
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 
   Copyright (c) 2019, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-  
+
 */
 #include "u8x8.h"
 
@@ -73,10 +73,10 @@ static const u8x8_display_info_t u8x8_ist7920_128x128_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 90,	/* IST7920 datasheet, page 48 */
   /* pre_chip_disable_wait_ns = */ 90,	/* IST7920 datasheet, page 48 */
-  /* reset_pulse_width_ms = */ 10,		 
+  /* reset_pulse_width_ms = */ 10,
   /* post_reset_wait_ms = */ 20, 		/* IST7920 Startup Seq.. */
   /* sda_setup_time_ns = */ 45,		/* IST7920 datasheet, page 48 */
   /* sck_pulse_width_ns = */ 130,	/* IST7920 datasheet, page 48 */
@@ -95,20 +95,20 @@ static const u8x8_display_info_t u8x8_ist7920_128x128_display_info =
 
 /* 1/128 Duty, 1/10 Bias, 128x128 round display */
 static const uint8_t u8x8_d_ist7920_128x128_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
   U8X8_C(0x076),				/* Software Reset */
   U8X8_DLY(50),
   U8X8_C(0x03c),				/* display off */
-  
-  
-  U8X8_CA(0x090, 128),			/* Set Duty */
-  //U8X8_CAA(0x0b2, 0x011, 0x00),	/* Set Frame Control */  
 
-  U8X8_CA(0x030, 16),			/* Set Bias 0: 1/8, 8: 1/9, 16: 1/10, 24: 1/11, 48: 1/12 ... */  
-  U8X8_CA(0x031, 0x03f),		/* Set voltage generate clock(31H/11H) */  
-  //U8X8_CA(0x032, 0x015),		/* Temperature compensation */  
+
+  U8X8_CA(0x090, 128),			/* Set Duty */
+  //U8X8_CAA(0x0b2, 0x011, 0x00),	/* Set Frame Control */
+
+  U8X8_CA(0x030, 16),			/* Set Bias 0: 1/8, 8: 1/9, 16: 1/10, 24: 1/11, 48: 1/12 ... */
+  U8X8_CA(0x031, 0x03f),		/* Set voltage generate clock(31H/11H) */
+  //U8X8_CA(0x032, 0x015),		/* Temperature compensation */
   U8X8_CA(0x033, 0x020),		/* Power Control */
   U8X8_DLY(100),
   U8X8_CA(0x033, 0x02c),		/* Power Control */
@@ -117,15 +117,15 @@ static const uint8_t u8x8_d_ist7920_128x128_init_seq[] = {
   U8X8_DLY(100),
   U8X8_CA(0x033, 0x02f),		/* Power Control */
   U8X8_DLY(200),
-  
+
   U8X8_C(0x064),				/* Display Ctrl: Bit3: SHL 2:ADC 1:EON, 0:REV */
 
-  U8X8_CAA(0x074, 0x000, 0x00f),	/* AY Window */  
-  U8X8_CAA(0x075, 0x000, 0x07f),	/* AX Window */  
-  
+  U8X8_CAA(0x074, 0x000, 0x00f),	/* AY Window */
+  U8X8_CAA(0x075, 0x000, 0x07f),	/* AX Window */
+
   U8X8_CA(0x040, 64),			/* Start line at 64 */
 
-  U8X8_CA(0x0b1, 100),			/* electronic volume */  
+  U8X8_CA(0x0b1, 100),			/* electronic volume */
 
 
   U8X8_END_TRANSFER(),             	/* disable chip */
@@ -161,7 +161,7 @@ uint8_t u8x8_d_ist7920_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
       {
 	u8x8_cad_SendSequence(u8x8, u8x8_d_ist7920_128x128_flip1_seq);
 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
-      }	
+      }
       break;
 #ifdef U8X8_WITH_SET_CONTRAST
     case U8X8_MSG_DISPLAY_SET_CONTRAST:
@@ -173,7 +173,7 @@ uint8_t u8x8_d_ist7920_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 #endif
     case U8X8_MSG_DISPLAY_DRAW_TILE:
       u8x8_cad_StartTransfer(u8x8);
-    
+
       x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x *= 8;
       x += u8x8->x_offset;
@@ -181,7 +181,7 @@ uint8_t u8x8_d_ist7920_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
       u8x8_cad_SendArg(u8x8, x );
       u8x8_cad_SendCmd(u8x8, 0x001 );
       u8x8_cad_SendArg(u8x8, (((u8x8_tile_t *)arg_ptr)->y_pos) );
-    
+
       c = ((u8x8_tile_t *)arg_ptr)->cnt;
       c *= 8;
       ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
@@ -190,7 +190,7 @@ uint8_t u8x8_d_ist7920_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 	u8x8_cad_SendData(u8x8, c, ptr);	/* note: SendData can not handle more than 255 bytes */
 	arg_int--;
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:

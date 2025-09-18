@@ -5,7 +5,7 @@ on: [pull_request, push, repository_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/setup-python@v4
       with:

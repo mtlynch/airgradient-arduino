@@ -2,7 +2,7 @@
 
   u8x8_d_ld7032_60x32.c
   Note: Flip Mode is NOT supported
-  
+
   Also contains 128x36 OLED variant
 
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
@@ -10,30 +10,30 @@
   Copyright (c) 2023, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
-  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 */
 
 
@@ -44,7 +44,7 @@
 /* http://www.seeedstudio.com/document/pdf/0.5OLED%20SPEC.pdf */
 #ifdef OBSOLETE
 static const uint8_t u8x8_d_ld7032_60x32_init_seq_old[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
   //U8X8_CA(0x002, 0x001),		/* Dot Matrix Display ON */
@@ -63,8 +63,8 @@ static const uint8_t u8x8_d_ld7032_60x32_init_seq_old[] = {
   U8X8_CA(0x03f, 0x011),		/* VCC_R_SEL: ??? */
   U8X8_CA(0x03d, 0x000),		/* VSS selection: 2.8V */
   //U8X8_CA(0x002, 0x001),		/* Dot Matrix Display ON */
-  
-    
+
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -72,7 +72,7 @@ static const uint8_t u8x8_d_ld7032_60x32_init_seq_old[] = {
 
 /* new sequence https://github.com/olikraus/u8g2/issues/865 */
 static const uint8_t u8x8_d_ld7032_60x32_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
   U8X8_CA(0x02, 0x00),		  		/* Dot Matrix Display OFF */
@@ -120,14 +120,14 @@ static const uint8_t u8x8_d_ld7032_60x32_powersave1_seq[] = {
 
 static const uint8_t u8x8_d_ld7032_60x32_flip0_seq[] = {
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  U8X8_CA(0x009, 0x000),		/* Display Direction:  reset default (x,y: min --> max) */  
+  U8X8_CA(0x009, 0x000),		/* Display Direction:  reset default (x,y: min --> max) */
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
 
 static const uint8_t u8x8_d_ld7032_60x32_flip1_seq[] = {
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  //U8X8_CA(0x009, 0x002),		/* Display Direction:  reset default (x,y: min --> max) */  
+  //U8X8_CA(0x009, 0x002),		/* Display Direction:  reset default (x,y: min --> max) */
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -146,7 +146,7 @@ static uint8_t u8x8_d_ld7032_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
     */
     case U8X8_MSG_DISPLAY_INIT:
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_60x32_init_seq);    
+      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_60x32_init_seq);
       break;
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
       if ( arg_int == 0 )
@@ -178,7 +178,7 @@ static uint8_t u8x8_d_ld7032_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
 #endif
     case U8X8_MSG_DISPLAY_DRAW_TILE:
       u8x8_cad_StartTransfer(u8x8);
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x += u8x8->x_offset/8;
       u8x8_cad_SendCmd(u8x8, 0x034 );
       u8x8_cad_SendArg(u8x8, x );
@@ -189,8 +189,8 @@ static uint8_t u8x8_d_ld7032_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
       u8x8_cad_SendCmd(u8x8, 0x037 );
       u8x8_cad_SendArg(u8x8, 0x01f );
       u8x8_cad_SendCmd(u8x8, 0x008 );
-    
-      
+
+
       do
       {
 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
@@ -198,7 +198,7 @@ static uint8_t u8x8_d_ld7032_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
 	u8x8_cad_SendData(u8x8, c*8, ptr); 	/* note: SendData can not handle more than 255 bytes */
 	arg_int--;
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:
@@ -212,18 +212,18 @@ static const u8x8_display_info_t u8x8_ld7032_60x32_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 15,
   /* pre_chip_disable_wait_ns = */ 20,
-  /* reset_pulse_width_ms = */ 100, 	
-  /* post_reset_wait_ms = */ 100, 
+  /* reset_pulse_width_ms = */ 100,
+  /* post_reset_wait_ms = */ 100,
   /* sda_setup_time_ns = */ 30,		/* 20ns, but cycle time is 60ns, so use 60/2 */
   /* sck_pulse_width_ns = */ 30,	/* 20ns, but cycle time is 60ns, so use 60/2  */
   /* sck_clock_hz = */ 4000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  1000000000/sck_pulse_width_ns */
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 4,
   /* data_setup_time_ns = */ 20,
-  /* write_pulse_width_ns = */ 40,	
+  /* write_pulse_width_ns = */ 40,
   /* tile_width = */ 8,
   /* tile_height = */ 4,
   /* default_x_offset = */ 0,
@@ -248,38 +248,38 @@ uint8_t u8x8_d_ld7032_60x32(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 
 /* new sequence https://github.com/olikraus/u8g2/issues/1189 */
 static const uint8_t u8x8_d_ld7032_60x32_alt_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
-  U8X8_CA(0x02, 0x00),		  		
-  U8X8_CA(0x14, 0x00),		  		
-  U8X8_CA(0x1A, 0x05),		  		
-  U8X8_CA(0x1D, 0x00),		  	
-  U8X8_CA(0x09, 0x00),	      		
+  U8X8_CA(0x02, 0x00),
+  U8X8_CA(0x14, 0x00),
+  U8X8_CA(0x1A, 0x05),
+  U8X8_CA(0x1D, 0x00),
+  U8X8_CA(0x09, 0x00),
   U8X8_CAA(0x30, 0x00, 0x3F),
   U8X8_CAA(0x32, 0x08, 0x27),
-  U8X8_CA(0x34, 0x00),				
-  U8X8_CA(0x35, 0x07),		
-  U8X8_CA(0x36, 0x08),	
-  U8X8_CA(0x37, 0x27),			
-  U8X8_CA(0x38, 0x00),        
-  U8X8_CA(0x39, 0x20),       
-  U8X8_CA(0x10, 0x05),		  	
-  U8X8_CA(0x16, 0x00),		  	
-  U8X8_CA(0x18, 0x08),		  		
-  U8X8_CA(0x12, 0x2F),		  	
-  U8X8_CA(0x3D, 0x01),		  	
-  U8X8_CA(0x3F, 0x10),		  		
-  U8X8_CA(0x44, 0x02),		  		
-  U8X8_CA(0x48, 0x03),		  	
-  U8X8_CA(0x17, 0x00),         
-  U8X8_CA(0x13, 0x01),        
-  U8X8_CA(0x3F, 0x11),          // internal regulator enabled, vcc_c * 0.7 
+  U8X8_CA(0x34, 0x00),
+  U8X8_CA(0x35, 0x07),
+  U8X8_CA(0x36, 0x08),
+  U8X8_CA(0x37, 0x27),
+  U8X8_CA(0x38, 0x00),
+  U8X8_CA(0x39, 0x20),
+  U8X8_CA(0x10, 0x05),
+  U8X8_CA(0x16, 0x00),
+  U8X8_CA(0x18, 0x08),
+  U8X8_CA(0x12, 0x2F),
+  U8X8_CA(0x3D, 0x01),
+  U8X8_CA(0x3F, 0x10),
+  U8X8_CA(0x44, 0x02),
+  U8X8_CA(0x48, 0x03),
+  U8X8_CA(0x17, 0x00),
+  U8X8_CA(0x13, 0x01),
+  U8X8_CA(0x3F, 0x11),          // internal regulator enabled, vcc_c * 0.7
   U8X8_CA(0x3D, 0x00),
 
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
-  
+
   };
 
 uint8_t u8x8_d_ld7032_60x32_alt(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
@@ -293,10 +293,10 @@ uint8_t u8x8_d_ld7032_60x32_alt(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void
     if ( msg ==U8X8_MSG_DISPLAY_INIT )
     {
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_60x32_alt_init_seq);    
+      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_60x32_alt_init_seq);
       return 1;
     }
-    
+
     return u8x8_d_ld7032_generic(u8x8, msg, arg_int, arg_ptr);
 }
 
@@ -319,7 +319,7 @@ static uint8_t u8x8_d_ld7032_128_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_
     */
     case U8X8_MSG_DISPLAY_INIT:
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_60x32_init_seq);    
+      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_60x32_init_seq);
       break;
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
       if ( arg_int == 0 )
@@ -351,7 +351,7 @@ static uint8_t u8x8_d_ld7032_128_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_
 #endif
     case U8X8_MSG_DISPLAY_DRAW_TILE:
       u8x8_cad_StartTransfer(u8x8);
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x += u8x8->x_offset/8;
       u8x8_cad_SendCmd(u8x8, 0x034 );
       u8x8_cad_SendArg(u8x8, x );
@@ -362,8 +362,8 @@ static uint8_t u8x8_d_ld7032_128_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_
       u8x8_cad_SendCmd(u8x8, 0x037 );
       u8x8_cad_SendArg(u8x8, 0x027 );
       u8x8_cad_SendCmd(u8x8, 0x008 );
-    
-      
+
+
       do
       {
 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
@@ -371,7 +371,7 @@ static uint8_t u8x8_d_ld7032_128_generic(u8x8_t *u8x8, uint8_t msg, uint8_t arg_
 	u8x8_cad_SendData(u8x8, c*8, ptr); 	/* note: SendData can not handle more than 255 bytes */
 	arg_int--;
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:
@@ -385,18 +385,18 @@ static const u8x8_display_info_t u8x8_ld7032_128x36_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 15,
   /* pre_chip_disable_wait_ns = */ 20,
-  /* reset_pulse_width_ms = */ 100, 	
-  /* post_reset_wait_ms = */ 100, 
+  /* reset_pulse_width_ms = */ 100,
+  /* post_reset_wait_ms = */ 100,
   /* sda_setup_time_ns = */ 30,		/* 20ns, but cycle time is 60ns, so use 60/2 */
   /* sck_pulse_width_ns = */ 30,	/* 20ns, but cycle time is 60ns, so use 60/2  */
   /* sck_clock_hz = */ 4000000UL,	/* since Arduino 1.6.0, the SPI bus speed in Hz. Should be  1000000000/sck_pulse_width_ns */
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 4,
   /* data_setup_time_ns = */ 20,
-  /* write_pulse_width_ns = */ 40,	
+  /* write_pulse_width_ns = */ 40,
   /* tile_width = */ 16,
   /* tile_height = */ 5,
   /* default_x_offset = */ 0,
@@ -406,7 +406,7 @@ static const u8x8_display_info_t u8x8_ld7032_128x36_display_info =
 };
 
 static const uint8_t u8x8_d_ld7032_128x36_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
   U8X8_CA(0x14, 0x00),		  		// standby mode
@@ -414,16 +414,16 @@ static const uint8_t u8x8_d_ld7032_128x36_init_seq[] = {
   U8X8_CA(0x1A, 0x05),		  		// frame frequency
   U8X8_CA(0x1D, 0x00),		  	        // data write direction (datasheet: 1d 0b
   U8X8_CA(0x09, 0x00),	      		        // scan direction
-  U8X8_CAA(0x30, 0x00, 0x7F),             // column driver active range 
+  U8X8_CAA(0x30, 0x00, 0x7F),             // column driver active range
   U8X8_CAA(0x32, 0x04, 0x27),           // row driver active range
   U8X8_CA(0x34, 0x00),				// start line
   U8X8_CA(0x35, 0x0f),		                // end line
   U8X8_CA(0x36, 0x04),	                        // row start line
   U8X8_CA(0x37, 0x27),			        // row end line
-  U8X8_CA(0x38, 0x00),                          // x disp start, default 0        
+  U8X8_CA(0x38, 0x00),                          // x disp start, default 0
   U8X8_CA(0x39, 0x00),                          // y disp start, default 0
   U8X8_CA(0x10, 0x1f),		  	        // peak pulse width
-  U8X8_CA(0x16, 0x05),		                // pulse delay width  	
+  U8X8_CA(0x16, 0x05),		                // pulse delay width
   U8X8_CA(0x18, 0x1f),		  		// pre charge width
   U8X8_CA(0x12, 0x3F),		  	        // contrast control
   U8X8_CA(0x44, 0x02),		  		// PreC select, default: 2
@@ -435,7 +435,7 @@ static const uint8_t u8x8_d_ld7032_128x36_init_seq[] = {
 
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
-  
+
   };
 
 uint8_t u8x8_d_ld7032_128x36(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
@@ -449,9 +449,9 @@ uint8_t u8x8_d_ld7032_128x36(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *a
     if ( msg ==U8X8_MSG_DISPLAY_INIT )
     {
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_128x36_init_seq);    
+      u8x8_cad_SendSequence(u8x8, u8x8_d_ld7032_128x36_init_seq);
       return 1;
     }
-    
+
     return u8x8_d_ld7032_128_generic(u8x8, msg, arg_int, arg_ptr);
 }

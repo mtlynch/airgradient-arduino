@@ -1,42 +1,42 @@
 /*
 
   u8x8_d_st7511.c
-  
+
   Universal 8bit Graphics Library (https://github.com/olikraus/u8g2/)
 
   Copyright (c) 2019, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
   20 May 2019:
   https://github.com/olikraus/u8g2/issues/876
-  Probably HW Flip does not work 
+  Probably HW Flip does not work
 
-  
+
 */
 #include "u8x8.h"
 
@@ -81,11 +81,11 @@ static const u8x8_display_info_t u8x8_st7511_320x240_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 150,	/* ST7511 Datasheet */
   /* pre_chip_disable_wait_ns = */ 150,	/* ST7511 Datasheet */
-  /* reset_pulse_width_ms = */ 1, 
-  /* post_reset_wait_ms = */ 1, 
+  /* reset_pulse_width_ms = */ 1,
+  /* post_reset_wait_ms = */ 1,
   /* sda_setup_time_ns = */ 120,		/* ST7511 Datasheet */
   /* sck_pulse_width_ns = */ 150,	/* ST7511 Datasheet */
   /* sck_clock_hz = */ 3300000UL,	/* ST7511 Datasheet: 300ns cycle */
@@ -102,9 +102,9 @@ static const u8x8_display_info_t u8x8_st7511_320x240_display_info =
 };
 
 static const uint8_t u8x8_d_st7511_320x240_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  
+
   U8X8_CA(0xae, 0xa5),						/* SW Reset */
   U8X8_CAAAA(0x61, 0x0f, 0x04, 0x02, 0xa5),	/* all power on */
   U8X8_CAAAA(0x62, 0x0a, 0x06, 0x0f, 0xa5),	/* electronic volumne set 1 */
@@ -118,7 +118,7 @@ static const uint8_t u8x8_d_st7511_320x240_init_seq[] = {
   U8X8_CAAAA(0x24, 0x01, 0xa5, 0xa5, 0xa5),		/* memory control directions */
 
   U8X8_DLY(50),
-  
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -152,7 +152,7 @@ uint8_t u8x8_d_st7511_avd_320x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
       {
 	u8x8_cad_SendSequence(u8x8, u8x8_d_st7511_320x240_flip1_seq);
 	u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
-      }	
+      }
       break;
 #ifdef U8X8_WITH_SET_CONTRAST
     case U8X8_MSG_DISPLAY_SET_CONTRAST:
@@ -169,12 +169,12 @@ uint8_t u8x8_d_st7511_avd_320x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
       u8x8_cad_SendArg(u8x8, (((u8x8_tile_t *)arg_ptr)->y_pos));
       u8x8_cad_SendArg(u8x8, 0x09f);		// end page
       u8x8_cad_SendArg(u8x8, 0x000);		// frame 0
-      u8x8_cad_SendArg(u8x8, 0x0a5);		
-    
+      u8x8_cad_SendArg(u8x8, 0x0a5);
+
       x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x *= 8;
       x += u8x8->x_offset;
-    
+
       // set column
       u8x8_cad_SendCmd(u8x8, 0x026);
       u8x8_cad_SendArg(u8x8, (x>>8) );
@@ -191,7 +191,7 @@ uint8_t u8x8_d_st7511_avd_320x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
 	c *= 8;
 	ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
-	
+
 	while ( c > 128 )
 	{
 	  u8x8_cad_SendData(u8x8, 128, ptr);	/* note: SendData can not handle more than 255 bytes */
@@ -201,7 +201,7 @@ uint8_t u8x8_d_st7511_avd_320x240(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
 	u8x8_cad_SendData(u8x8, c, ptr);	/* note: SendData can not handle more than 255 bytes */
 	arg_int--;
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:

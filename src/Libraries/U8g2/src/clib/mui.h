@@ -9,60 +9,60 @@
   Copyright (c) 2021, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
-  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
   MUIF  (Monochrome User Interface Functions)
     n:  A number 0 to 9 without any quotes, e.g.: 5
     id: Exactly two characters or numbers in double quotes, e.g. "G5".
     cb: A callback function with the following prototype: "uint8_t muif_cb(mui_t *ui, uint8_t msg)"
       There are MANY predefined callback functions, see separate list
-    var: Address of a variable. 
+    var: Address of a variable.
     text: Normal text, but special characters might be required for some callback functions, for
       example the text might contain a list of selectable elements separated with the '|' symbol.
 
   MUIF_STYLE(n,cb)
     Corresponding FDS command: MUI_STYLE(n)
     Change the style of any other elements after MUI_STYLE(n), does not draw anything
-    
+
   MUIF_RO(id,cb)
     Corresponding FDS command: MUI_DATA(id, text) MUI_XY(id, x, y), MUI_XYT(id, x,y,text), MUI_XYA(id, x,y,a), MUI_XYAT(id, x,y,a,text)
-    Places a read only element on the form. 
+    Places a read only element on the form.
     The correct FDS command depends on the callback function.
-    
+
   MUIF_LABEL(cb)
     Corresponding FDS command: MUI_LABEL(x,y,text)
     Places a text at the specified position, similar to MUIF_RO
-    
+
   MUIF_GOTO(cb)
     Corresponding FDS command: MUI_GOTO(x,y,n,text)
     Places a button at the specified position, similar to MUIF_BUTTON, but does not require an ID.
-    
+
   MUIF_BUTTON(id,cb)
     Corresponding FDS command: MUI_XY(id, x, y), MUI_XYT(id, x,y,text), MUI_XYA(id, x,y,a), MUI_XYAT(id, x,y,a,text)
-    Places a selectable element on the form. 
-  
+    Places a selectable element on the form.
+
   MUIF_VARIABLE(id,var,cb)
     Corresponding FDS command: MUI_XY(id, x, y), MUI_XYA(id, x,y,a)
     Places a user input element at the specified location.
@@ -80,7 +80,7 @@
 
 #if defined(__GNUC__) && defined(__AVR__)
 #include <avr/pgmspace.h>
-#endif 
+#endif
 
 
 /*==========================================*/
@@ -108,25 +108,25 @@ extern "C" {
 
 #if defined(__GNUC__) && defined(__AVR__)
 #  define mui_pgm_read(adr) pgm_read_byte_near(adr)
-#  define mui_pgm_wread(adr) pgm_read_word_near(adr) 
+#  define mui_pgm_wread(adr) pgm_read_word_near(adr)
 #  define MUI_PROGMEM PROGMEM
 #endif
 
 
 #ifndef mui_pgm_read
 #  ifndef CHAR_BIT
-#  	define mui_pgm_read(adr) (*(const uint8_t *)(adr)) 
+#  	define mui_pgm_read(adr) (*(const uint8_t *)(adr))
 #  else
-#	if CHAR_BIT > 8 
+#	if CHAR_BIT > 8
 #  	  define mui_pgm_read(adr) ((*(const uint8_t *)(adr)) & 0x0ff)
 #     else
-#  	  define mui_pgm_read(adr) (*(const uint8_t *)(adr)) 
-#     endif 
+#  	  define mui_pgm_read(adr) (*(const uint8_t *)(adr))
+#     endif
 #  endif
 #endif
 
 #ifndef mui_pgm_wread
-#  	define mui_pgm_wread(adr) (*(const uint16_t *)(adr)) 
+#  	define mui_pgm_wread(adr) (*(const uint16_t *)(adr))
 #endif
 
 #ifndef MUI_PROGMEM
@@ -199,7 +199,7 @@ struct muif_struct
 /* dynamic flags */
 #define MUIF_DFLAG_IS_CURSOR_FOCUS 0x01
 #define MUIF_DFLAG_IS_TOUCH_FOCUS 0x02
-  
+
 /* config flags */
 #define MUIF_CFLAG_IS_CURSOR_SELECTABLE 0x01
 #define MUIF_CFLAG_IS_TOUCH_SELECTABLE 0x02
@@ -207,8 +207,8 @@ struct muif_struct
 
 
 /* end user MUIF entries */
-#define MUIF(id,cflags,data,cb) { id[0], id[1], cflags, 0, data, cb} 
-#define MUIF_STYLE(n,cb)  MUIF("S" #n, 0, 0, cb) 
+#define MUIF(id,cflags,data,cb) { id[0], id[1], cflags, 0, data, cb}
+#define MUIF_STYLE(n,cb)  MUIF("S" #n, 0, 0, cb)
 #define MUIF_RO(id,cb) MUIF(id,0, 0,cb)
 #define MUIF_LABEL(cb) MUIF(".L",0, 0,cb)
 #define MUIF_GOTO(cb) MUIF(".G",MUIF_CFLAG_IS_CURSOR_SELECTABLE,0,cb)
@@ -228,11 +228,11 @@ struct muif_struct
 struct mui_struct
 {
   void *graphics_data;
-  fds_t *root_fds;  
-  
+  fds_t *root_fds;
+
   muif_t *muif_tlist;
   size_t muif_tcnt;
-  
+
   fds_t *current_form_fds;         // the current form, NULL if the ui is not active at the moment
   fds_t *cursor_focus_fds;           // the field which has the current cursor focus, NULL if there is no current focus
   fds_t *touch_focus_fds;            // the field which has touch focus
@@ -242,16 +242,16 @@ struct mui_struct
   uint16_t form_scroll_total;            // reserved for MUIF, not used by mui
   uint16_t form_scroll_top;              // reserved for MUIF, not used by mui
   uint8_t form_scroll_visible;          // reserved for MUIF, not used by mui
-  
-  
+
+
   //uint8_t selected_value;   // This variable is not used by the user interface but can be used by any field function
   uint8_t tmp8;
-  
+
   /* 0: mse, 1: mud */
   uint8_t is_mud;         // a temp variable for the MUIF function to store remember up down mode. This variable will be cleared before sending MUIF_MSG_CURSOR_ENTER
   /* current field/style variables */
   //uint8_t cursor_focus_position;        // the index of the field which has focus, can be used as last argument for mui_EnterForm
-  
+
   uint8_t delimiter;    // outer delimiter of the text part of a field
   uint8_t cmd;          // current cmd or field (e.g. U or F)
   uint8_t id0;            // identifier of the field, manually provided or derived (G cmd has fixed id "FG")
@@ -268,12 +268,12 @@ struct mui_struct
   /* target  */
   fds_t *tmp_fds;
   fds_t *target_fds;     // used by several task functions as a return / result value
-  
+
   /* last form and field, used by mui_SaveForm and mui_RestoreForm */
   uint8_t last_form_id;
   uint8_t last_form_cursor_focus_position;
   fds_t *last_form_fds;           // not used by mui_RestoreForm, but can be used by field functions
-  
+
   /* menu cursor position backup */
   uint8_t menu_form_id[MUI_MENU_CACHE_CNT];
   uint8_t menu_form_cursor_focus_position[MUI_MENU_CACHE_CNT];
@@ -599,7 +599,7 @@ void mui_SendValueDecrement(mui_t *ui);
 
 
 
-#define mui_IsFormActive(ui) ((ui)->current_form_fds != NULL) 
+#define mui_IsFormActive(ui) ((ui)->current_form_fds != NULL)
 
 #ifdef __cplusplus
 }

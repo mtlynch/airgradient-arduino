@@ -58,18 +58,18 @@ For more details about the sensors and breakout boards check out http://sensirio
         Sketch => Upload
 
 5. When the upload process has finished, open the `Serial Monitor` or `Serial
-   Plotter` via the `Tools` menu to observe the measurement values and calculated 
+   Plotter` via the `Tools` menu to observe the measurement values and calculated
    Gas Index value. Note that the `Baud Rate` in the corresponding window has to be set to `115200 baud`.
 
 
 ### Low power example (SGP40)
-The provided low power example demonstrate how to run the SGP40 sensor in low power mode and apply the VOC index algorithm to the acquired data. 
+The provided low power example demonstrate how to run the SGP40 sensor in low power mode and apply the VOC index algorithm to the acquired data.
 
 Reduced power consumption is achieved by turning off the heater after each measurement. The heater is then turned back on by calling for a first ignored measurement that preceeds the actual measurement call by 170ms.
 
 The following two low power modes have been tested:
 Duty cycle | Sampling interval | Average  power  consumption at 1.8V
- --- | --- | --- 
+ --- | --- | ---
 Continuous | 1 s | 6.3mW
 20%| 1 s | <2.0mW
 2%| 10 s | <0.2mW

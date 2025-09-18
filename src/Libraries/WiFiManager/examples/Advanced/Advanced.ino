@@ -14,14 +14,14 @@ WiFiManager wm; // global wm instance
 WiFiManagerParameter custom_field; // global param ( for non blocking w params )
 
 void setup() {
-  WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP  
+  WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP
   Serial.begin(115200);
-  Serial.setDebugOutput(true);  
+  Serial.setDebugOutput(true);
   delay(3000);
   Serial.println("\n Starting");
 
   pinMode(TRIGGER_PIN, INPUT);
-  
+
   // wm.resetSettings(); // wipe settings
 
   if(wm_nonblocking) wm.setConfigPortalBlocking(false);
@@ -31,21 +31,21 @@ void setup() {
 
 
   // new (&custom_field) WiFiManagerParameter("customfieldid", "Custom Field Label", "Custom Field Value", customFieldLength,"placeholder=\"Custom Field Placeholder\"");
-  
+
   // test custom html input type(checkbox)
   // new (&custom_field) WiFiManagerParameter("customfieldid", "Custom Field Label", "Custom Field Value", customFieldLength,"placeholder=\"Custom Field Placeholder\" type=\"checkbox\""); // custom html type
-  
+
   // test custom html(radio)
   const char* custom_radio_str = "<br/><label for='customfieldid'>Custom Field Label</label><input type='radio' name='customfieldid' value='1' checked> One<br><input type='radio' name='customfieldid' value='2'> Two<br><input type='radio' name='customfieldid' value='3'> Three";
   new (&custom_field) WiFiManagerParameter(custom_radio_str); // custom html input
-  
+
   wm.addParameter(&custom_field);
   wm.setSaveParamsCallback(saveParamCallback);
 
   // custom menu via array or vector
-  // 
+  //
   // menu tokens, "wifi","wifinoscan","info","param","close","sep","erase","restart","exit" (sep is seperator) (if param is in menu, params will not show up in wifi page!)
-  // const char* menu[] = {"wifi","info","param","sep","restart","exit"}; 
+  // const char* menu[] = {"wifi","info","param","sep","restart","exit"};
   // wm.setMenu(menu,6);
   std::vector<const char *> menu = {"wifi","info","param","sep","restart","exit"};
   wm.setMenu(menu);
@@ -69,7 +69,7 @@ void setup() {
   // wm.setMinimumSignalQuality(20);  // set min RSSI (percentage) to show in scans, null = 8%
   // wm.setShowInfoErase(false);      // do not show erase button on info page
   // wm.setScanDispPerc(true);       // show RSSI as percentage not graph icons
-  
+
   // wm.setBreakAfterConfig(true);   // always exit configportal even if wifi save fails
 
   bool res;
@@ -80,9 +80,9 @@ void setup() {
   if(!res) {
     Serial.println("Failed to connect or hit timeout");
     // ESP.restart();
-  } 
+  }
   else {
-    //if you get here you have connected to the WiFi    
+    //if you get here you have connected to the WiFi
     Serial.println("connected...yeey :)");
   }
 }
@@ -102,11 +102,11 @@ void checkButton(){
         wm.resetSettings();
         ESP.restart();
       }
-      
+
       // start portal w delay
       Serial.println("Starting config portal");
       wm.setConfigPortalTimeout(120);
-      
+
       if (!wm.startConfigPortal("OnDemandAP","password")) {
         Serial.println("failed to connect or hit timeout");
         delay(3000);
@@ -135,7 +135,7 @@ void saveParamCallback(){
 }
 
 void loop() {
-  if(wm_nonblocking) wm.process(); // avoid delays() in loop when non-blocking and other long running code  
+  if(wm_nonblocking) wm.process(); // avoid delays() in loop when non-blocking and other long running code
   checkButton();
   // put your main code here, to run repeatedly:
 }

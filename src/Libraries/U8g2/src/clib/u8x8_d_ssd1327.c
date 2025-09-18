@@ -7,30 +7,30 @@
   Copyright (c) 2016, olikraus@gmail.com
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without modification, 
+  Redistribution and use in source and binary forms, with or without modification,
   are permitted provided that the following conditions are met:
 
-  * Redistributions of source code must retain the above copyright notice, this list 
+  * Redistributions of source code must retain the above copyright notice, this list
     of conditions and the following disclaimer.
-    
-  * Redistributions in binary form must reproduce the above copyright notice, this 
-    list of conditions and the following disclaimer in the documentation and/or other 
+
+  * Redistributions in binary form must reproduce the above copyright notice, this
+    list of conditions and the following disclaimer in the documentation and/or other
     materials provided with the distribution.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
-  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
-  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
-  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
-  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
-  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
-  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
-  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+  CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 */
 
 
@@ -70,7 +70,7 @@ static const uint8_t u8x8_d_ssd1327_seeed_96x96_flip1_seq[] = {
 
 
 static const uint8_t u8x8_d_ssd1327_winstar_96x64_flip0_seq[] = {
-  U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */  
+  U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
   U8X8_CA(0x0a0, 0x042),		/* remap configuration */
   U8X8_CA(0x0a2, 0x000),		/* display offset, shift mapping ram counter */
   U8X8_END_TRANSFER(),             	/* disable chip */
@@ -100,7 +100,7 @@ static uint8_t *u8x8_ssd1327_8to32(U8X8_UNUSED u8x8_t *u8x8, uint8_t *ptr)
   uint8_t a,b;
   uint8_t i, j;
   uint8_t *dest;
-  
+
   for( j = 0; j < 4; j++ )
   {
     dest = u8x8_ssd1327_8to32_dest_buf;
@@ -120,7 +120,7 @@ static uint8_t *u8x8_ssd1327_8to32(U8X8_UNUSED u8x8_t *u8x8, uint8_t *ptr)
       b >>= 1;
     }
   }
-  
+
   return u8x8_ssd1327_8to32_dest_buf;
 }
 
@@ -141,7 +141,7 @@ static uint8_t u8x8_d_ssd1327_96x96_generic(u8x8_t *u8x8, uint8_t msg, uint8_t a
     /* handled by the calling function
     case U8X8_MSG_DISPLAY_INIT:
       u8x8_d_helper_display_init(u8x8);
-      u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_96x96_init_seq);    
+      u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_96x96_init_seq);
       break;
     */
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
@@ -160,18 +160,18 @@ static uint8_t u8x8_d_ssd1327_96x96_generic(u8x8_t *u8x8, uint8_t msg, uint8_t a
 #endif
     case U8X8_MSG_DISPLAY_DRAW_TILE:
       u8x8_cad_StartTransfer(u8x8);
-      x = ((u8x8_tile_t *)arg_ptr)->x_pos;    
+      x = ((u8x8_tile_t *)arg_ptr)->x_pos;
       x *= 4;
       x+=u8x8->x_offset/2;
-    
+
       y = (((u8x8_tile_t *)arg_ptr)->y_pos);
       y *= 8;
-    
+
       u8x8_cad_SendCmd(u8x8, 0x075 );	/* set row address, moved out of the loop (issue 302) */
       u8x8_cad_SendArg(u8x8, y);
       u8x8_cad_SendArg(u8x8, y+7);
-	  
-      
+
+
       do
       {
 	c = ((u8x8_tile_t *)arg_ptr)->cnt;
@@ -183,17 +183,17 @@ static uint8_t u8x8_d_ssd1327_96x96_generic(u8x8_t *u8x8, uint8_t msg, uint8_t a
 	  u8x8_cad_SendArg(u8x8, x );	/* start */
 	  u8x8_cad_SendArg(u8x8, x+3 );	/* end */
 
-	  
+
 	  u8x8_cad_SendData(u8x8, 32, u8x8_ssd1327_8to32(u8x8, ptr));
 	  ptr += 8;
 	  x += 4;
 	  c--;
 	} while( c > 0 );
-	
+
 	//x += 4;
 	arg_int--;
       } while( arg_int > 0 );
-      
+
       u8x8_cad_EndTransfer(u8x8);
       break;
     default:
@@ -214,10 +214,10 @@ static const u8x8_display_info_t u8x8_ssd1327_winstar_96x64_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
-  /* reset_pulse_width_ms = */ 100, 	
+  /* reset_pulse_width_ms = */ 100,
   /* post_reset_wait_ms = */ 100, 		/**/
   /* sda_setup_time_ns = */ 100,		/* */
   /* sck_pulse_width_ns = */ 100,	/*  */
@@ -225,7 +225,7 @@ static const u8x8_display_info_t u8x8_ssd1327_winstar_96x64_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 1,	/* use 1 instead of 4, because the SSD1327 seems to be very slow */
   /* data_setup_time_ns = */ 40,
-  /* write_pulse_width_ns = */ 60,	
+  /* write_pulse_width_ns = */ 60,
   /* tile_width = */ 12,
   /* tile_height = */ 8,
   /* default_x_offset = */ 16,		/* changed to 16, issue 1050 */
@@ -268,36 +268,36 @@ static const u8x8_display_info_t u8x8_ssd1327_winstar_96x64_display_info =
 */
 
 static const uint8_t u8x8_d_ssd1327_winstar_96x64_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  
+
   U8X8_CA(0x0fd, 0x012),		/* unlock display, usually not required because the display is unlocked after reset */
   U8X8_C(0x0ae),		                /* display off */
-  
+
   U8X8_CA(0x0d9, 0x000),		/* Pre-charge Period ??? */
-  
+
   U8X8_CA(0x0a0, 0x042),		/* remap configuration */
-  U8X8_CA(0x0a1, 0x000),		/* display start line */  
+  U8X8_CA(0x0a1, 0x000),		/* display start line */
   U8X8_CA(0x0a2, 0x000),		/* display offset, shift mapping ram counter */
-  
+
   U8X8_CA(0x0a8, 0x063),		/* multiplex ratio: 63* 1/64 duty */ /* changed to hex, issue 1050 */
-  
+
   U8X8_CA(0x0ab, 0x001),		/* Enable internal VDD regulator (RESET) */
   U8X8_CA(0x081, 0x053),		/* contrast, brightness, 0..128 */
-  
-  U8X8_CA(0x0b1, 0x047),                    /* phase length */  
-  //U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */			
-  U8X8_CA(0x0b3, 0x000),		/* set display clock divide ratio/oscillator frequency  */			
-  
+
+  U8X8_CA(0x0b1, 0x047),                    /* phase length */
+  //U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */
+  U8X8_CA(0x0b3, 0x000),		/* set display clock divide ratio/oscillator frequency  */
+
   U8X8_C(0x0b9),				/* use linear lookup table */
 
   U8X8_CA(0x0bc, 0x007),                    /* pre-charge voltage level */
   U8X8_CA(0x0be, 0x007),                     /* VCOMH voltage */
   U8X8_CA(0x0b6, 0x004),		/* second precharge */
   U8X8_CA(0x0d5, 0x062),		/* enable second precharge, internal vsl (bit0 = 0) */
-  
+
   U8X8_C(0x0a4),				/* normal display mode */
-    
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -314,7 +314,7 @@ uint8_t u8x8_d_ssd1327_ws_96x64(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_winstar_96x64_init_seq);    
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_winstar_96x64_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
@@ -342,10 +342,10 @@ static const u8x8_display_info_t u8x8_ssd1327_96x96_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
-  /* reset_pulse_width_ms = */ 100, 	
+  /* reset_pulse_width_ms = */ 100,
   /* post_reset_wait_ms = */ 100, 		/**/
   /* sda_setup_time_ns = */ 100,		/* */
   /* sck_pulse_width_ns = */ 100,	/*  */
@@ -353,11 +353,11 @@ static const u8x8_display_info_t u8x8_ssd1327_96x96_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 1,	/* use 1 instead of 4, because the SSD1327 seems to be very slow */
   /* data_setup_time_ns = */ 40,
-  /* write_pulse_width_ns = */ 60,	
+  /* write_pulse_width_ns = */ 60,
   /* tile_width = */ 12,
   /* tile_height = */ 12,
   /* default_x_offset = */ 16,
-  /* flipmode_x_offset = */ 16,		
+  /* flipmode_x_offset = */ 16,
   /* pixel_width = */ 96,
   /* pixel_height = */ 96
 };
@@ -371,7 +371,7 @@ static const u8x8_display_info_t u8x8_ssd1327_96x96_display_info =
     Bit 1: Nibble Re-map
     Bit 2: Horizontal/Vertical Address Increment
     Bit 3: Not used, must be 0
-    
+
     Bit 4: COM Re-map
     Bit 5: Not used, must be 0
     Bit 6: COM Split Odd Even
@@ -380,31 +380,31 @@ static const u8x8_display_info_t u8x8_ssd1327_96x96_display_info =
 
 
 static const uint8_t u8x8_d_ssd1327_96x96_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  
+
   U8X8_CA(0x0fd, 0x012),		/* unlock display, usually not required because the display is unlocked after reset */
   U8X8_C(0x0ae),		                /* display off */
   //U8X8_CA(0x0a8, 0x03f),		/* multiplex ratio: 0x03f * 1/64 duty */
   U8X8_CA(0x0a8, 0x05f),		/* multiplex ratio: 0x05f * 1/64 duty */
   U8X8_CA(0x0a1, 0x000),		/* display start line */
   //U8X8_CA(0x0a2, 0x04c),		/* display offset, shift mapping ram counter */
-  
+
   U8X8_CA(0x0a2, 0x020),		/* display offset, shift mapping ram counter */
   U8X8_CA(0x0a0, 0x051),		/* remap configuration */
-  
-  
+
+
   U8X8_CA(0x0ab, 0x001),		/* Enable internal VDD regulator (RESET) */
   //U8X8_CA(0x081, 0x070),		/* contrast, brightness, 0..128 */
   U8X8_CA(0x081, 0x053),		/* contrast, brightness, 0..128 */
   //U8X8_CA(0x0b1, 0x055),                    /* phase length */
-  U8X8_CA(0x0b1, 0x051),                    /* phase length */  
-  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */			
-  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */			
-  
+  U8X8_CA(0x0b1, 0x051),                    /* phase length */
+  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */
+  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */
+
   //? U8X8_CA(0x0ad, 0x002),		/* master configuration: disable embedded DC-DC, enable internal VCOMH */
   //? U8X8_C(0x086),				/* full current range (0x084, 0x085, 0x086) */
-  
+
   U8X8_C(0x0b9),				/* use linear lookup table */
 
   //U8X8_CA(0x0bc, 0x010),                    /* pre-charge voltage level */
@@ -415,9 +415,9 @@ static const uint8_t u8x8_d_ssd1327_96x96_init_seq[] = {
   U8X8_CA(0x0d5, 0x062),		/* enable second precharge, internal vsl (bit0 = 0) */
 
 
-  
+
   U8X8_C(0x0a4),				/* normal display mode */
-    
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -437,7 +437,7 @@ uint8_t u8x8_d_ssd1327_seeed_96x96(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_96x96_init_seq);    
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_96x96_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
@@ -466,10 +466,10 @@ static const u8x8_display_info_t u8x8_ssd1327_ea_w128128_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
-  /* reset_pulse_width_ms = */ 100, 	
+  /* reset_pulse_width_ms = */ 100,
   /* post_reset_wait_ms = */ 100, 		/**/
   /* sda_setup_time_ns = */ 100,		/* */
   /* sck_pulse_width_ns = */ 100,	/*  */
@@ -477,42 +477,42 @@ static const u8x8_display_info_t u8x8_ssd1327_ea_w128128_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 1,	/* use 1 instead of 4, because the SSD1327 seems to be very slow */
   /* data_setup_time_ns = */ 40,
-  /* write_pulse_width_ns = */ 60,	
+  /* write_pulse_width_ns = */ 60,
   /* tile_width = */ 16,
   /* tile_height = */ 16,
   /* default_x_offset = */ 0,
-  /* flipmode_x_offset = */ 0,		
+  /* flipmode_x_offset = */ 0,
   /* pixel_width = */ 128,
   /* pixel_height = */ 128
 };
 
 /* this is a copy of the init sequence for the seeed 96x96 oled */
 static const uint8_t u8x8_d_ssd1327_ea_w128128_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
-  
+
   U8X8_CA(0x0fd, 0x012),		/* unlock display, usually not required because the display is unlocked after reset */
   U8X8_C(0x0ae),		                /* display off */
   //U8X8_CA(0x0a8, 0x03f),		/* multiplex ratio: 0x03f * 1/64 duty */
   U8X8_CA(0x0a8, 0x05f),		/* multiplex ratio: 0x05f * 1/64 duty */
   U8X8_CA(0x0a1, 0x000),		/* display start line */
   //U8X8_CA(0x0a2, 0x04c),		/* display offset, shift mapping ram counter */
-  
+
   U8X8_CA(0x0a2, 0x010),		/* display offset, shift mapping ram counter */
   U8X8_CA(0x0a0, 0x051),		/* remap configuration */
-  
-  
+
+
   U8X8_CA(0x0ab, 0x001),		/* Enable internal VDD regulator (RESET) */
   //U8X8_CA(0x081, 0x070),		/* contrast, brightness, 0..128 */
   U8X8_CA(0x081, 0x053),		/* contrast, brightness, 0..128 */
   //U8X8_CA(0x0b1, 0x055),                    /* phase length */
-  U8X8_CA(0x0b1, 0x051),                    /* phase length */  
-  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */			
-  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */			
-  
+  U8X8_CA(0x0b1, 0x051),                    /* phase length */
+  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */
+  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */
+
   //? U8X8_CA(0x0ad, 0x002),		/* master configuration: disable embedded DC-DC, enable internal VCOMH */
   //? U8X8_C(0x086),				/* full current range (0x084, 0x085, 0x086) */
-  
+
   U8X8_C(0x0b9),				/* use linear lookup table */
 
   //U8X8_CA(0x0bc, 0x010),                    /* pre-charge voltage level */
@@ -521,9 +521,9 @@ static const uint8_t u8x8_d_ssd1327_ea_w128128_init_seq[] = {
   U8X8_CA(0x0be, 0x007),                     /* VCOMH voltage */
   U8X8_CA(0x0b6, 0x001),		/* second precharge */
   U8X8_CA(0x0d5, 0x062),		/* enable second precharge, internal vsl (bit0 = 0) */
-  
+
   U8X8_C(0x0a4),				/* normal display mode */
-    
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -558,7 +558,7 @@ uint8_t u8x8_d_ssd1327_ea_w128128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_ea_w128128_init_seq);    
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_ea_w128128_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
@@ -586,10 +586,10 @@ static const u8x8_display_info_t u8x8_ssd1327_128x128_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
-  /* reset_pulse_width_ms = */ 100, 	
+  /* reset_pulse_width_ms = */ 100,
   /* post_reset_wait_ms = */ 100, 		/**/
   /* sda_setup_time_ns = */ 100,		/* */
   /* sck_pulse_width_ns = */ 100,	/*  */
@@ -597,11 +597,11 @@ static const u8x8_display_info_t u8x8_ssd1327_128x128_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 1,	/* use 1 instead of 4, because the SSD1327 seems to be very slow, Update 9 Aug 2019: The OLED from aliexpress supports 400kHz */
   /* data_setup_time_ns = */ 40,
-  /* write_pulse_width_ns = */ 60,	
+  /* write_pulse_width_ns = */ 60,
   /* tile_width = */ 16,
   /* tile_height = */ 16,
   /* default_x_offset = */ 0,
-  /* flipmode_x_offset = */ 0,		
+  /* flipmode_x_offset = */ 0,
   /* pixel_width = */ 128,
   /* pixel_height = */ 128
 };
@@ -615,7 +615,7 @@ static const u8x8_display_info_t u8x8_ssd1327_128x128_display_info =
     Bit 1: Nibble Re-map
     Bit 2: Horizontal/Vertical Address Increment
     Bit 3: Not used, must be 0
-    
+
     Bit 4: COM Re-map
     Bit 5: Not used, must be 0
     Bit 6: COM Split Odd Even
@@ -624,10 +624,10 @@ static const u8x8_display_info_t u8x8_ssd1327_128x128_display_info =
 
 
 static const uint8_t u8x8_d_ssd1327_128x128_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
-	
+
   U8X8_CA(0x0fd, 0x012),		/* unlock display, usually not required because the display is unlocked after reset */
   U8X8_C(0x0ae),		                /* display off */
   //U8X8_CA(0x0a8, 0x03f),		/* multiplex ratio: 0x03f * 1/64 duty */
@@ -635,22 +635,22 @@ static const uint8_t u8x8_d_ssd1327_128x128_init_seq[] = {
   U8X8_CA(0x0a8, 0x07f),       		 /* multiplex ratio: 0x05f * 1/128duty */
   U8X8_CA(0x0a1, 0x000),		/* display start line */
   //U8X8_CA(0x0a2, 0x04c),		/* display offset, shift mapping ram counter */
-  
+
   U8X8_CA(0x0a2, 0x000),		/* display offset, shift mapping ram counter */
   U8X8_CA(0x0a0, 0x051),		/* remap configuration */
-  
-  
+
+
   U8X8_CA(0x0ab, 0x001),		/* Enable internal VDD regulator (RESET) */
   //U8X8_CA(0x081, 0x070),		/* contrast, brightness, 0..128 */
   U8X8_CA(0x081, 0x053),		/* contrast, brightness, 0..128 */
   //U8X8_CA(0x0b1, 0x055),                    /* phase length */
-  U8X8_CA(0x0b1, 0x051),                    /* phase length */  
-  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */			
-  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */			
-  
+  U8X8_CA(0x0b1, 0x051),                    /* phase length */
+  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */
+  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */
+
   //? U8X8_CA(0x0ad, 0x002),		/* master configuration: disable embedded DC-DC, enable internal VCOMH */
   //? U8X8_C(0x086),				/* full current range (0x084, 0x085, 0x086) */
-  
+
   U8X8_C(0x0b9),				/* use linear lookup table */
 
   //U8X8_CA(0x0bc, 0x010),                    /* pre-charge voltage level */
@@ -661,9 +661,9 @@ static const uint8_t u8x8_d_ssd1327_128x128_init_seq[] = {
   U8X8_CA(0x0d5, 0x062),		/* enable second precharge, internal vsl (bit0 = 0) */
 
 
-  
+
   U8X8_C(0x0a4),				/* normal display mode */
-    
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -699,7 +699,7 @@ uint8_t u8x8_d_ssd1327_midas_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_128x128_init_seq); 
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_128x128_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
@@ -722,7 +722,7 @@ uint8_t u8x8_d_ssd1327_midas_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
 /*=============================================*/
 /*
 
-  ZJY-M150 128x128 
+  ZJY-M150 128x128
 
   https://aliexpress.com/item/1005003784174529.html
   https://github.com/olikraus/u8g2/issues/1960
@@ -732,10 +732,10 @@ uint8_t u8x8_d_ssd1327_midas_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
 */
 
 static const uint8_t u8x8_d_ssd1327_zjy_128x128_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
-	
+
   U8X8_CA(0x0fd, 0x012),		/* unlock display, usually not required because the display is unlocked after reset */
   U8X8_C(0x0ae),		                /* display off */
   //U8X8_CA(0x0a8, 0x03f),		/* multiplex ratio: 0x03f * 1/64 duty */
@@ -743,37 +743,37 @@ static const uint8_t u8x8_d_ssd1327_zjy_128x128_init_seq[] = {
   U8X8_CA(0x0a8, 0x07f),       		 /* multiplex ratio: 0x05f * 1/128duty */
   U8X8_CA(0x0a1, 0x000),		/* display start line */
   //U8X8_CA(0x0a2, 0x04c),		/* display offset, shift mapping ram counter */
-  
+
   U8X8_CA(0x0a2, 0x000),		/* display offset, shift mapping ram counter */
   U8X8_CA(0x0a0, 0x051),		/* remap configuration */
-  
-  
+
+
   U8X8_CA(0x0ab, 0x001),		/* Enable internal VDD regulator (RESET) */
   //U8X8_CA(0x081, 0x070),		/* contrast, brightness, 0..128 */
   U8X8_CA(0x081, 0x053),		/* contrast, brightness, 0..128 */
   //U8X8_CA(0x0b1, 0x055),                    /* phase length */
-  U8X8_CA(0x0b1, 0x051),                    /* phase length */  
-  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */			
-  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */			
-  
+  U8X8_CA(0x0b1, 0x051),                    /* phase length */
+  //U8X8_CA(0x0b3, 0x091),		/* set display clock divide ratio/oscillator frequency (set clock as 135 frames/sec) */
+  U8X8_CA(0x0b3, 0x001),		/* set display clock divide ratio/oscillator frequency  */
+
   //? U8X8_CA(0x0ad, 0x002),		/* master configuration: disable embedded DC-DC, enable internal VCOMH */
   //? U8X8_C(0x086),				/* full current range (0x084, 0x085, 0x086) */
-  
+
   U8X8_C(0x0b9),				/* use linear lookup table */
 
   //U8X8_CA(0x0bc, 0x010),                    /* pre-charge voltage level */
   U8X8_CA(0x0bc, 0x008),                    /* pre-charge voltage level */
   //U8X8_CA(0x0be, 0x01c),                     /* VCOMH voltage */
   U8X8_CA(0x0be, 0x007),                     /* VCOMH voltage */
-  
+
   U8X8_CA(0x0b6, 0x001),		/* second precharge */
   U8X8_CA(0x0d5, 0x062),		/* enable second precharge, internal vsl (bit0 = 0) */
-  
+
   U8X8_CA(0x0b5, 0x003),		/* Enable GPIO, issue 1960 */
-  
-  
+
+
   U8X8_C(0x0a4),				/* normal display mode */
-    
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -791,7 +791,7 @@ uint8_t u8x8_d_ssd1327_zjy_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_zjy_128x128_init_seq); 
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_zjy_128x128_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
@@ -812,8 +812,8 @@ uint8_t u8x8_d_ssd1327_zjy_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
 }
 
 /*=============================================*/
-/*  
-  Waveshare 128x128 Module 
+/*
+  Waveshare 128x128 Module
   https://www.waveshare.com/w/upload/8/80/1.5inch_OLED_Module_User_Manual_EN.pdf
   https://github.com/olikraus/u8g2/issues/880
 
@@ -829,7 +829,7 @@ uint8_t u8x8_d_ssd1327_zjy_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
     Bit 1: Nibble Re-map
     Bit 2: Horizontal/Vertical Address Increment
     Bit 3: Not used, must be 0
-    
+
     Bit 4: COM Re-map
     Bit 5: Not used, must be 0
     Bit 6: COM Split Odd Even
@@ -838,7 +838,7 @@ uint8_t u8x8_d_ssd1327_zjy_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, v
 
 /* takeover from https://github.com/olikraus/u8g2/issues/880 */
 static const uint8_t u8x8_d_ssd1327_ws_128x128_init_seq[] = {
-    
+
     U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
     U8X8_C(0x0ae), //--turn off oled panel
@@ -876,7 +876,7 @@ uint8_t u8x8_d_ssd1327_ws_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_ws_128x128_init_seq); 
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_ws_128x128_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )
@@ -900,8 +900,8 @@ uint8_t u8x8_d_ssd1327_ws_128x128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
 
 
 /*=============================================*/
-/*  
-Visonox VGM128096A4W10 128x96 COB 
+/*
+Visonox VGM128096A4W10 128x96 COB
 https://github.com/olikraus/u8g2/files/4052919/M02289_VGM128096A4W10_Y02.pdf
 https://github.com/olikraus/u8g2/issues/1090
 */
@@ -911,10 +911,10 @@ static const u8x8_display_info_t u8x8_ssd1327_128x96_display_info =
 {
   /* chip_enable_level = */ 0,
   /* chip_disable_level = */ 1,
-  
+
   /* post_chip_enable_wait_ns = */ 20,
   /* pre_chip_disable_wait_ns = */ 10,
-  /* reset_pulse_width_ms = */ 100, 	
+  /* reset_pulse_width_ms = */ 100,
   /* post_reset_wait_ms = */ 100, 		/**/
   /* sda_setup_time_ns = */ 100,		/* */
   /* sck_pulse_width_ns = */ 100,	/*  */
@@ -922,11 +922,11 @@ static const u8x8_display_info_t u8x8_ssd1327_128x96_display_info =
   /* spi_mode = */ 0,		/* active high, rising edge */
   /* i2c_bus_clock_100kHz = */ 1,	/* use 1 instead of 4, because the SSD1327 seems to be very slow, Update 9 Aug 2019: The OLED from aliexpress supports 400kHz */
   /* data_setup_time_ns = */ 40,
-  /* write_pulse_width_ns = */ 60,	
+  /* write_pulse_width_ns = */ 60,
   /* tile_width = */ 16,
   /* tile_height = */ 12,
   /* default_x_offset = */ 0,
-  /* flipmode_x_offset = */ 0,		
+  /* flipmode_x_offset = */ 0,
   /* pixel_width = */ 128,
   /* pixel_height = */ 96
 };
@@ -940,7 +940,7 @@ static const u8x8_display_info_t u8x8_ssd1327_128x96_display_info =
     Bit 1: Nibble Re-map
     Bit 2: Horizontal/Vertical Address Increment
     Bit 3: Not used, must be 0
-    
+
     Bit 4: COM Re-map
     Bit 5: Not used, must be 0
     Bit 6: COM Split Odd Even
@@ -950,10 +950,10 @@ static const u8x8_display_info_t u8x8_ssd1327_128x96_display_info =
 /* init values from the Visionox datasheeet section 10.4 */
 
 static const uint8_t u8x8_d_ssd1327_128x96_init_seq[] = {
-    
+
   U8X8_START_TRANSFER(),             	/* enable chip, delay is part of the transfer start */
 
-	
+
   U8X8_CA(0x0fd, 0x012),		/* unlock display, usually not required because the display is unlocked after reset */
   U8X8_C(0x0ae),		                /* display off */
   //U8X8_CA(0x0a8, 0x03f),		/* multiplex ratio: 0x03f * 1/64 duty */
@@ -961,20 +961,20 @@ static const uint8_t u8x8_d_ssd1327_128x96_init_seq[] = {
   //U8X8_CA(0x0a8, 0x07f),       		 /* multiplex ratio: 0x05f * 1/128duty */
   U8X8_CA(0x0a1, 0x000),		/* display start line */
   //U8X8_CA(0x0a2, 0x04c),		/* display offset, shift mapping ram counter */
-  
+
   U8X8_CA(0x0a2, 0x020),		/* display offset, shift mapping ram counter */
   U8X8_CA(0x0a0, 0x051),		/* remap configuration */
-  
-  
+
+
   U8X8_CA(0x0ab, 0x001),		/* Enable internal VDD regulator (RESET) */
   //U8X8_CA(0x081, 0x070),		/* contrast, brightness, 0..128 */
   U8X8_CA(0x081, 0x0df),		/* contrast, brightness, 0..128 (0xdf as per datasheet) */
-  U8X8_CA(0x0b1, 0x022),                    /* phase length */  
-  U8X8_CA(0x0b3, 0x050),		/* set display clock divide ratio/oscillator frequency  */			
-  
+  U8X8_CA(0x0b1, 0x022),                    /* phase length */
+  U8X8_CA(0x0b3, 0x050),		/* set display clock divide ratio/oscillator frequency  */
+
   //? U8X8_CA(0x0ad, 0x002),		/* master configuration: disable embedded DC-DC, enable internal VCOMH */
   //? U8X8_C(0x086),				/* full current range (0x084, 0x085, 0x086) */
-  
+
   U8X8_C(0x0b9),				/* use linear lookup table */
 
   U8X8_CA(0x0bc, 0x010),                    /* pre-charge voltage level */
@@ -983,9 +983,9 @@ static const uint8_t u8x8_d_ssd1327_128x96_init_seq[] = {
   U8X8_CA(0x0d5, 0x062),		/* enable second precharge, internal vsl (bit0 = 0) */
 
 
-  
+
   U8X8_C(0x0a4),				/* normal display mode */
-    
+
   U8X8_END_TRANSFER(),             	/* disable chip */
   U8X8_END()             			/* end of sequence */
 };
@@ -1021,7 +1021,7 @@ uint8_t u8x8_d_ssd1327_visionox_128x96(u8x8_t *u8x8, uint8_t msg, uint8_t arg_in
   else if ( msg == U8X8_MSG_DISPLAY_INIT )
   {
     u8x8_d_helper_display_init(u8x8);
-    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_128x96_init_seq); 
+    u8x8_cad_SendSequence(u8x8, u8x8_d_ssd1327_128x96_init_seq);
     return 1;
   }
   else if  ( msg == U8X8_MSG_DISPLAY_SET_FLIP_MODE )

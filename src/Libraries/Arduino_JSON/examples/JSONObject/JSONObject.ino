@@ -86,7 +86,7 @@ void demoCreation() {
 
   int x1 = myObject["x1"];
   assert(x1 == 42);
-  
+
   long x2 = myObject["x2"];
   assert(x2 == 42);
 
