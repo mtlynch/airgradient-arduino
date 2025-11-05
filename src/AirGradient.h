@@ -15,7 +15,7 @@
 #include "Main/utils.h"
 
 #ifndef GIT_VERSION
-#define GIT_VERSION "3.3.8-mtlynch"
+#define GIT_VERSION "3.4.1-mtlynch"
 #endif
 
 

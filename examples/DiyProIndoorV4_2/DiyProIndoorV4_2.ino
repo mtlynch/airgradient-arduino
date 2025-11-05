@@ -249,7 +249,7 @@ void loop() {
   configUpdateHandle();
 
   localServer._handle();
-  
+
   if (configuration.hasSensorSGP) {
     ag.sgp41.handle();
   }
@@ -374,7 +374,7 @@ static bool sgp41Init(void) {
     configuration.hasSensorSGP = true;
     return true;
   } else {
-    Serial.println("Init SGP41 failuire");
+    Serial.println("Init SGP41 failure");
     configuration.hasSensorSGP = false;
   }
   return false;

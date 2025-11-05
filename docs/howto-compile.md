@@ -16,15 +16,15 @@ Arduino IDE version 2.x ([download](https://www.arduino.cc/en/software))
 
 #### Version < 3.2.0
 
-Using library manager install the latest version (Tools ➝ Manage Libraries... ➝ search for `"airgradient"`) 
+Using library manager install the latest version (Tools ➝ Manage Libraries... ➝ search for `"airgradient"`)
 
 ![Aigradient Library](images/ag-lib.png)
 
 #### Version >= 3.3.0
 
 - From your terminal, go to Arduino libraries folder (windows and mac: `Documents/Arduino/libraries` or linux: `~/Arduino/Libraries`).
-- With **git** cli, execute this command `git clone --recursive https://github.com/airgradienthq/arduino.git AirGradient_Air_Quality_Sensor` 
-- Restart Arduino IDE 
+- With **git** cli, execute this command `git clone --recursive https://github.com/airgradienthq/arduino.git AirGradient_Air_Quality_Sensor`
+- Restart Arduino IDE
 
 3. On tools tab, follow settings below
 
@@ -57,7 +57,7 @@ Upload Speed ➝ 921600
 
 ![board manager](images/esp8266-board.png)
 
-3. Install AirGradient library on library manager using the latest version (Tools ➝ Manage Libraries... ➝ search for `"airgradient"`) 
+3. Install AirGradient library on library manager using the latest version (Tools ➝ Manage Libraries... ➝ search for `"airgradient"`)
 
 ![Aigradient Library](images/ag-lib.png)
 
@@ -65,7 +65,7 @@ Upload Speed ➝ 921600
 
 ![settings esp8266](images/settings-esp8266.png)
 
-5. Open sketch to compile (File ➝ Examples ➝ AirGradient Air Quality Sensor ➝ `<Model Option>`). Depends on the DIY model, either `BASIC`, `DiyProIndoorV3_3` and `DiyProIndoorV4_2` 
+5. Open sketch to compile (File ➝ Examples ➝ AirGradient Air Quality Sensor ➝ `<Model Option>`). Depends on the DIY model, either `BASIC`, `DiyProIndoorV3_3` and `DiyProIndoorV4_2`
 6. Compile
 
 ![compiled esp8266](images/compiled-esp8266.png)
@@ -78,19 +78,19 @@ ModuleNotFoundError: No module named ‘serial’
 
 ![Linux Failed](images/linux-failed.png)
 
-Make sure python pyserial module installed globally in the environment by executing: 
+Make sure python pyserial module installed globally in the environment by executing:
 
 `$ sudo apt install -y python3-pyserial`
 
-or 
+or
 
-`$ pip install pyserial` 
+`$ pip install pyserial`
 
 Choose based on how python installed on your machine. But most user, using `apt` is better.
 
 ## How to contribute
 
-The instructions above are the instructions for how to build an official release of the AirGradient firmware using the Arduino IDE. If you intend to make changes that will you intent to contribute back to the main project, instead of installing the AirGradient library, check out the repo at `Documents/Arduino/libraries` (for Windows and Mac), or `~/Arduino/Libraries` (Linux). If you installed the library, you can remove it from the library manager in the Arduino IDE, or just delete the directory.
+The instructions above are the instructions for how to build an official release of the AirGradient firmware using the Arduino IDE. If you intend to make changes which you plan to contribute back to the main project, instead of installing the AirGradient library, check out the repository at Documents/Arduino/libraries (for Windows and Mac) or ~/Arduino/libraries (for Linux). If you installed the library, you can remove it from the library manager in the Arduino IDE, or just delete the directory.
 
 **NOTE:** When cloning the repository, for version >= 3.3.0 it has submodule, please use `--recursive` flag like this: `git clone --recursive https://github.com/airgradienthq/arduino.git AirGradient_Air_Quality_Sensor`
 
@@ -100,6 +100,3 @@ There are 2 environment options to compile this project, PlatformIO and ArduinoI
 
 - For PlatformIO, it should work out of the box
 - For arduino, files in `src` folder and also from `Examples` can be modified at `Documents/Arduino/libraries` for Windows and Mac, and `~/Arduino/Libraries` for Linux
-
-
-
